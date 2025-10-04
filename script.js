@@ -1,63 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const frasesMotivacionais = [
-        "O primeiro passo é o mais importante. Você já deu.",
-        "Consistência é mais importante que intensidade.",
-        "Seu corpo pode fazer qualquer coisa. É sua mente que você precisa convencer.",
-        "Hoje você está mais forte do que ontem.",
-        "Um passo de cada vez. É assim que se chega longe."
+        "A jornada de mil quilômetros começa com um único passo. Você já está no caminho.",
+        "Não se compare com os outros. Compare-se com a pessoa que você era ontem.",
+        "A consistência transforma o esforço em resultado.",
+        "Acredite no seu potencial. Você é mais forte do que imagina.",
+        "Cada gota de suor é um degrau a mais na escada do seu objetivo."
     ];
 
     const dadosTreino = [
         {
-            dia: "Peito",
-            foco: "Foco total no peitoral",
+            dia: "Push (Empurrar)",
+            foco: "Foco em Peito, Ombros e Tríceps",
             exercicios: [
-                { nome: "Supino na Máquina", detalhes: "3 séries de 10-12 reps", gifUrl: "https://i.ibb.co/L5T1b2s/Machine-Chest-Press.gif", instrucoes: "Mantenha as costas retas e o peito estufado. Empurre de forma controlada e retorne lentamente." },
-                { nome: "Supino Inclinado com Halteres", detalhes: "3 séries de 10-12 reps", gifUrl: "https://i.ibb.co/GFLCg78/incline-dumbbell-press.gif", instrucoes: "Em um banco inclinado, desça os halteres até a linha do peito, alongando bem. Empurre para cima sem bater um no outro." },
-                { nome: "Crucifixo na Máquina (Peck Deck)", detalhes: "3 séries de 12-15 reps", gifUrl: "https://i.ibb.co/VWVwzG4/Pec-Deck-Fly.gif", instrucoes: "Junte os pegadores à sua frente em um movimento de arco. Contraia o peitoral por um segundo no pico do movimento." },
-                { nome: "Flexões", detalhes: "3 séries até a falha", gifUrl: "https://i.ibb.co/bJCJzxB/push-up.gif", instrucoes: "Mantenha o corpo reto e o abdômen contraído. Desça até o peito quase tocar o chão. Se for difícil, apoie os joelhos no chão." }
+                { nome: "Supino na Máquina", detalhes: "3 séries de 10-12 reps", gifUrl: "https://v.gymvisual.com/production/d5231a78b3523f/image.gif", instrucoes: "Mantenha as costas retas e o peito estufado. Empurre de forma controlada e retorne lentamente." },
+                { nome: "Desenvolvimento na Máquina", detalhes: "3 séries de 10-12 reps", gifUrl: "https://v.gymvisual.com/production/d378b87455820f/image.gif", instrucoes: "Mantenha as costas apoiadas e empurre para cima sem travar os cotovelos. Desça de forma controlada." },
+                { nome: "Elevação Lateral com Halteres", detalhes: "3 séries de 12-15 reps", gifUrl: "https://v.gymvisual.com/production/f71239c085022a/image.gif", instrucoes: "Com os cotovelos levemente dobrados, levante os braços para os lados até a altura dos ombros. Desça devagar." },
+                { nome: "Tríceps na Polia (Barra)", detalhes: "3 séries de 12-15 reps", gifUrl: "https://v.gymvisual.com/production/628a5a415a31a1/image.gif", instrucoes: "Mantenha os cotovelos colados ao corpo. Empurre a barra para baixo até estender totalmente os braços." }
             ]
         },
         {
-            dia: "Costas",
-            foco: "Construindo costas fortes",
+            dia: "Pull (Puxar)",
+            foco: "Construindo Costas e Bíceps fortes",
             exercicios: [
-                { nome: "Puxada Frontal (Lat Pulldown)", detalhes: "3 séries de 10-12 reps", gifUrl: "https://i.ibb.co/gDFvYQ4/Lat-Pulldown.gif", instrucoes: "Estufe o peito e puxe a barra em direção a ele. Pense em puxar com os cotovelos, não com as mãos." },
-                { nome: "Remada na Máquina", detalhes: "3 séries de 10-12 reps", gifUrl: "https://i.ibb.co/tBS2L0M/Seated-Machine-Row.gif", instrucoes: "Puxe os pegadores em direção ao abdômen, juntando as escápulas (omoplatas) no final do movimento." },
-                { nome: "Remada Serrote", detalhes: "3 séries de 10-12 reps por lado", gifUrl: "https://i.ibb.co/zXgqgq1/Dumbbell-Row.gif", instrucoes: "Com um joelho e mão apoiados no banco, puxe o halter em direção ao seu quadril, mantendo as costas retas." },
-                { nome: "Hiperextensão", detalhes: "3 séries de 15 reps", gifUrl: "https://i.ibb.co/FkGj1bS/Hyperextension.gif", instrucoes: "No banco específico, desça o tronco e suba contraindo a lombar e os glúteos. Faça de forma controlada e sem peso no início." }
+                { nome: "Puxada Frontal (Pulldown)", detalhes: "3 séries de 10-12 reps", gifUrl: "https://v.gymvisual.com/production/49968a96d15a27/image.gif", instrucoes: "Estufe o peito e puxe a barra em direção a ele. Pense em puxar com os cotovelos, não com as mãos." },
+                { nome: "Remada na Máquina", detalhes: "3 séries de 10-12 reps", gifUrl: "https://v.gymvisual.com/production/2c45218a0b1275/image.gif", instrucoes: "Puxe os pegadores em direção ao abdômen, juntando as escápulas (omoplatas) no final do movimento." },
+                { nome: "Crucifixo Invertido na Máquina", detalhes: "3 séries de 15 reps", gifUrl: "https://v.gymvisual.com/production/b28a9b244799a4/image.gif", instrucoes: "Ajuste a máquina e puxe os pegadores para trás em um grande arco. Foque na parte de trás dos ombros para melhorar a postura." },
+                { nome: "Rosca Direta com Halteres", detalhes: "3 séries de 10-12 reps", gifUrl: "https://v.gymvisual.com/production/8923a109594191/image.gif", instrucoes: "Mantenha os cotovelos fixos ao lado do corpo. Suba o peso de forma controlada e desça mais lentamente ainda." }
             ]
         },
         {
-            dia: "Ombros",
-            foco: "Desenvolvendo ombros completos",
+            dia: "Legs (Pernas)",
+            foco: "Foco total na parte inferior do corpo",
              exercicios: [
-                { nome: "Desenvolvimento na Máquina", detalhes: "3 séries de 10-12 reps", gifUrl: "https://i.ibb.co/1MjJd4C/Machine-Shoulder-Press.gif", instrucoes: "Mantenha as costas apoiadas e empurre para cima sem travar os cotovelos. Desça de forma controlada." },
-                { nome: "Elevação Lateral com Halteres", detalhes: "3 séries de 12-15 reps", gifUrl: "https://i.ibb.co/Dtd4m85/Dumbbell-Lateral-Raise.gif", instrucoes: "Com os cotovelos levemente dobrados, levante os braços para os lados até a altura dos ombros. Desça devagar." },
-                { nome: "Elevação Frontal com Halteres", detalhes: "3 séries de 12-15 reps", gifUrl: "https://i.ibb.co/n6kG1Gf/Dumbbell-Front-Raise.gif", instrucoes: "Eleve um halter de cada vez à sua frente, até a altura dos ombros, sem usar o impulso do corpo." },
-                { nome: "Crucifixo Invertido na Máquina", detalhes: "3 séries de 15 reps", gifUrl: "https://i.ibb.co/6y4tBmf/Reverse-Pec-Deck.gif", instrucoes: "Ajuste a máquina e puxe os pegadores para trás em um grande arco. Foque na parte de trás dos ombros." }
+                { nome: "Leg Press", detalhes: "3 séries de 10-12 reps", gifUrl: "https://v.gymvisual.com/production/ac66136d75218d/image.gif", instrucoes: "Mantenha as costas e o quadril bem apoiados. Desça de forma controlada e não trave os joelhos ao empurrar." },
+                { nome: "Cadeira Extensora", detalhes: "3 séries de 12-15 reps", gifUrl: "https://v.gymvisual.com/production/0a202a78728212/image.gif", instrucoes: "Estenda as pernas e segure a contração por 1 segundo no topo. O importante é sentir o músculo trabalhar." },
+                { nome: "Cadeira Flexora", detalhes: "3 séries de 12-15 reps", gifUrl: "https://v.gymvisual.com/production/0a8b54131a473d/image.gif", instrucoes: "Puxe os calcanhares em direção aos glúteos de forma controlada, sentindo a parte de trás da coxa." },
+                { nome: "Elevação Pélvica", detalhes: "3 séries de 15 reps", gifUrl: "https://v.gymvisual.com/production/4b281f5c6e4e5e/image.gif", instrucoes: "Com as costas apoiadas num banco, eleve o quadril e contraia os glúteos com força no topo. Pode ser feito sem peso no início." },
+                { nome: "Panturrilha em Pé", detalhes: "3 séries de 15-20 reps", gifUrl: "https://v.gymvisual.com/production/e119305e3b5a19/image.gif", instrucoes: "Alongue bem na descida e suba o máximo que conseguir, segurando no topo por um instante." }
             ]
         },
         {
-            dia: "Pernas",
-            foco: "Foco total em pernas e glúteos",
+            dia: "Upper (Superior)",
+            foco: "Trabalho geral para o tronco",
             exercicios: [
-                { nome: "Leg Press", detalhes: "3 séries de 10-12 reps", gifUrl: "https://i.ibb.co/wK5zV2b/Leg-Press.gif", instrucoes: "Mantenha as costas e o quadril bem apoiados. Desça de forma controlada e não trave os joelhos ao empurrar." },
-                { nome: "Cadeira Extensora", detalhes: "3 séries de 12-15 reps", gifUrl: "https://i.ibb.co/mHq3cNb/Leg-Extension.gif", instrucoes: "Estenda as pernas e segure a contração por 1 segundo no topo. O importante é sentir o músculo trabalhar." },
-                { nome: "Cadeira Flexora", detalhes: "3 séries de 12-15 reps", gifUrl: "https://i.ibb.co/f2sN9sY/Seated-Leg-Curl.gif", instrucoes: "Puxe os calcanhares em direção aos glúteos de forma controlada, sentindo a parte de trás da coxa." },
-                { nome: "Elevação Pélvica", detalhes: "3 séries de 15 reps", gifUrl: "https://i.ibb.co/rpx7sV1/Glute-Bridge.gif", instrucoes: "Com as costas apoiadas num banco, eleve o quadril e contraia os glúteos com força no topo. Pode ser feito sem peso no início." },
-                { nome: "Panturrilha em Pé", detalhes: "3 séries de 15-20 reps", gifUrl: "https://i.ibb.co/d62Q2zQ/Standing-Calf-Raise.gif", instrucoes: "Alongue bem na descida e suba o máximo que conseguir, segurando no topo por um instante." }
+                { nome: "Remada Curvada com Halteres", detalhes: "3 séries de 10-12 reps", gifUrl: "https://v.gymvisual.com/production/a4778a846f5006/image.gif", instrucoes: "Incline o tronco para a frente com as costas retas. Puxe os halteres em direção ao seu quadril, juntando as escápulas." },
+                { nome: "Supino Inclinado com Halteres", detalhes: "3 séries de 10-12 reps", gifUrl: "https://v.gymvisual.com/production/2d918731631846/image.gif", instrucoes: "Em um banco inclinado, desça os halteres até a linha do peito, alongando bem. Empurre para cima sem bater um no outro." },
+                { nome: "Elevação Frontal com Halteres", detalhes: "3 séries de 12-15 reps", gifUrl: "https://v.gymvisual.com/production/c33f0365a6c323/image.gif", instrucoes: "Eleve um halter de cada vez à sua frente, até a altura dos ombros, sem usar o impulso do corpo." },
+                { nome: "Rosca Martelo", detalhes: "3 séries de 10-12 reps", gifUrl: "https://v.gymvisual.com/production/f89f4f4691c3d1/image.gif", instrucoes: "Segure os halteres como se fossem martelos (palmas viradas para dentro). Levante-os sem girar os punhos." },
+                { nome: "Tríceps Francês com um Halter", detalhes: "3 séries de 12-15 reps", gifUrl: "https://v.gymvisual.com/production/9673b063ea53c1/image.gif", instrucoes: "Sentado, segure um halter com as duas mãos acima da cabeça. Desça o peso atrás da cabeça, alongando o tríceps, e depois estenda." }
             ]
         },
         {
-            dia: "Braços",
-            foco: "Bíceps e Tríceps",
+            dia: "Lower (Inferior)",
+            foco: "Segundo estímulo para pernas e glúteos",
             exercicios: [
-                { nome: "Rosca Direta com Halteres", detalhes: "3 séries de 10-12 reps", gifUrl: "https://i.ibb.co/G0BfGzH/Dumbbell-Bicep-Curl.gif", instrucoes: "Mantenha os cotovelos fixos ao lado do corpo. Suba o peso de forma controlada e desça mais lentamente ainda." },
-                { nome: "Tríceps na Polia (Barra)", detalhes: "3 séries de 10-12 reps", gifUrl: "https://i.ibb.co/f49bXVn/Triceps-Pushdown.gif", instrucoes: "Mantenha os cotovelos colados ao corpo. Empurre a barra para baixo até estender totalmente os braços." },
-                { nome: "Rosca Martelo", detalhes: "3 séries de 10-12 reps", gifUrl: "https://i.ibb.co/kH2Qx7w/Hammer-Curl.gif", instrucoes: "Segure os halteres como se fossem martelos (palmas viradas para dentro). Levante-os sem girar os punhos." },
-                { nome: "Tríceps Francês com Halter", detalhes: "3 séries de 12-15 reps", gifUrl: "https://i.ibb.co/kSLM0gR/Overhead-Dumbbell-Triceps-Extension.gif", instrucoes: "Sentado, segure um halter com as duas mãos acima da cabeça. Desça o peso atrás da cabeça, alongando o tríceps, e depois estenda." }
+                { nome: "Agachamento Goblet", detalhes: "3 séries de 10-12 reps", gifUrl: "https://v.gymvisual.com/production/547823f6b988f5/image.gif", instrucoes: "Segure um halter junto ao peito. Agache como se fosse sentar, mantendo as costas retas." },
+                { nome: "Afundo (Lunge)", detalhes: "3 séries de 12-15 reps por perna", gifUrl: "https://v.gymvisual.com/production/9288e5b4b6134b/image.gif", instrucoes: "Dê um passo à frente e flexione ambos os joelhos a 90 graus. Mantenha o tronco reto. Comece sem peso para aprender o equilíbrio." },
+                { nome: "Stiff com Halteres", detalhes: "3 séries de 15 reps", gifUrl: "https://v.gymvisual.com/production/49103c27183e20/image.gif", instrucoes: "Mantenha as pernas quase retas e desça o tronco com as costas retas, sentindo alongar a parte de trás da coxa. Não precisa descer muito." },
+                { nome: "Panturrilha Sentado", detalhes: "3 séries de 15-20 reps", gifUrl: "https://v.gymvisual.com/production/82638e3e43598a/image.gif", instrucoes: "Este exercício foca numa parte diferente da panturrilha. Use a amplitude completa e segure a contração no topo." }
             ]
         }
     ];
@@ -79,8 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let progresso = {};
     let diaAtivoIndex = 0;
 
-    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotina5dias')) || {}; };
-    const salvarProgresso = () => { localStorage.setItem('minhaRotina5dias', JSON.stringify(progresso)); };
+    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaPPLUL')) || {}; };
+    const salvarProgresso = () => { localStorage.setItem('minhaRotinaPPLUL', JSON.stringify(progresso)); };
 
     const atualizarProgressoBar = () => {
         const diaData = dadosTreino[diaAtivoIndex];
