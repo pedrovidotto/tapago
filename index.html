@@ -3,32 +3,31 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ciclo de Progressão</title>
+  <title>Minha Primeira Rotina</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#3498db">
 </head>
 <body>
 <div class="container">
   <header>
-    <h1>Ciclo de Progressão</h1>
+    <h1>Minha Primeira Rotina</h1>
+    <p id="quote-container" class="quote"></p>
     <nav id="seletor-dias"></nav>
   </header>
 
   <main id="container-treino">
     <div id="cabecalho-treino">
       <h2 id="titulo-treino"></h2>
-      <p id="foco-treino"></p>
+      <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      <p id="mensagem-parabens" class="hidden">✨ Parabéns! Treino do dia concluído! ✨</p>
     </div>
-    <div id="sessao-aquecimento"></div>
     <ul id="lista-exercicios"></ul>
-    <div id="sessao-desaquecimento"></div>
-    <div id="resumo-treino" class="hidden">
-        <h3>Resumo da Sessão</h3>
-        <p id="volume-total"></p>
-    </div>
   </main>
 
+  <footer>
+    <button id="botao-resetar">Resetar Progresso</button>
+  </footer>
 </div>
 
 <div id="modal-info-overlay" class="modal-overlay hidden">
@@ -37,17 +36,9 @@
     <h2 id="modal-info-titulo"></h2>
     <div class="modal-info-conteudo">
         <img id="modal-info-gif" src="" alt="Demonstração do exercício" />
-        <div id="modal-info-instrucoes"></div>
+        <p id="modal-info-instrucoes"></p>
     </div>
   </div>
-</div>
-
-<div id="modal-timer-overlay" class="modal-overlay hidden">
-    <div class="modal modal-timer">
-        <p>Hora de descansar!</p>
-        <div id="timer-display">90</div>
-        <button id="timer-parar-btn">Parar Timer</button>
-    </div>
 </div>
 
 <script src="script.js"></script>
