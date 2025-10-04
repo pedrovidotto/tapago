@@ -1,338 +1,270 @@
-// Dados do Treino PPL (Push, Pull, Legs)
-const dadosTreino = [
-  {
-    "dia": 1,
-    "titulo": "Push (Empurrar)",
-    "exercicios": [
-      {
-        "nome": "Supino na Máquina",
-        "detalhes": "3 séries de 10-12 reps | 60-90s de descanso",
-        "instrucoes": "1. Sente-se na máquina com as costas retas e apoiadas.\n2. Posicione as mãos nos pegadores na largura dos ombros.\n3. Empurre os pegadores para a frente até que seus braços estejam quase totalmente estendidos (não trave os cotovelos).\n4. Retorne lentamente à posição inicial, sentindo o peito alongar."
-      },
-      {
-        "nome": "Desenvolvimento de Ombros na Máquina",
-        "detalhes": "3 séries de 10-12 reps | 60-90s de descanso",
-        "instrucoes": "1. Sente-se na máquina com as costas bem apoiadas.\n2. Segure os pegadores com as palmas das mãos voltadas para a frente.\n3. Empurre para cima até que seus braços estejam quase estendidos.\n4. Desça de forma controlada até a altura dos ombros."
-      },
-      {
-        "nome": "Elevação Lateral com Halteres",
-        "detalhes": "3 séries de 12-15 reps | 60s de descanso",
-        "instrucoes": "1. Em pé, com os pés na largura dos ombros e um halter em cada mão ao lado do corpo.\n2. Mantendo os cotovelos ligeiramente flexionados, levante os pesos para os lados até a altura dos ombros.\n3. Desça lentamente e de forma controlada. Não use impulso."
-      },
-      {
-        "nome": "Tríceps na Polia com Corda",
-        "detalhes": "3 séries de 10-12 reps | 60s de descanso",
-        "instrucoes": "1. Fique de frente para a polia alta com uma corda. Mantenha os cotovelos fixos ao lado do corpo.\n2. Empurre a corda para baixo, separando as mãos no final do movimento.\n3. Retorne lentamente, sentindo o tríceps alongar."
-      }
-    ]
-  },
-  {
-    "dia": 2,
-    "titulo": "Pull (Puxar)",
-    "exercicios": [
-       {
-        "nome": "Puxada Frontal (Lat Pulldown)",
-        "detalhes": "3 séries de 10-12 reps | 60-90s de descanso",
-        "instrucoes": "1. Sente-se na máquina e ajuste o apoio dos joelhos.\n2. Segure a barra com as mãos um pouco mais afastadas que a largura dos ombros.\n3. Puxe a barra para baixo em direção à parte superior do peito, estufando o peito.\n4. Retorne de forma controlada, alongando bem as costas."
-      },
-      {
-        "nome": "Remada Sentada na Máquina",
-        "detalhes": "3 séries de 10-12 reps | 60-90s de descanso",
-        "instrucoes": "1. Sente-se na máquina com o peito apoiado.\n2. Puxe os pegadores em direção ao seu abdômen, juntando as escápulas (omoplatas) nas costas.\n3. Retorne lentamente até os braços estarem quase estendidos."
-      },
-      {
-        "nome": "Rosca Direta com Halteres",
-        "detalhes": "3 séries de 10-12 reps (cada braço) | 60s de descanso",
-        "instrucoes": "1. Em pé, com um halter em cada mão, palmas voltadas para a frente.\n2. Mantendo os cotovelos fixos ao lado do corpo, levante um halter em direção ao ombro.\n3. Desça de forma controlada e repita com o outro braço."
-      }
-    ]
-  },
-  {
-    "dia": 3,
-    "titulo": "Cardio & Abdômen",
-    "exercicios": [
-      {
-        "nome": "Cardio Moderado",
-        "detalhes": "20-30 minutos",
-        "instrucoes": "Escolha uma atividade como caminhada rápida na esteira, bicicleta ergométrica ou elíptico. Mantenha um ritmo que eleve sua frequência cardíaca, mas que ainda permita conversar."
-      },
-      {
-        "nome": "Prancha Abdominal",
-        "detalhes": "3 séries | Segure o máximo de tempo que conseguir",
-        "instrucoes": "1. Apoie-se nos antebraços e na ponta dos pés.\n2. Mantenha o corpo reto como uma tábua, sem deixar o quadril cair ou levantar demais.\n3. Contraia o abdômen e os glúteos durante todo o tempo."
-      },
-      {
-        "nome": "Elevação de Pernas Deitado",
-        "detalhes": "3 séries de 15-20 reps",
-        "instrucoes": "1. Deite-se de costas com as mãos sob o quadril para apoio.\n2. Mantendo as pernas retas, levante-as até formarem um ângulo de 90 graus com o chão.\n3. Desça lentamente, sem deixar os calcanhares tocarem o chão."
-      }
-    ]
-  },
-  {
-    "dia": 4,
-    "titulo": "Legs (Pernas)",
-    "exercicios": [
-       {
-        "nome": "Agachamento Goblet",
-        "detalhes": "3 séries de 10-12 reps | 90s de descanso",
-        "instrucoes": "1. Segure um halter verticalmente contra o peito.\n2. Mantenha os pés um pouco mais afastados que a largura dos ombros.\n3. Agache como se fosse sentar em uma cadeira, mantendo as costas retas.\n4. Desça até suas coxas ficarem paralelas ao chão e depois suba."
-      },
-      {
-        "nome": "Leg Press",
-        "detalhes": "3 séries de 10-12 reps | 90s de descanso",
-        "instrucoes": "1. Sente-se na máquina com as costas bem apoiadas.\n2. Coloque os pés na plataforma na largura dos ombros.\n3. Empurre a plataforma até suas pernas estarem quase estendidas (não trave os joelhos).\n4. Retorne lentamente à posição inicial."
-      },
-      {
-        "nome": "Cadeira Flexora",
-        "detalhes": "3 séries de 12-15 reps | 60s de descanso",
-        "instrucoes": "1. Ajuste a máquina para que o apoio fique logo acima dos seus calcanhares.\n2. Dobre os joelhos para puxar o peso em direção aos seus glúteos.\n3. Retorne lentamente, controlando o movimento."
-      },
-      {
-        "nome": "Elevação de Panturrilha em Pé",
-        "detalhes": "3 séries de 15-20 reps | 45s de descanso",
-        "instrucoes": "1. Fique em pé em um degrau ou na máquina.\n2. Empurre para cima com a ponta dos pés o mais alto que conseguir.\n3. Segure por um segundo no topo e desça lentamente, alongando a panturrilha."
-      }
-    ]
-  },
-   {
-    "dia": 5, // Repete o primeiro treino do ciclo PPL
-    "titulo": "Push (Empurrar)",
-    "exercicios": [
-      {
-        "nome": "Supino na Máquina",
-        "detalhes": "3 séries de 10-12 reps | 60-90s de descanso",
-        "instrucoes": "1. Sente-se na máquina com as costas retas e apoiadas.\n2. Posicione as mãos nos pegadores na largura dos ombros.\n3. Empurre os pegadores para a frente até que seus braços estejam quase totalmente estendidos (não trave os cotovelos).\n4. Retorne lentamente à posição inicial, sentindo o peito alongar."
-      },
-      {
-        "nome": "Desenvolvimento de Ombros na Máquina",
-        "detalhes": "3 séries de 10-12 reps | 60-90s de descanso",
-        "instrucoes": "1. Sente-se na máquina com as costas bem apoiadas.\n2. Segure os pegadores com as palmas das mãos voltadas para a frente.\n3. Empurre para cima até que seus braços estejam quase estendidos.\n4. Desça de forma controlada até a altura dos ombros."
-      },
-      {
-        "nome": "Elevação Lateral com Halteres",
-        "detalhes": "3 séries de 12-15 reps | 60s de descanso",
-        "instrucoes": "1. Em pé, com os pés na largura dos ombros e um halter em cada mão ao lado do corpo.\n2. Mantendo os cotovelos ligeiramente flexionados, levante os pesos para os lados até a altura dos ombros.\n3. Desça lentamente e de forma controlada. Não use impulso."
-      },
-      {
-        "nome": "Tríceps na Polia com Corda",
-        "detalhes": "3 séries de 10-12 reps | 60s de descanso",
-        "instrucoes": "1. Fique de frente para a polia alta com uma corda. Mantenha os cotovelos fixos ao lado do corpo.\n2. Empurre a corda para baixo, separando as mãos no final do movimento.\n3. Retorne lentamente, sentindo o tríceps alongar."
-      }
-    ]
-  },
-  {
-    "dia": 6,
-    "titulo": "Descanso",
-    "exercicios": []
-  },
-    {
-    "dia": 7,
-    "titulo": "Descanso",
-    "exercicios": []
-  }
-];
+document.addEventListener('DOMContentLoaded', () => {
 
-const frasesMotivacionais = [
-    "A dor que você sente hoje é a força que você sentirá amanhã.",
-    "O corpo alcança o que a mente acredita.",
-    "A disciplina é a ponte entre metas e realizações.",
-    "Não se trata de ser o melhor. Se trata de ser melhor do que você era ontem.",
-    "O sucesso não é final, o fracasso não é fatal: é a coragem de continuar que conta.",
-    "A consistência é mais importante que a intensidade.",
-    "Você não precisa ser extremo, apenas consistente."
-];
-
-// Elementos do DOM
-const seletorDias = document.getElementById("seletor-dias");
-const tituloTreino = document.getElementById("titulo-treino");
-const listaExercicios = document.getElementById("lista-exercicios");
-const botaoResetar = document.getElementById("botao-resetar");
-const quoteContainer = document.getElementById("quote-container");
-const progressBar = document.getElementById("progress-bar");
-
-// Elementos do Modal de Informações
-const modalInfoOverlay = document.getElementById("modal-info-overlay");
-const modalInfoFecharBtn = document.getElementById("modal-info-fechar-btn");
-const modalInfoTitulo = document.getElementById("modal-info-titulo");
-const modalInfoInstrucoes = document.getElementById("modal-info-instrucoes");
-
-// Elementos do Modal de Reset
-const modalResetOverlay = document.getElementById("modal-reset-overlay");
-const confirmarResetBtn = document.getElementById("confirmar-reset-btn");
-const cancelarResetBtn = document.getElementById("cancelar-reset-btn");
-
-// Estado
-let progresso = {};
-
-// Funções
-function carregarProgresso() {
-  try {
-    const progressoSalvo = localStorage.getItem("progressoTreinoPPL");
-    progresso = progressoSalvo ? JSON.parse(progressoSalvo) : {};
-  } catch (e) {
-    console.error("Não foi possível carregar o progresso do localStorage:", e);
-    progresso = {};
-  }
-}
-
-function salvarProgresso() {
-  try {
-    localStorage.setItem("progressoTreinoPPL", JSON.stringify(progresso));
-  } catch (e) {
-    console.error("Não foi possível salvar o progresso no localStorage:", e);
-  }
-}
-
-function abrirModalInfo(titulo, instrucoes) {
-  modalInfoTitulo.textContent = titulo;
-  modalInfoInstrucoes.textContent = instrucoes;
-  modalInfoOverlay.classList.remove("hidden");
-  modalInfoOverlay.setAttribute('aria-hidden', 'false');
-}
-
-function fecharModalInfo() {
-  modalInfoOverlay.classList.add("hidden");
-  modalInfoOverlay.setAttribute('aria-hidden', 'true');
-}
-
-function abrirModalReset() {
-  modalResetOverlay.classList.remove("hidden");
-  modalResetOverlay.setAttribute('aria-hidden', 'false');
-}
-
-function fecharModalReset() {
-  modalResetOverlay.classList.add("hidden");
-  modalResetOverlay.setAttribute('aria-hidden', 'true');
-}
-
-function atualizarBarraProgresso(diaIndex) {
-    const diaData = dadosTreino[diaIndex];
-    const totalExercicios = diaData.exercicios.length;
-    if (totalExercicios === 0) {
-        progressBar.style.width = '0%';
-        return;
-    }
-
-    let concluidos = 0;
-    for (let i = 0; i < totalExercicios; i++) {
-        const progressId = `dia${diaData.dia}-exercicio-${i}`;
-        if (progresso[progressId]) {
-            concluidos++;
+    // --- DADOS DO TREINO ---
+    const dadosAquecimento = {
+        titulo: "Aquecimento Geral e Específico",
+        duracao: "5-10 minutos",
+        passos: "1. **Cardio Leve:** 5 min de bicicleta ou caminhada rápida.\n2. **Mobilidade Articular:** Gire os braços, pulsos, quadris e tornozelos.\n3. **Séries de Ativação:** Faça 1-2 séries do primeiro exercício do dia com 50% do peso que você irá usar."
+    };
+    const dadosDesaquecimento = {
+        titulo: "Desaquecimento e Alongamento",
+        duracao: "5 minutos",
+        passos: "Concentre-se em alongamentos suaves para os músculos trabalhados no dia. Mantenha cada posição por 20-30 segundos, sem forçar.\n- **Superior:** Peito, costas, ombros, bíceps e tríceps.\n- **Inferior:** Quadríceps, posteriores, glúteos e panturrilhas."
+    };
+    const dadosTreino = [
+        {
+            dia: "Superior A",
+            foco: "Foco em Empurrar (Peito e Ombros)",
+            exercicios: [
+                { nome: "Supino na Máquina", series: 3, reps: "10-12", descanso: 90, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Machine-Chest-Press.gif", instrucoes: "Ajuste o banco para que os pegadores fiquem na altura do meio do peito. Mantenha os ombros para trás e o peito estufado. Empurre de forma controlada e retorne lentamente." },
+                { nome: "Desenvolvimento com Halteres", series: 3, reps: "10-12", descanso: 90, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Dumbbell-Shoulder-Press.gif", instrucoes: "Sentado, com as costas apoiadas, eleve os halteres até a altura dos ombros. Empurre para cima sem travar os cotovelos no final. Desça de forma controlada." },
+                { nome: "Remada na Máquina", series: 3, reps: "10-12", descanso: 60, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Leverage-Machine-Row.gif", instrucoes: "Puxe os pegadores em direção ao abdômen, juntando as escápulas no final do movimento. Alongue bem os braços na volta." },
+                { nome: "Elevação Lateral com Halteres", series: 3, reps: "12-15", descanso: 60, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif", instrucoes: "Com os cotovelos levemente flexionados, eleve os braços para os lados até a altura dos ombros. Desça mais lentamente do que subiu." },
+                { nome: "Tríceps na Polia (Corda)", series: 3, reps: "12-15", descanso: 60, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/05/triceps-pushdown-V-bar.gif", instrucoes: "Mantenha os cotovelos colados ao corpo. Empurre a corda para baixo, abrindo-a no final. Apenas o antebraço se move." }
+            ]
+        },
+        {
+            dia: "Inferior A",
+            foco: "Foco em Agachamento (Quadríceps)",
+            exercicios: [
+                { nome: "Agachamento Goblet", series: 3, reps: "10-12", descanso: 90, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Goblet-Squat.gif", instrucoes: "Segure um halter junto ao peito. Agache como se fosse sentar, mantendo as costas retas e o peito para cima. Empurre o chão com os calcanhares para subir." },
+                { nome: "Cadeira Extensora", series: 3, reps: "12-15", descanso: 60, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Leg-Extension.gif", instrucoes: "Estenda as pernas e segure a contração máxima por 2 segundos no topo. A qualidade da contração é mais importante que o peso." },
+                { nome: "Cadeira Flexora", series: 3, reps: "12-15", descanso: 60, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Seated-Leg-Curl.gif", instrucoes: "Puxe os calcanhares em direção aos glúteos de forma controlada. Sinta a contração na parte de trás da coxa." },
+                { nome: "Panturrilha em Pé", series: 4, reps: "15-20", descanso: 60, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lever-Standing-Calf-Raise.gif", instrucoes: "Alongue o máximo na descida e segure a contração máxima por 2 segundos no topo. Sem pressa." }
+            ]
+        },
+        { dia: "Descanso", foco: "Recuperação é fundamental" },
+        {
+            dia: "Superior B",
+            foco: "Foco em Puxar (Costas e Bíceps)",
+            exercicios: [
+                 { nome: "Puxada Frontal (Pulldown)", series: 3, reps: "10-12", descanso: 90, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif", instrucoes: "Segure a barra com as mãos um pouco mais afastadas que os ombros. Puxe em direção ao peito, estufando o peito. Alongue bem as costas na subida." },
+                 { nome: "Supino Inclinado com Halteres", series: 3, reps: "10-12", descanso: 90, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif", instrucoes: "Em um banco inclinado, desça os halteres até a linha do peito, alongando bem. Empurre para cima sem bater um no outro." },
+                 { nome: "Crucifixo Invertido na Máquina", series: 3, reps: "12-15", descanso: 60, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2022/03/Reverse-Pec-Deck-Fly.gif", instrucoes: "Ajuste a máquina e puxe os pegadores para trás em um grande arco. Foque em esmagar os músculos da parte de trás dos ombros e do meio das costas." },
+                 { nome: "Rosca Direta com Halteres", series: 3, reps: "10-12", descanso: 60, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Bicep-Curl.gif", instrucoes: "Mantenha os cotovelos fixos ao lado do corpo. Suba o peso de forma controlada e desça mais lentamente ainda. Evite balançar." }
+            ]
+        },
+        {
+            dia: "Inferior B",
+            foco: "Foco no Quadril (Glúteos e Posterior)",
+             exercicios: [
+                { nome: "Elevação Pélvica (Hip Thrust)", series: 3, reps: "12-15", descanso: 90, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Barbell-Hip-Thrust.gif", instrucoes: "Com as costas apoiadas em um banco, eleve o quadril até o corpo ficar reto. Contraia os glúteos com força máxima por 2 segundos no topo." },
+                { nome: "Leg Press", series: 3, reps: "10-12", descanso: 90, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Leg-Press.gif", instrucoes: "Posicione os pés um pouco mais altos na plataforma para focar mais em glúteos e posteriores. Desça de forma controlada e não trave os joelhos." },
+                { nome: "Afundo (Lunge)", series: 3, reps: "12-15", descanso: 60, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lunge.gif", instrucoes: "Dê um passo à frente e flexione ambos os joelhos a 90 graus. Mantenha o tronco reto. Faça todas as repetições de uma perna e depois troque." },
+                { nome: "Panturrilha Sentado", series: 4, reps: "15-20", descanso: 60, gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Seated-Calf-Raise.gif", instrucoes: "Este exercício foca em uma parte diferente da panturrilha. Use a amplitude completa e segure a contração no topo." }
+            ]
         }
-    }
+    ];
+
+    // --- ELEMENTOS DO DOM ---
+    const seletorDias = document.getElementById('seletor-dias');
+    const tituloTreino = document.getElementById('titulo-treino');
+    const focoTreino = document.getElementById('foco-treino');
+    const sessaoAquecimento = document.getElementById('sessao-aquecimento');
+    const listaExercicios = document.getElementById('lista-exercicios');
+    const sessaoDesaquecimento = document.getElementById('sessao-desaquecimento');
+    const resumoTreino = document.getElementById('resumo-treino');
+    const volumeTotalEl = document.getElementById('volume-total');
+
+    // Modais
+    const modalInfoOverlay = document.getElementById('modal-info-overlay');
+    const modalInfoFecharBtn = document.getElementById('modal-info-fechar-btn');
+    const modalInfoTitulo = document.getElementById('modal-info-titulo');
+    const modalInfoGif = document.getElementById('modal-info-gif');
+    const modalInfoInstrucoes = document.getElementById('modal-info-instrucoes');
     
-    const porcentagem = totalExercicios > 0 ? (concluidos / totalExercicios) * 100 : 0;
-    progressBar.style.width = `${porcentagem}%`;
+    const modalTimerOverlay = document.getElementById('modal-timer-overlay');
+    const timerDisplay = document.getElementById('timer-display');
+    const timerPararBtn = document.getElementById('timer-parar-btn');
 
-    if (porcentagem === 100 && totalExercicios > 0) {
-        setTimeout(() => alert(`Parabéns! Você completou o treino de ${diaData.titulo}! 💪`), 300);
-    }
-}
+    // --- ESTADO E LÓGICA ---
+    let progresso = {};
+    let timerInterval = null;
+    let diaAtivoIndex = 0;
 
-function renderizarTreino(diaIndex) {
-  const diaData = dadosTreino[diaIndex];
-  tituloTreino.textContent = diaData.titulo;
-  listaExercicios.innerHTML = "";
+    const carregarProgresso = () => {
+        progresso = JSON.parse(localStorage.getItem('progressoCicloV2')) || {};
+    };
+    const salvarProgresso = () => {
+        localStorage.setItem('progressoCicloV2', JSON.stringify(progresso));
+    };
 
-  if (diaData.exercicios.length === 0) {
-    listaExercicios.innerHTML =
-      '<li class="item-exercicio" style="justify-content:center;"><div class="detalhes-exercicio"><h3>Aproveite seu descanso!</h3><p>Foque em nutrição, hidratação e sono para maximizar os resultados.</p></div></li>';
-    atualizarBarraProgresso(diaIndex);
-    return;
-  }
+    const abrirModalInfo = (exercicio) => {
+        modalInfoTitulo.textContent = exercicio.nome;
+        modalInfoGif.src = exercicio.gifUrl;
+        modalInfoInstrucoes.textContent = exercicio.instrucoes;
+        modalInfoOverlay.classList.remove('hidden');
+    };
+    const fecharModalInfo = () => modalInfoOverlay.classList.add('hidden');
 
-  const criarItemExercicio = (exercicio, index) => {
-    const li = document.createElement("li");
-    li.className = 'item-exercicio';
-    const progressId = `dia${diaData.dia}-exercicio-${index}`;
+    const iniciarTimer = (segundos) => {
+        clearInterval(timerInterval);
+        let tempoRestante = segundos;
+        timerDisplay.textContent = tempoRestante;
+        modalTimerOverlay.classList.remove('hidden');
 
-    li.innerHTML = `
-        <input type="checkbox" class="checkbox" id="${progressId}" ${progresso[progressId] ? "checked" : ""}>
-        <div class="detalhes-exercicio">
-            <h3>${exercicio.nome}</h3>
-            <p>${exercicio.detalhes}</p>
-        </div>
-        <button class="btn-info" aria-label="Abrir informações do exercício">i</button>
-    `;
+        timerInterval = setInterval(() => {
+            tempoRestante--;
+            timerDisplay.textContent = tempoRestante;
+            if (tempoRestante <= 0) {
+                clearInterval(timerInterval);
+                fecharTimer();
+                alert('Descanso finalizado!');
+            }
+        }, 1000);
+    };
+    const fecharTimer = () => {
+        clearInterval(timerInterval);
+        modalTimerOverlay.classList.add('hidden');
+    };
 
-    if (progresso[progressId]) {
-      li.classList.add("completed");
-    }
+    const calcularResumo = () => {
+        const diaData = dadosTreino[diaAtivoIndex];
+        if (!diaData.exercicios) return;
+        
+        let volumeTotal = 0;
+        diaData.exercicios.forEach((ex, exIndex) => {
+            for (let i = 0; i < ex.series; i++) {
+                const setId = `dia${diaAtivoIndex}-ex${exIndex}-set${i}`;
+                if (progresso[setId] && progresso[setId].done) {
+                    const peso = parseFloat(progresso[setId].kg) || 0;
+                    const reps = parseInt(progresso[setId].reps) || 0;
+                    volumeTotal += peso * reps;
+                }
+            }
+        });
 
-    li.querySelector(".checkbox").addEventListener("change", (e) => {
-      progresso[progressId] = e.target.checked;
-      li.classList.toggle("completed");
-      salvarProgresso();
-      atualizarBarraProgresso(diaIndex);
+        if(volumeTotal > 0){
+            resumoTreino.classList.remove('hidden');
+            volumeTotalEl.textContent = `${volumeTotal.toFixed(1)} kg`;
+        } else {
+            resumoTreino.classList.add('hidden');
+        }
+    };
+
+    const renderizarTreino = (index) => {
+        diaAtivoIndex = index;
+        const diaData = dadosTreino[index];
+
+        tituloTreino.textContent = `Dia ${index + 1}: ${diaData.dia}`;
+        focoTreino.textContent = diaData.foco;
+        listaExercicios.innerHTML = '';
+        resumoTreino.classList.add('hidden');
+
+        // Renderizar Aquecimento e Desaquecimento
+        const renderBloco = (container, dados) => {
+            container.innerHTML = `<div class="sessao-bloco"><h3>${dados.titulo} (${dados.duracao})</h3><p>${dados.passos.replace(/\n/g, '<br>')}</p></div>`;
+        }
+        renderBloco(sessaoAquecimento, dadosAquecimento);
+        renderBloco(sessaoDesaquecimento, dadosDesaquecimento);
+        
+        if (!diaData.exercicios) {
+             sessaoAquecimento.classList.add('hidden');
+             sessaoDesaquecimento.classList.add('hidden');
+             return;
+        }
+
+        sessaoAquecimento.classList.remove('hidden');
+        sessaoDesaquecimento.classList.remove('hidden');
+
+        diaData.exercicios.forEach((ex, exIndex) => {
+            const exercicioEl = document.createElement('li');
+            exercicioEl.className = 'exercicio-item';
+            
+            let setsHtml = '';
+            for (let i = 0; i < ex.series; i++) {
+                const setId = `dia${index}-ex${exIndex}-set${i}`;
+                const setProgresso = progresso[setId] || { kg: '', reps: '', done: false };
+
+                setsHtml += `
+                    <div class="set-linha">
+                        <span class="set-numero">${i + 1}</span>
+                        <div class="input-container">
+                            <label for="${setId}-kg">Peso (kg)</label>
+                            <input type="number" class="input-kg" id="${setId}-kg" value="${setProgresso.kg}" data-set-id="${setId}">
+                        </div>
+                        <div class="input-container">
+                            <label for="${setId}-reps">Reps</label>
+                            <input type="number" class="input-reps" id="${setId}-reps" value="${setProgresso.reps}" data-set-id="${setId}">
+                        </div>
+                        <button class="btn-timer" data-descanso="${ex.descanso}">⏱️ ${ex.descanso}s</button>
+                        <input type="checkbox" class="set-checkbox" id="${setId}-done" ${setProgresso.done ? 'checked' : ''} data-set-id="${setId}">
+                    </div>
+                `;
+            }
+
+            exercicioEl.innerHTML = `
+                <div class="exercicio-header">
+                    <h3>${ex.nome}</h3>
+                    <button class="btn-info" data-ex-index="${exIndex}">i</button>
+                </div>
+                <div class="sets-container">${setsHtml}</div>
+            `;
+            listaExercicios.appendChild(exercicioEl);
+        });
+
+        calcularResumo();
+    };
+    
+    // --- EVENT LISTENERS ---
+    seletorDias.addEventListener('click', e => {
+        if (e.target.matches('.btn-dia')) {
+            const index = parseInt(e.target.dataset.index);
+            document.querySelectorAll('.btn-dia').forEach(btn => btn.classList.remove('active'));
+            e.target.classList.add('active');
+            renderizarTreino(index);
+        }
     });
 
-    li.querySelector(".btn-info").addEventListener("click", () => {
-      abrirModalInfo(exercicio.nome, exercicio.instrucoes);
+    listaExercicios.addEventListener('click', e => {
+        if (e.target.matches('.btn-info')) {
+            const exIndex = parseInt(e.target.dataset.exIndex);
+            abrirModalInfo(dadosTreino[diaAtivoIndex].exercicios[exIndex]);
+        }
+        if (e.target.matches('.btn-timer')) {
+            const descanso = parseInt(e.target.dataset.descanso);
+            iniciarTimer(descanso);
+        }
     });
 
-    return li;
-  };
+    listaExercicios.addEventListener('change', e => {
+        if(e.target.matches('.input-kg, .input-reps, .set-checkbox')){
+            const setId = e.target.dataset.setId;
+            if(!progresso[setId]) progresso[setId] = {};
+            
+            const kgInput = document.getElementById(`${setId}-kg`);
+            const repsInput = document.getElementById(`${setId}-reps`);
+            const doneCheckbox = document.getElementById(`${setId}-done`);
+            
+            progresso[setId].kg = kgInput.value;
+            progresso[setId].reps = repsInput.value;
+            progresso[setId].done = doneCheckbox.checked;
+            
+            salvarProgresso();
+            calcularResumo();
+        }
+    });
 
-  diaData.exercicios.forEach((ex, i) =>
-    listaExercicios.appendChild(criarItemExercicio(ex, i))
-  );
+    modalInfoFecharBtn.addEventListener('click', fecharModalInfo);
+    timerPararBtn.addEventListener('click', fecharTimer);
 
-  atualizarBarraProgresso(diaIndex);
-}
+    // --- INICIALIZAÇÃO ---
+    const init = () => {
+        dadosTreino.forEach((dia, index) => {
+            if(index === 2 || index > 4) return; // Simplificação para 5 dias na semana
+            const btn = document.createElement('button');
+            btn.className = 'btn-dia';
+            btn.textContent = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'][index];
+            btn.dataset.index = index;
+            seletorDias.appendChild(btn);
+        });
+        carregarProgresso();
+        const hoje = new Date().getDay(); // Dom=0, Seg=1...
+        const diaInicial = (hoje === 0 || hoje === 6) ? 0 : [0, 1, 3, 4, 0][hoje - 1]; // Mapeia para os dias de treino
+        
+        document.querySelector(`.btn-dia[data-index='${diaInicial}']`).classList.add('active');
+        renderizarTreino(diaInicial);
+    };
 
-function setarDiaAtivo(diaIndex) {
-  document
-    .querySelectorAll(".btn-dia")
-    .forEach((btn) => btn.classList.remove("active"));
-  const btnAtual = document.querySelector(`.btn-dia[data-day="${diaIndex}"]`);
-  if (btnAtual) {
-    btnAtual.classList.add("active");
-  }
-  renderizarTreino(diaIndex);
-}
-
-// Inicialização do App
-function init() {
-  carregarProgresso();
-
-  // Exibir frase motivacional
-  const fraseIndex = new Date().getDay();
-  quoteContainer.textContent = `"${frasesMotivacionais[fraseIndex % frasesMotivacionais.length]}"`;
-
-  // Criar botões dos dias
-  const nomesDias = ["Push", "Pull", "Cardio", "Pernas", "Push", "Descanso", "Descanso"];
-  dadosTreino.forEach((dia, index) => {
-    const btn = document.createElement("button");
-    btn.className = "btn-dia";
-    btn.textContent = nomesDias[index];
-    btn.dataset.day = index;
-    btn.addEventListener("click", () => setarDiaAtivo(index));
-    seletorDias.appendChild(btn);
-  });
-
-  // Listeners dos Modais e Botão de Reset
-  botaoResetar.addEventListener("click", abrirModalReset);
-  confirmarResetBtn.addEventListener("click", () => {
-    progresso = {};
-    salvarProgresso();
-    const diaAtivoIndex =
-      document.querySelector(".btn-dia.active")?.dataset.day || 0;
-    renderizarTreino(parseInt(diaAtivoIndex));
-    fecharModalReset();
-  });
-  cancelarResetBtn.addEventListener("click", fecharModalReset);
-  modalInfoFecharBtn.addEventListener("click", fecharModalInfo);
-  modalInfoOverlay.addEventListener("click", (e) => {
-    if (e.target === modalInfoOverlay) fecharModalInfo();
-  });
-  modalResetOverlay.addEventListener("click", (e) => {
-    if (e.target === modalResetOverlay) fecharModalReset();
-  });
-
-  // Definir dia inicial
-  const hoje = new Date().getDay(); // Domingo = 0, Segunda = 1 ...
-  const diaInicialIndex = hoje === 0 ? 6 : hoje - 1; // Mapeia para nosso array (Segunda = 0 ... Domingo = 6)
-  setarDiaAtivo(diaInicialIndex);
-}
-
-init();
+    init();
+});
