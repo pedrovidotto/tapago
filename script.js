@@ -1,13 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const frasesMotivacionais = [
-        // 5 Originais
         "A jornada de mil quilômetros começa com um único passo. Você já está no caminho.",
         "Não se compare com os outros. Compare-se com a pessoa que você era ontem.",
         "A consistência transforma o esforço em resultado.",
         "Acredite no seu potencial. Você é mais forte do que imagina.",
         "Cada gota de suor é um degrau a mais na escada do seu objetivo.",
-        // 10 Novas
         "Feito é melhor que perfeito. Apenas comece.",
         "A dor que você sente hoje é a força que você sentirá amanhã.",
         "Sua mente desistirá cem vezes antes do seu corpo.",
@@ -92,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let progresso = {};
     let diaAtivoIndex = 0;
 
-    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaPPLUL-v2')) || {}; };
-    const salvarProgresso = () => { localStorage.setItem('minhaRotinaPPLUL-v2', JSON.stringify(progresso)); };
+    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaPPLUL-v3-Final')) || {}; };
+    const salvarProgresso = () => { localStorage.setItem('minhaRotinaPPLUL-v3-Final', JSON.stringify(progresso)); };
 
     const atualizarProgressoBar = () => {
         const diaData = dadosTreino[diaAtivoIndex];
