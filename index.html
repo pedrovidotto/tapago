@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Meu Treino PPL</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#007bff">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Meu Treino PPL</h1>
+    <p id="quote-container" class="quote">Carregando frase do dia...</p>
+    <nav id="seletor-dias"></nav>
+  </header>
+
+  <main id="container-treino">
+    <div id="cabecalho-treino">
+      <h2 id="titulo-treino"></h2>
+      <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+    </div>
+    <ul id="lista-exercicios"></ul>
+  </main>
+
+  <footer>
+    <button id="botao-resetar">Resetar Progresso Semanal</button>
+  </footer>
+</div>
+
+<div id="modal-info-overlay" class="modal-overlay hidden" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-info-titulo">
+    <button id="modal-info-fechar-btn" aria-label="Fechar modal de informações">&times;</button>
+    <h2 id="modal-info-titulo">Título do Exercício</h2>
+    <div id="modal-info-instrucoes">
+      <p>As instruções aparecerão aqui.</p>
+    </div>
+  </div>
+</div>
+
+<div id="modal-reset-overlay" class="modal-overlay hidden" aria-hidden="true">
+  <div id="modal-reset" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-reset-titulo">
+    <p id="modal-reset-titulo">Tem certeza que quer apagar todo o seu progresso da semana?</p>
+    <div class="modal-botoes">
+      <button id="confirmar-reset-btn" class="modal-btn">Sim, apagar</button>
+      <button id="cancelar-reset-btn" class="modal-btn">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
