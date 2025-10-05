@@ -1,27 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const frasesMotivacionais = [
-        "A jornada de mil quilômetros começa com um único passo. Você já está no caminho.",
-        "Não se compare com os outros. Compare-se com a pessoa que você era ontem.",
-        "A consistência transforma o esforço em resultado.",
-        "Acredite no seu potencial. Você é mais forte do que imagina.",
-        "Cada gota de suor é um degrau a mais na escada do seu objetivo.",
-        "Feito é melhor que perfeito. Apenas comece.",
-        "A dor que você sente hoje é a força que você sentirá amanhã.",
-        "Sua mente desistirá cem vezes antes do seu corpo.",
-        "A motivação te faz começar. O hábito te faz continuar.",
-        "Um pequeno progresso a cada dia resulta em grandes resultados.",
-        "O corpo alcança o que a mente acredita.",
-        "Não diminua o objetivo. Aumente o esforço.",
-        "Você não encontrará a força de vontade, você precisa criá-la.",
-        "Se você quer algo que nunca teve, precisa fazer algo que nunca fez.",
-        "O segredo do sucesso é a constância no propósito."
-    ];
-
     const dadosTreino = [
         {
-            dia: "Push (Empurrar)",
-            foco: "Foco em Peito, Ombros e Tríceps",
+            dia: "Push",
+            iconEmoji: "💪",
             exercicios: [
                 { nome: "Supino na Máquina", detalhes: "3 séries de 10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Machine-Chest-Press.gif", instrucoes: "Mantenha as costas retas e o peito estufado. Empurre de forma controlada e retorne lentamente." },
                 { nome: "Desenvolvimento na Máquina", detalhes: "3 séries de 10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Leverage-Shoulder-Press.gif", instrucoes: "Mantenha as costas apoiadas e empurre para cima sem travar os cotovelos. Desça de forma controlada." },
@@ -30,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         {
-            dia: "Pull (Puxar)",
-            foco: "Construindo Costas e Bíceps fortes",
+            dia: "Pull",
+            iconEmoji: "🏋️",
             exercicios: [
                 { nome: "Puxada Frontal (Pulldown)", detalhes: "3 séries de 10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Lat-Pulldown.gif", instrucoes: "Estufe o peito e puxe a barra em direção a ele. Pense em puxar com os cotovelos, não com as mãos." },
                 { nome: "Remada na Máquina", detalhes: "3 séries de 10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Leverage-Machine-Row.gif", instrucoes: "Puxe os pegadores em direção ao abdômen, juntando as escápulas (omoplatas) no final do movimento." },
@@ -40,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         {
-            dia: "Legs (Pernas)",
-            foco: "Foco total na parte inferior do corpo",
+            dia: "Legs",
+            iconEmoji: "🦵",
              exercicios: [
                 { nome: "Leg Press", detalhes: "3 séries de 10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Leg-Press.gif", instrucoes: "Mantenha as costas e o quadril bem apoiados. Desça de forma controlada e não trave os joelhos ao empurrar." },
                 { nome: "Cadeira Extensora", detalhes: "3 séries de 12-15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Leg-Extension.gif", instrucoes: "Estenda as pernas e segure a contração por 1 segundo no topo. O importante é sentir o músculo trabalhar." },
@@ -51,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         {
-            dia: "Upper (Superior)",
-            foco: "Trabalho geral para o tronco",
+            dia: "Upper",
+            iconEmoji: "💪",
             exercicios: [
                 { nome: "Remada Curvada com Halteres", detalhes: "3 séries de 10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Bent-Over-Row.gif", instrucoes: "Incline o tronco para a frente com as costas retas. Puxe os halteres em direção ao seu quadril, juntando as escápulas." },
                 { nome: "Supino Inclinado com Halteres", detalhes: "3 séries de 10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif", instrucoes: "Em um banco inclinado, desça os halteres até a linha do peito, alongando bem. Empurre para cima sem bater um no outro." },
@@ -62,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         {
-            dia: "Lower (Inferior)",
-            foco: "Segundo estímulo para pernas e glúteos",
+            dia: "Lower",
+            iconEmoji: "🦵",
             exercicios: [
                 { nome: "Agachamento Goblet", detalhes: "3 séries de 10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Goblet-Squat.gif", instrucoes: "Segure um halter junto ao peito. Agache como se fosse sentar, mantendo as costas retas." },
                 { nome: "Afundo (Lunge)", detalhes: "3 séries de 12-15 reps por perna", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lunge.gif", instrucoes: "Dê um passo à frente e flexione ambos os joelhos a 90 graus. Mantenha o tronco reto. Comece sem peso para aprender o equilíbrio." },
@@ -74,12 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const seletorDias = document.getElementById('seletor-dias');
-    const tituloTreino = document.getElementById('titulo-treino');
+    const headerTitle = document.getElementById('header-title');
     const listaExercicios = document.getElementById('lista-exercicios');
     const progressBar = document.getElementById('progress-bar');
     const mensagemParabens = document.getElementById('mensagem-parabens');
-    const quoteContainer = document.getElementById('quote-container');
-    const botaoResetar = document.getElementById('botao-resetar');
     
     const modalInfoOverlay = document.getElementById('modal-info-overlay');
     const modalInfoFecharBtn = document.getElementById('modal-info-fechar-btn');
@@ -90,16 +70,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let progresso = {};
     let diaAtivoIndex = 0;
 
-    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaPPLUL-v3-Final')) || {}; };
-    const salvarProgresso = () => { localStorage.setItem('minhaRotinaPPLUL-v3-Final', JSON.stringify(progresso)); };
+    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaPPLUL-v4')) || {}; };
+    const salvarProgresso = () => { localStorage.setItem('minhaRotinaPPLUL-v4', JSON.stringify(progresso)); };
 
     const atualizarProgressoBar = () => {
         const diaData = dadosTreino[diaAtivoIndex];
-        if (!diaData.exercicios) {
-            progressBar.style.width = '0%';
-            mensagemParabens.classList.add('hidden');
-            return;
-        }
+        if (!diaData.exercicios) return;
+        
         const totalExercicios = diaData.exercicios.length;
         const concluidos = diaData.exercicios.filter((_, index) => progresso[`dia${diaAtivoIndex}-ex${index}`]).length;
         const porcentagem = totalExercicios > 0 ? (concluidos / totalExercicios) * 100 : 0;
@@ -112,14 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
         diaAtivoIndex = index;
         const diaData = dadosTreino[index];
 
-        tituloTreino.textContent = diaData.dia;
+        headerTitle.textContent = `Treino de ${diaData.dia}`;
         listaExercicios.innerHTML = '';
 
-        if (!diaData.exercicios) {
-            listaExercicios.innerHTML = `<p style="text-align:center;">${diaData.foco}</p>`;
-            atualizarProgressoBar();
-            return;
-        }
+        if (!diaData.exercicios) return;
 
         diaData.exercicios.forEach((ex, exIndex) => {
             const id = `dia${index}-ex${exIndex}`;
@@ -127,21 +100,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const li = document.createElement('li');
             li.className = `exercicio-item ${isCompleted ? 'completed' : ''}`;
             li.innerHTML = `
-                <input type="checkbox" class="checkbox" id="${id}" ${isCompleted ? 'checked' : ''}>
+                <div class="exercicio-icon">${diaData.iconEmoji}</div>
                 <div class="detalhes-exercicio">
                     <h3>${ex.nome}</h3>
                     <p>${ex.detalhes}</p>
                 </div>
                 <button class="btn-info" data-ex-index="${exIndex}">i</button>
             `;
-            listaExercicios.appendChild(li);
+            // Checkbox was removed from the main flow to simplify the card, we can add it back or use another interaction
+            // For now, let's make the card itself clickable to toggle completion
+            li.addEventListener('click', (e) => {
+                if(e.target.classList.contains('btn-info')) return; // Don't toggle if info button is clicked
 
-            li.querySelector('.checkbox').addEventListener('change', (e) => {
-                progresso[id] = e.target.checked;
+                progresso[id] = !progresso[id];
                 salvarProgresso();
-                li.classList.toggle('completed', e.target.checked);
+                li.classList.toggle('completed', progresso[id]);
                 atualizarProgressoBar();
             });
+
 
             li.querySelector('.btn-info').addEventListener('click', () => {
                 modalInfoTitulo.textContent = ex.nome;
@@ -149,18 +125,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalInfoInstrucoes.textContent = ex.instrucoes;
                 modalInfoOverlay.classList.remove('hidden');
             });
+
+            listaExercicios.appendChild(li);
         });
         atualizarProgressoBar();
     };
     
     const init = () => {
         carregarProgresso();
-        quoteContainer.textContent = frasesMotivacionais[Math.floor(Math.random() * frasesMotivacionais.length)];
-        const diasDaSemana = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex'];
-        diasDaSemana.forEach((diaNome, index) => {
+        
+        dadosTreino.forEach((dia, index) => {
             const btn = document.createElement('button');
             btn.className = 'btn-dia';
-            btn.textContent = diaNome;
+            btn.textContent = dia.dia;
             btn.dataset.index = index;
             seletorDias.appendChild(btn);
             btn.addEventListener('click', () => {
@@ -171,13 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         modalInfoFecharBtn.addEventListener('click', () => modalInfoOverlay.classList.add('hidden'));
-        botaoResetar.addEventListener('click', () => {
-            if(confirm('Tem certeza que quer apagar todo o progresso?')){
-                progresso = {};
-                salvarProgresso();
-                renderizarTreino(diaAtivoIndex);
-            }
-        });
         
         let hoje = new Date().getDay() - 1; // Seg=0, Ter=1... Dom=6
         if(hoje < 0 || hoje > 4) hoje = 0; // Se for FDS, mostra segunda
