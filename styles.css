@@ -8,11 +8,7 @@
   --cor-borda: #4A5568;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Inter', sans-serif;
@@ -22,22 +18,9 @@ body {
   line-height: 1.6;
 }
 
-.container {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-#header-title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}
+.container { max-width: 600px; margin: auto; padding: 20px; }
+header { text-align: center; margin-bottom: 2rem; }
+#header-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem; }
 
 #quote-card {
   background-color: var(--cor-superficie);
@@ -47,141 +30,55 @@ header {
   margin-bottom: 2rem;
   text-align: center;
 }
+#quote-text { font-style: italic; font-size: 1.1rem; color: var(--cor-texto-secundario); }
 
-#quote-text {
-  font-style: italic;
-  font-size: 1.1rem;
-  color: var(--cor-texto-secundario);
-}
-
-#seletor-dias {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
+#seletor-dias { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .btn-dia {
-  background-color: var(--cor-superficie);
-  color: var(--cor-texto-principal);
-  border: 1px solid var(--cor-borda);
-  border-radius: 8px;
-  padding: 12px 24px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: 600;
-  transition: all 0.2s ease-in-out;
+  background-color: var(--cor-superficie); color: var(--cor-texto-principal);
+  border: 1px solid var(--cor-borda); border-radius: 8px; padding: 12px 24px;
+  cursor: pointer; font-size: 1.1rem; font-weight: 600; transition: all 0.2s ease-in-out;
 }
+.btn-dia:hover { background-color: #4A5568; }
+.btn-dia.active { background-color: var(--cor-primaria); color: var(--cor-fundo); border-color: var(--cor-primaria); }
 
-.btn-dia:hover {
-  background-color: #4A5568;
-}
-
-.btn-dia.active {
-  background-color: var(--cor-primaria);
-  color: var(--cor-fundo);
-  border-color: var(--cor-primaria);
-}
-
-#cabecalho-treino h2 {
-    text-align: center;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    color: var(--cor-texto-secundario);
-}
-
+#cabecalho-treino h2 { text-align: center; margin-bottom: 1rem; font-size: 1.5rem; color: var(--cor-texto-secundario); }
 .progress-container {
-  width: 100%;
-  height: 8px;
-  background-color: var(--cor-superficie);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 1rem;
+  width: 100%; height: 8px; background-color: var(--cor-superficie);
+  border-radius: 10px; overflow: hidden; margin-bottom: 1rem;
 }
+.progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s; }
 
-.progress-bar {
-  width: 0%;
-  height: 100%;
-  background-color: var(--cor-primaria);
-  transition: width 0.5s;
-}
-
-#lista-exercicios {
-  list-style: none;
-  padding: 0;
-  margin-top: 2rem;
-  transition: all 0.3s ease;
-}
-
+#lista-exercicios { list-style: none; padding: 0; margin-top: 2rem; }
 .exercicio-item {
-  background-color: var(--cor-superficie);
-  border: 1px solid var(--cor-borda);
-  border-radius: 12px;
-  margin-bottom: 1rem;
-  padding: 1.25rem;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 1rem;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
+  background-color: var(--cor-superficie); border: 1px solid var(--cor-borda);
+  border-radius: 12px; margin-bottom: 1rem; padding: 1.25rem;
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center;
+  gap: 1rem; cursor: pointer; position: relative; overflow: hidden;
   transition: opacity 0.4s ease, transform 0.4s ease;
 }
-
 .exercicio-progress-fill {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 0%; /* Controlado pelo JS */
-  background-color: rgba(72, 187, 120, 0.2); /* Verde sucesso com transparência */
-  z-index: 1;
-  transition: width 0.4s ease-in-out;
+  position: absolute; top: 0; left: 0; height: 100%; width: 0%;
+  background-color: rgba(72, 187, 120, 0.2);
+  z-index: 1; transition: width 0.4s ease-in-out;
 }
-
-.exercicio-icon, .detalhes-exercicio, .btn-info {
-  position: relative;
-  z-index: 2;
-  user-select: none; /* Impede a seleção de texto ao clicar */
-}
-
-.exercicio-item.finalizado {
-  opacity: 0.6;
-  border-left: 4px solid var(--cor-sucesso);
-  cursor: default;
-}
-
-.exercicio-item.movendo {
-    opacity: 0;
-    transform: scale(0.95);
-}
-
-.exercicio-icon {
-  font-size: 2.5rem;
-}
-
-.detalhes-exercicio h3 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin: 0 0 5px 0;
-}
-
-.detalhes-exercicio p {
-  margin: 0;
-  color: var(--cor-texto-secundario);
-  font-size: 1rem;
-}
-
+.exercicio-icon, .detalhes-exercicio, .btn-info { position: relative; z-index: 2; user-select: none; }
+.exercicio-item.finalizado { opacity: 0.6; border-left: 4px solid var(--cor-sucesso); cursor: default; }
+.exercicio-item.movendo { opacity: 0; transform: scale(0.95); }
+.exercicio-icon { font-size: 2.5rem; }
+.detalhes-exercicio h3 { font-size: 1.3rem; font-weight: 600; margin: 0 0 5px 0; }
+.detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; }
 .btn-info {
-  background: none;
-  border: none;
-  color: var(--cor-texto-secundario);
-  font-size: 2rem;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 10px;
+  background: none; border: none; color: var(--cor-texto-secundario);
+  font-size: 2rem; font-weight: bold; cursor: pointer; padding: 10px;
 }
+
+footer { text-align: center; margin-top: 3rem; }
+#botao-resetar {
+  background-color: #A0AEC0; color: var(--cor-fundo); border: none;
+  border-radius: 8px; padding: 12px 25px; font-size: 1rem; font-weight: 600;
+  cursor: pointer; transition: background-color 0.2s;
+}
+#botao-resetar:hover { background-color: #718096; }
 
 /* Modal */
 .modal-overlay {
