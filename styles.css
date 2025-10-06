@@ -1,9 +1,10 @@
 :root {
-  --cor-fundo: #1A202C; /* Azul Marinho Escuro */
-  --cor-superficie: #2D3748; /* Azul Ardósia */
-  --cor-primaria: #FBBF24; /* Âmbar / Amarelo */
-  --cor-texto-principal: #F7FAFC; /* Branco Suave */
-  --cor-texto-secundario: #A0AEC0; /* Cinza Claro */
+  --cor-fundo: #1A202C;
+  --cor-superficie: #2D3748;
+  --cor-primaria: #FBBF24;
+  --cor-sucesso: #48BB78;
+  --cor-texto-principal: #F7FAFC;
+  --cor-texto-secundario: #A0AEC0;
   --cor-borda: #4A5568;
 }
 
@@ -17,8 +18,8 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--cor-fundo);
   color: var(--cor-texto-principal);
-  font-size: 18px; /* Tamanho base maior */
-  line-height: 1.6; /* Espaçamento entre linhas maior */
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .container {
@@ -65,7 +66,7 @@ header {
   color: var(--cor-texto-principal);
   border: 1px solid var(--cor-borda);
   border-radius: 8px;
-  padding: 12px 24px; /* Botões maiores */
+  padding: 12px 24px;
   cursor: pointer;
   font-size: 1.1rem;
   font-weight: 600;
@@ -82,9 +83,16 @@ header {
   border-color: var(--cor-primaria);
 }
 
+#cabecalho-treino h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: var(--cor-texto-secundario);
+}
+
 .progress-container {
   width: 100%;
-  height: 12px; /* Barra mais grossa */
+  height: 8px;
   background-color: var(--cor-superficie);
   border-radius: 10px;
   overflow: hidden;
@@ -98,19 +106,11 @@ header {
   transition: width 0.5s;
 }
 
-#mensagem-parabens {
-  color: var(--cor-primaria);
-  font-weight: 600;
-  text-align: center;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-}
-
 #lista-exercicios {
   list-style: none;
   padding: 0;
   margin-top: 2rem;
+  transition: all 0.3s ease;
 }
 
 .exercicio-item {
@@ -124,20 +124,45 @@ header {
   align-items: center;
   gap: 1rem;
   cursor: pointer;
-  transition: opacity 0.3s, border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.exercicio-item.completed {
+.exercicio-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%; /* Controlado pelo JS */
+  background-color: rgba(72, 187, 120, 0.2); /* Verde sucesso com transparência */
+  z-index: 1;
+  transition: width 0.4s ease-in-out;
+}
+
+.exercicio-icon, .detalhes-exercicio, .btn-info {
+  position: relative;
+  z-index: 2;
+  user-select: none; /* Impede a seleção de texto ao clicar */
+}
+
+.exercicio-item.finalizado {
   opacity: 0.6;
-  border-left: 4px solid var(--cor-primaria);
+  border-left: 4px solid var(--cor-sucesso);
+  cursor: default;
+}
+
+.exercicio-item.movendo {
+    opacity: 0;
+    transform: scale(0.95);
 }
 
 .exercicio-icon {
-  font-size: 2.5rem; /* Ícones maiores */
+  font-size: 2.5rem;
 }
 
 .detalhes-exercicio h3 {
-  font-size: 1.3rem; /* Títulos maiores */
+  font-size: 1.3rem;
   font-weight: 600;
   margin: 0 0 5px 0;
 }
@@ -152,7 +177,7 @@ header {
   background: none;
   border: none;
   color: var(--cor-texto-secundario);
-  font-size: 2rem; /* Botão de info maior */
+  font-size: 2rem;
   font-weight: bold;
   cursor: pointer;
   padding: 10px;
@@ -164,22 +189,15 @@ header {
   background: rgba(0, 0, 0, 0.8);
   display: flex; justify-content: center; align-items: center; z-index: 1000;
 }
-
 .modal {
-  background: var(--cor-superficie);
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 500px; width: 95%; position: relative;
-  border: 1px solid var(--cor-borda);
+  background: var(--cor-superficie); padding: 30px; border-radius: 10px;
+  max-width: 500px; width: 95%; position: relative; border: 1px solid var(--cor-borda);
 }
-
 #modal-info-fechar-btn {
   position: absolute; top: 10px; right: 15px; background: none; border: none;
   font-size: 2.5rem; color: var(--cor-texto-secundario); cursor: pointer;
 }
-
 .modal-info-conteudo { text-align: center; }
 #modal-info-gif { max-width: 80%; border-radius: 8px; margin: 20px 0; border: 1px solid var(--cor-borda); }
 #modal-info-instrucoes { font-size: 1.1rem; line-height: 1.6; color: var(--cor-texto-secundario); }
-
 .hidden { display: none; }
