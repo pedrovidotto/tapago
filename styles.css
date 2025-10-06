@@ -1,10 +1,10 @@
 :root {
-  --cor-fundo: #1A202C;
-  --cor-superficie: #2D3748;
-  --cor-primaria: #FBBF24;
+  --cor-fundo: #1A202C; /* Azul Marinho Escuro */
+  --cor-superficie: #2D3748; /* Azul Ardósia */
+  --cor-primaria: #FBBF24; /* Âmbar / Amarelo */
   --cor-sucesso: #48BB78;
-  --cor-texto-principal: #F7FAFC;
-  --cor-texto-secundario: #A0AEC0;
+  --cor-texto-principal: #F7FAFC; /* Branco Suave */
+  --cor-texto-secundario: #A0AEC0; /* Cinza Claro */
   --cor-borda: #4A5568;
 }
 
@@ -20,7 +20,22 @@ body {
 
 .container { max-width: 600px; margin: auto; padding: 20px; }
 header { text-align: center; margin-bottom: 2rem; }
-#header-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 1.5rem; }
+
+header h1 {
+  margin-bottom: 0.5rem;
+}
+
+#app-logo {
+  max-height: 55px;
+  width: auto;
+}
+
+#header-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--cor-texto-secundario);
+  margin-bottom: 1.5rem;
+}
 
 #quote-card {
   background-color: var(--cor-superficie);
