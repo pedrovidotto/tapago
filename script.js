@@ -4,6 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
         "A jornada de mil quilômetros começa com um único passo. Você já está no caminho.", "Não se compare com os outros. Compare-se com a pessoa que você era ontem.", "A consistência transforma o esforço em resultado.", "Acredite no seu potencial. Você é mais forte do que imagina.", "Cada gota de suor é um degrau a mais na escada do seu objetivo.", "Feito é melhor que perfeito. Apenas comece.", "A dor que você sente hoje é a força que você sentirá amanhã.", "Sua mente desistirá cem vezes antes do seu corpo.", "A motivação te faz começar. O hábito te faz continuar.", "Um pequeno progresso a cada dia resulta em grandes resultados.", "O corpo alcança o que a mente acredita.", "Não diminua o objetivo. Aumente o esforço.", "Você não encontrará a força de vontade, você precisa criá-la.", "Se você quer algo que nunca teve, precisa fazer algo que nunca fez.", "O segredo do sucesso é a constância no propósito."
     ];
 
+    // NOVA LISTA DE MENSAGENS DE CONCLUSÃO
+    const mensagensDeConclusao = [
+        "Mandou bem hoje! O descanso é parte do processo. Volte com tudo no próximo treino!",
+        "Treino concluído com sucesso! Cada dia é um tijolo na construção do seu objetivo. Nos vemos no próximo!",
+        "Parabéns pelo esforço! A consistência é a chave. Descanse e prepare-se para superar seus limites da próxima vez!",
+        "Excelente! Mais um passo dado. O trabalho de hoje garante os resultados de amanhã. Até o próximo treino!",
+        "Missão cumprida! Sinta orgulho do seu progresso. Estamos te esperando para o próximo desafio!"
+    ];
+
     const dadosTreino = [
         {
             dia: "Push", iconEmoji: "💪", exercicios: [
@@ -55,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar: document.getElementById('progress-bar'),
         quoteText: document.getElementById('quote-text'),
         botaoResetar: document.getElementById('botao-resetar'),
+        mensagemParabens: document.getElementById('mensagem-parabens'),
         modal: {
             overlay: document.getElementById('modal-info-overlay'),
             fecharBtn: document.getElementById('modal-info-fechar-btn'),
@@ -70,8 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaInterativaLocal')) || {}; };
     const salvarProgresso = () => { localStorage.setItem('minhaRotinaInterativaLocal', JSON.stringify(progresso)); };
 
+    // FUNÇÃO ATUALIZADA
     const atualizarProgressoGeral = () => {
         const exerciciosDoDia = dadosTreino[diaAtivoIndex].exercicios;
+        if (!exerciciosDoDia) return;
+
         const totalExercicios = exerciciosDoDia.length;
         let concluidos = 0;
         exerciciosDoDia.forEach((ex, exIndex) => {
@@ -84,7 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const porcentagem = totalExercicios > 0 ? (concluidos / totalExercicios) * 100 : 0;
         elementos.progressBar.style.width = `${porcentagem}%`;
 
-        if (porcentagem === 100) {
+        // Lógica para exibir a mensagem e os confetes
+        if (porcentagem === 100 && elementos.mensagemParabens.classList.contains('hidden')) {
+            const mensagem = mensagensDeConclusao[Math.floor(Math.random() * mensagensDeConclusao.length)];
+            elementos.mensagemParabens.textContent = `🎉 ${mensagem} 🎉`;
+            elementos.mensagemParabens.classList.remove('hidden');
             confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
         }
     };
@@ -145,6 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         elementos.headerTitle.textContent = `Treino de Hoje: ${diaData.dia}`;
         elementos.listaExercicios.innerHTML = '';
+        elementos.mensagemParabens.classList.add('hidden'); // Garante que a mensagem suma ao trocar de dia
 
         if (!diaData.exercicios) return;
 
@@ -153,7 +171,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         diaData.exercicios.forEach((ex, exIndex) => {
             const id = `dia${index}-ex${exIndex}`;
-            const seriesFeitas = progresso[id] || 0;
             const li = document.createElement('li');
             li.className = 'exercicio-item';
             li.dataset.id = id;
