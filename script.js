@@ -1,5 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    const frasesMotivacionais = [
+        "A jornada de mil quilômetros começa com um único passo. Você já está no caminho.",
+        "Não se compare com os outros. Compare-se com a pessoa que você era ontem.",
+        "A consistência transforma o esforço em resultado.",
+        "Acredite no seu potencial. Você é mais forte do que imagina.",
+        "Cada gota de suor é um degrau a mais na escada do seu objetivo.",
+        "Feito é melhor que perfeito. Apenas comece.",
+        "A dor que você sente hoje é a força que você sentirá amanhã.",
+        "Sua mente desistirá cem vezes antes do seu corpo.",
+        "A motivação te faz começar. O hábito te faz continuar.",
+        "Um pequeno progresso a cada dia resulta em grandes resultados.",
+        "O corpo alcança o que a mente acredita.",
+        "Não diminua o objetivo. Aumente o esforço.",
+        "Você não encontrará a força de vontade, você precisa criá-la.",
+        "Se você quer algo que nunca teve, precisa fazer algo que nunca fez.",
+        "O segredo do sucesso é a constância no propósito."
+    ];
+
     const dadosTreino = [
         {
             dia: "Push",
@@ -60,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const listaExercicios = document.getElementById('lista-exercicios');
     const progressBar = document.getElementById('progress-bar');
     const mensagemParabens = document.getElementById('mensagem-parabens');
+    const quoteText = document.getElementById('quote-text');
     
     const modalInfoOverlay = document.getElementById('modal-info-overlay');
     const modalInfoFecharBtn = document.getElementById('modal-info-fechar-btn');
@@ -70,8 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let progresso = {};
     let diaAtivoIndex = 0;
 
-    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaPPLUL-v4')) || {}; };
-    const salvarProgresso = () => { localStorage.setItem('minhaRotinaPPLUL-v4', JSON.stringify(progresso)); };
+    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaAcessivel')) || {}; };
+    const salvarProgresso = () => { localStorage.setItem('minhaRotinaAcessivel', JSON.stringify(progresso)); };
 
     const atualizarProgressoBar = () => {
         const diaData = dadosTreino[diaAtivoIndex];
@@ -89,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         diaAtivoIndex = index;
         const diaData = dadosTreino[index];
 
-        headerTitle.textContent = `Treino de ${diaData.dia}`;
+        headerTitle.textContent = `Treino de Hoje: ${diaData.dia}`;
         listaExercicios.innerHTML = '';
 
         if (!diaData.exercicios) return;
@@ -107,17 +126,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <button class="btn-info" data-ex-index="${exIndex}">i</button>
             `;
-            // Checkbox was removed from the main flow to simplify the card, we can add it back or use another interaction
-            // For now, let's make the card itself clickable to toggle completion
+            
             li.addEventListener('click', (e) => {
-                if(e.target.classList.contains('btn-info')) return; // Don't toggle if info button is clicked
+                if (e.target.classList.contains('btn-info') || e.target.parentElement.classList.contains('btn-info')) return;
 
                 progresso[id] = !progresso[id];
                 salvarProgresso();
                 li.classList.toggle('completed', progresso[id]);
                 atualizarProgressoBar();
             });
-
 
             li.querySelector('.btn-info').addEventListener('click', () => {
                 modalInfoTitulo.textContent = ex.nome;
@@ -134,6 +151,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const init = () => {
         carregarProgresso();
         
+        quoteText.textContent = frasesMotivacionais[Math.floor(Math.random() * frasesMotivacionais.length)];
+
         dadosTreino.forEach((dia, index) => {
             const btn = document.createElement('button');
             btn.className = 'btn-dia';
