@@ -35,7 +35,7 @@ header h1 { margin-bottom: 0.5rem; }
 }
 #quote-text {
   font-style: italic;
-  font-size: 1.25rem; /* Fonte maior */
+  font-size: 1.25rem;
   font-weight: 600;
   color: var(--cor-texto-secundario);
 }
@@ -118,12 +118,12 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 #modal-info-gif { max-width: 80%; border-radius: 8px; margin: 20px 0; border: 1px solid var(--cor-borda); }
 #modal-info-instrucoes {
     font-size: 1.1rem; line-height: 1.7; color: var(--cor-texto-secundario);
-    white-space: pre-line; /* Permite que \n crie novas linhas */
+    white-space: pre-line;
     text-align: left;
 }
 
 #completion-text {
-    font-size: 2.5rem; /* Fonte 2x maior */
+    font-size: 1.75rem; /* Fonte ~30% menor */
     font-weight: 700;
     line-height: 1.4;
     color: var(--cor-primaria);
