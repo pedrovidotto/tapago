@@ -1,10 +1,10 @@
 :root {
-  --cor-fundo: #1A202C; /* Azul Marinho Escuro */
-  --cor-superficie: #2D3748; /* Azul Ardósia */
-  --cor-primaria: #FBBF24; /* Âmbar / Amarelo */
+  --cor-fundo: #1A202C;
+  --cor-superficie: #2D3748;
+  --cor-primaria: #FBBF24;
   --cor-sucesso: #48BB78;
-  --cor-texto-principal: #F7FAFC; /* Branco Suave */
-  --cor-texto-secundario: #A0AEC0; /* Cinza Claro */
+  --cor-texto-principal: #F7FAFC;
+  --cor-texto-secundario: #A0AEC0;
   --cor-borda: #4A5568;
 }
 
@@ -20,32 +20,25 @@ body {
 
 .container { max-width: 600px; margin: auto; padding: 20px; }
 header { text-align: center; margin-bottom: 2rem; }
-
-header h1 {
-  margin-bottom: 0.5rem;
-}
-
-#app-logo {
-  max-height: 55px;
-  width: auto;
-}
-
+header h1 { margin-bottom: 0.5rem; }
+#app-logo { max-height: 55px; width: auto; }
 #header-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--cor-texto-secundario);
-  margin-bottom: 1.5rem;
+  font-size: 1.5rem; font-weight: 600;
+  color: var(--cor-texto-secundario); margin-bottom: 1.5rem;
 }
 
 #quote-card {
   background-color: var(--cor-superficie);
   border-left: 5px solid var(--cor-primaria);
-  border-radius: 8px;
-  padding: 1.25rem;
-  margin-bottom: 2rem;
-  text-align: center;
+  border-radius: 8px; padding: 1.25rem;
+  margin-bottom: 2rem; text-align: center;
 }
-#quote-text { font-style: italic; font-size: 1.1rem; color: var(--cor-texto-secundario); }
+#quote-text {
+  font-style: italic;
+  font-size: 1.25rem; /* Fonte maior */
+  font-weight: 600;
+  color: var(--cor-texto-secundario);
+}
 
 #seletor-dias { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
 .btn-dia {
@@ -87,7 +80,7 @@ header h1 {
   font-size: 2rem; font-weight: bold; cursor: pointer; padding: 10px;
 }
 
-footer { text-align: center; margin-top: 3rem; }
+footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 #botao-resetar {
   background-color: #A0AEC0; color: var(--cor-fundo); border: none;
   border-radius: 8px; padding: 12px 25px; font-size: 1rem; font-weight: 600;
@@ -95,21 +88,45 @@ footer { text-align: center; margin-top: 3rem; }
 }
 #botao-resetar:hover { background-color: #718096; }
 
-/* Modal */
-.modal-overlay {
+/* Overlays e Modais */
+.overlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: flex; justify-content: center; align-items: center; z-index: 1000;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000; transition: opacity 0.3s;
 }
-.modal {
+.modal, .completion-card {
   background: var(--cor-superficie); padding: 30px; border-radius: 10px;
   max-width: 500px; width: 95%; position: relative; border: 1px solid var(--cor-borda);
+  text-align: center;
+}
+#modal-info-fechar-btn, #completion-close-btn {
+  background: var(--cor-borda); color: var(--cor-texto-principal);
+  border-radius: 8px; border: none; cursor: pointer; font-weight: 600;
+  transition: background-color 0.2s;
 }
 #modal-info-fechar-btn {
-  position: absolute; top: 10px; right: 15px; background: none; border: none;
-  font-size: 2.5rem; color: var(--cor-texto-secundario); cursor: pointer;
+  position: absolute; top: 10px; right: 15px;
+  font-size: 2.5rem; background: none; padding: 0;
 }
+#completion-close-btn {
+  padding: 12px 30px; font-size: 1rem; margin-top: 2rem;
+}
+#completion-close-btn:hover { background-color: #4A5568; }
+
 .modal-info-conteudo { text-align: center; }
 #modal-info-gif { max-width: 80%; border-radius: 8px; margin: 20px 0; border: 1px solid var(--cor-borda); }
-#modal-info-instrucoes { font-size: 1.1rem; line-height: 1.6; color: var(--cor-texto-secundario); }
+#modal-info-instrucoes {
+    font-size: 1.1rem; line-height: 1.7; color: var(--cor-texto-secundario);
+    white-space: pre-line; /* Permite que \n crie novas linhas */
+    text-align: left;
+}
+
+#completion-text {
+    font-size: 2.5rem; /* Fonte 2x maior */
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--cor-primaria);
+}
+
 .hidden { display: none; }
