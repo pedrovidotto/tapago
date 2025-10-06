@@ -1,10 +1,10 @@
 :root {
-  --cor-fundo: #121212;
-  --cor-superficie: #1e1e1e;
-  --cor-primaria: #bef264; /* Verde-Limão Vibrante */
-  --cor-texto-principal: #f5f5f5;
-  --cor-texto-secundario: #a3a3a3;
-  --cor-borda: #2e2e2e;
+  --cor-fundo: #1A202C; /* Azul Marinho Escuro */
+  --cor-superficie: #2D3748; /* Azul Ardósia */
+  --cor-primaria: #FBBF24; /* Âmbar / Amarelo */
+  --cor-texto-principal: #F7FAFC; /* Branco Suave */
+  --cor-texto-secundario: #A0AEC0; /* Cinza Claro */
+  --cor-borda: #4A5568;
 }
 
 * {
@@ -17,6 +17,8 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--cor-fundo);
   color: var(--cor-texto-principal);
+  font-size: 18px; /* Tamanho base maior */
+  line-height: 1.6; /* Espaçamento entre linhas maior */
 }
 
 .container {
@@ -31,32 +33,47 @@ header {
 }
 
 #header-title {
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
+}
+
+#quote-card {
+  background-color: var(--cor-superficie);
+  border-left: 5px solid var(--cor-primaria);
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+#quote-text {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--cor-texto-secundario);
 }
 
 #seletor-dias {
   display: flex;
   justify-content: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .btn-dia {
   background-color: var(--cor-superficie);
-  color: var(--cor-texto-secundario);
+  color: var(--cor-texto-principal);
   border: 1px solid var(--cor-borda);
-  border-radius: 999px; /* Pill shape */
-  padding: 10px 22px;
+  border-radius: 8px;
+  padding: 12px 24px; /* Botões maiores */
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   transition: all 0.2s ease-in-out;
 }
 
 .btn-dia:hover {
-  background-color: #2a2a2a;
-  color: var(--cor-texto-principal);
+  background-color: #4A5568;
 }
 
 .btn-dia.active {
@@ -65,12 +82,9 @@ header {
   border-color: var(--cor-primaria);
 }
 
-#container-treino {
-  padding: 1rem;
-}
-
 .progress-container {
   width: 100%;
+  height: 12px; /* Barra mais grossa */
   background-color: var(--cor-superficie);
   border-radius: 10px;
   overflow: hidden;
@@ -79,7 +93,7 @@ header {
 
 .progress-bar {
   width: 0%;
-  height: 8px;
+  height: 100%;
   background-color: var(--cor-primaria);
   transition: width 0.5s;
 }
@@ -90,6 +104,7 @@ header {
   text-align: center;
   margin-top: 1.5rem;
   margin-bottom: 1rem;
+  font-size: 1.2rem;
 }
 
 #lista-exercicios {
@@ -103,11 +118,12 @@ header {
   border: 1px solid var(--cor-borda);
   border-radius: 12px;
   margin-bottom: 1rem;
-  padding: 1rem;
+  padding: 1.25rem;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 1rem;
+  cursor: pointer;
   transition: opacity 0.3s, border-color 0.3s;
 }
 
@@ -117,32 +133,26 @@ header {
 }
 
 .exercicio-icon {
-  font-size: 2rem;
-  background-color: #2a2a2a;
-  border-radius: 8px;
-  padding: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 2.5rem; /* Ícones maiores */
 }
 
 .detalhes-exercicio h3 {
-  font-size: 1.1rem;
+  font-size: 1.3rem; /* Títulos maiores */
   font-weight: 600;
-  margin: 0 0 4px 0;
+  margin: 0 0 5px 0;
 }
 
 .detalhes-exercicio p {
   margin: 0;
   color: var(--cor-texto-secundario);
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .btn-info {
   background: none;
   border: none;
   color: var(--cor-texto-secundario);
-  font-size: 1.5rem;
+  font-size: 2rem; /* Botão de info maior */
   font-weight: bold;
   cursor: pointer;
   padding: 10px;
@@ -150,41 +160,26 @@ header {
 
 /* Modal */
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  display: flex; justify-content: center; align-items: center; z-index: 1000;
 }
 
 .modal {
   background: var(--cor-superficie);
-  padding: 25px;
+  padding: 30px;
   border-radius: 10px;
-  max-width: 500px;
-  width: 95%;
-  position: relative;
+  max-width: 500px; width: 95%; position: relative;
   border: 1px solid var(--cor-borda);
 }
 
 #modal-info-fechar-btn {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  background: none;
-  border: none;
-  font-size: 2rem;
-  color: var(--cor-texto-secundario);
-  cursor: pointer;
+  position: absolute; top: 10px; right: 15px; background: none; border: none;
+  font-size: 2.5rem; color: var(--cor-texto-secundario); cursor: pointer;
 }
 
 .modal-info-conteudo { text-align: center; }
-#modal-info-gif { max-width: 80%; border-radius: 8px; margin: 15px 0; border: 1px solid var(--cor-borda); }
-#modal-info-instrucoes { font-size: 0.95rem; line-height: 1.5; color: var(--cor-texto-secundario); }
+#modal-info-gif { max-width: 80%; border-radius: 8px; margin: 20px 0; border: 1px solid var(--cor-borda); }
+#modal-info-instrucoes { font-size: 1.1rem; line-height: 1.6; color: var(--cor-texto-secundario); }
 
 .hidden { display: none; }
