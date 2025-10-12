@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dia: "Legs", iconEmoji: "🦵", exercicios: [
                 { nome: "Leg Press", series: 3, reps: "10-12 reps", gifUrl: "gifs/leg-press.gif", instrucoes: "1. Posição: Sente-se com costas e quadril totalmente apoiados. Pés na plataforma, na largura dos ombros.\n2. Execução: Desça o peso de forma controlada até os joelhos formarem 90 graus. Empurre de volta sem travar os joelhos no final.\n3. Dica: A força deve vir dos calcanhares, não da ponta dos pés." },
                 { nome: "Cadeira Extensora", series: 3, reps: "12-15 reps", gifUrl: "gifs/cadeira-extensora.gif", instrucoes: "1. Posição: Sente-se com as costas bem apoiadas.\n2. Execução: Estenda as pernas e segure a contração máxima por 1 a 2 segundos no topo.\n3. Dica: A qualidade da contração no topo é mais importante que a quantidade de peso." },
-                { nome: "Cadeira Flexora", series: 3, reps: "12-15 reps", gifUrl: "gifs/cadeira-flexora.gif", instrucoes: "1. Posição: Ajuste a máquina para que o apoio fique acima dos tornozelos.\n2. Execução: Puxe os calcanhares em direção aos glúteo de forma controlada. Sinta a contração na parte de trás da coxa.\n3. Dica: Faça a fase de volta (negativa) de forma lenta." },
+                { nome: "Cadeira Flexora", series: 3, reps: "12-15 reps", gifUrl: "gifs/cadeira-flexora.gif", instrucoes: "1. Posição: Ajuste a máquina para que o apoio fique acima dos tornozelos.\n2. Execução: Puxe os calcanhares em direção aos glúteos de forma controlada. Sinta a contração na parte de trás da coxa.\n3. Dica: Faça a fase de volta (negativa) de forma lenta." },
                 { nome: "Elevação Pélvica", series: 3, reps: "15 reps", gifUrl: "gifs/elevacao-pelvica.gif", instrucoes: "1. Posição: Deite-se com as costas apoiadas em um banco e os pés no chão.\n2. Execução: Eleve o quadril até o corpo ficar reto, contraindo os glúteos com força no topo. Segure por 2 segundos e desça.\n3. Dica: Mantenha o queixo levemente para baixo." },
                 { nome: "Panturrilha em Pé", series: 4, reps: "15-20 reps", gifUrl: "gifs/panturrilha-pe.gif", instrucoes: "1. Posição: Em um degrau ou na máquina, com os calcanhares para fora.\n2. Execução: Alongue o máximo na descida. Suba até a ponta do pé e segure a contração por 2 segundos no topo.\n3. Dica: Não faça o movimento 'saltitando'. Amplitude é a chave." }
             ]
@@ -91,11 +91,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const id = `dia${i}-ex${j}`;
                 const seriesFeitas = progresso[id] || 0;
                 if (seriesFeitas < ex.series) {
-                    return false; // Encontrou um exercício incompleto, então a semana não acabou.
+                    return false;
                 }
             }
         }
-        return true; // Se o loop terminar, todos os exercícios de todos os dias estão completos.
+        return true;
     };
 
     const atualizarProgressoGeral = () => {
@@ -115,28 +115,23 @@ document.addEventListener('DOMContentLoaded', () => {
         elementos.progressBar.style.width = `${porcentagem}%`;
 
         if (porcentagem === 100 && elementos.completion.overlay.classList.contains('hidden')) {
-            // Atraso para o usuário ver o último card se completar antes de mostrar o overlay
             setTimeout(() => {
                 if (verificarConclusaoSemanal()) {
-                    // Mensagem especial para conclusão da semana
                     elementos.completion.text.textContent = "PARABÉNS! Você completou todos os treinos da semana! O ciclo será reiniciado em 5 segundos.";
                     elementos.completion.overlay.classList.remove('hidden');
                     confetti({ particleCount: 300, spread: 180, startVelocity: 40, origin: { y: 0.6 }, zIndex: 2000 });
-
-                    // Agenda o reset automático
                     setTimeout(() => {
                         progresso = {};
                         salvarProgresso();
                         location.reload();
                     }, 5000);
                 } else {
-                    // Mensagem normal de conclusão do dia
                     const mensagem = mensagensDeConclusao[Math.floor(Math.random() * mensagensDeConclusao.length)];
                     elementos.completion.text.textContent = mensagem;
                     elementos.completion.overlay.classList.remove('hidden');
                     confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 }, zIndex: 2000 });
                 }
-            }, 500); // Meio segundo de atraso
+            }, 500);
         }
     };
 
@@ -261,7 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (confirm('Tem certeza que quer apagar todo o progresso da semana?')) {
                 progresso = {};
                 salvarProgresso();
-                location.reload(); // Recarrega a página para um reset limpo
+                location.reload();
             }
         });
         
