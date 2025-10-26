@@ -8,11 +8,11 @@
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/png" sizes="192x192" href="icon_192.png">
   <link rel="apple-touch-icon" href="icon_192.png">
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Ajuste nos pesos da fonte Inter -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -20,14 +20,14 @@
   <header>
     <!-- Logo removido para seguir a inspiração -->
     <h1 id="workout-day-title">Carregando...</h1> <!-- Título GRANDE do dia -->
-    <hr class="header-divider"> 
+    <hr class="header-divider">
   </header>
 
-  <main id="container-treino">
+  <main id="workout-card"> <!-- Agora a lista está dentro de um card -->
     <div id="cabecalho-treino">
         <!-- Título "Exercícios" removido -->
       <div class="progress-container">
-        <div id="progress-bar" class="progress-bar"></div> 
+        <div id="progress-bar" class="progress-bar"></div>
       </div>
     </div>
     <ul id="lista-exercicios"></ul>
@@ -40,7 +40,7 @@
   <!-- Navegação movida para o rodapé fixo -->
   <nav id="bottom-day-selector">
       <!-- Botões minimalistas dos dias serão gerados aqui -->
-      <button id="botao-resetar" class="btn-secondary btn-reset">Reset</button> 
+      <button id="botao-resetar" class="btn-secondary btn-reset">Reset</button>
   </nav>
 </div>
 
