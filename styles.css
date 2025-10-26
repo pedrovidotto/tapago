@@ -4,8 +4,8 @@
   --cor-fundo: #F2F2F7; 
   --cor-superficie: #FFFFFF; 
   --cor-primaria: #000000; 
-  --cor-sucesso: #16A34A; /* NOVO: Verde Vibrante */
-  --cor-perigo: #DC2626;  /* NOVO: Vermelho */
+  --cor-sucesso: #16A34A; /* Verde Vibrante */
+  --cor-perigo: #DC2626;  /* Vermelho */
   --cor-texto-principal: #000000; 
   --cor-texto-secundario: #636366; 
   --cor-texto-terciario: #AEAEB2; 
@@ -18,8 +18,8 @@
   --completion-overlay-bg: rgba(60, 60, 67, 0.85);
   
   /* RGB para transparências */
-   --cor-sucesso-rgb: 22, 163, 74;   /* NOVO: RGB do Verde */
-   --cor-perigo-rgb: 220, 38, 38;    /* NOVO: RGB do Vermelho */
+   --cor-sucesso-rgb: 22, 163, 74;   /* RGB do Verde */
+   --cor-perigo-rgb: 220, 38, 38;    /* RGB do Vermelho */
    
   --progresso-fill-bg: rgba(var(--cor-sucesso-rgb), 0.15); /* Fundo verde claro */
 }
@@ -29,8 +29,8 @@ body[data-theme="dark"] {
   --cor-fundo: #000000; 
   --cor-superficie: #1C1C1E; 
   --cor-primaria: #FFFFFF; 
-  --cor-sucesso: #22C55E; /* NOVO: Verde mais claro */
-  --cor-perigo: #EF4444;  /* NOVO: Vermelho mais claro */
+  --cor-sucesso: #22C55E; /* Verde mais claro */
+  --cor-perigo: #EF4444;  /* Vermelho mais claro */
   --cor-texto-principal: #FFFFFF; 
   --cor-texto-secundario: #8A8A8E; 
   --cor-texto-terciario: #48484A; 
@@ -43,8 +43,8 @@ body[data-theme="dark"] {
   --completion-overlay-bg: rgba(0, 0, 0, 0.9);
 
   /* RGB para transparências */
-  --cor-sucesso-rgb: 34, 197, 94; /* NOVO: RGB do Verde Claro */
-  --cor-perigo-rgb: 239, 68, 68;  /* NOVO: RGB do Vermelho Claro */
+  --cor-sucesso-rgb: 34, 197, 94; /* RGB do Verde Claro */
+  --cor-perigo-rgb: 239, 68, 68;  /* RGB do Vermelho Claro */
 
   --progresso-fill-bg: rgba(var(--cor-sucesso-rgb), 0.2); 
 }
@@ -103,7 +103,7 @@ header { margin-bottom: 1.5rem; }
 
 /* Novo estilo para o logo em texto */
 #app-logo-text {
-    font-family: 'Instrument Serif', serif; /* MANTIDO */
+    font-family: 'Instrument Serif', serif;
     font-size: 1.6rem; 
     font-weight: 400;
     color: var(--cor-texto-principal);
@@ -150,7 +150,6 @@ header { margin-bottom: 1.5rem; }
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
-    /* font-family: 'Instrument Serif', serif; (REMOVIDO) */
 }
 
 .inline-day-btn:hover {
@@ -253,34 +252,39 @@ body[data-theme="dark"] #workout-card {
   z-index: 1;
 }
 
-/* Contador de Séries */
+/* --- CONTADOR DE SÉRIES ATUALIZADO --- */
 .set-counter {
     position: relative; z-index: 2; user-select: none;
-    font-size: 1rem; 
-    color: var(--cor-texto-secundario);
-    background-color: var(--cor-fundo);
-    padding: 4px 10px; border-radius: 6px;
-    min-width: 45px; text-align: center;
-    margin-right: 0.5rem; flex-shrink: 0;
-    border: 1px solid var(--cor-borda);
+    font-size: 1.5rem; /* 50% MAIOR (era 1rem) */
+    color: var(--cor-texto-terciario); /* Mais sutil (era secundario) */
+    background-color: transparent; /* SEM BOX (era --cor-fundo) */
+    padding: 0; /* SEM BOX (era 4px 10px) */
+    border-radius: 0; /* SEM BOX */
+    min-width: 45px; /* Mantém largura para alinhamento */
+    text-align: center;
+    margin-right: 0.5rem; 
+    border: none; /* SEM BOX (era 1px solid) */
     transition: all 0.3s ease;
-    font-family: 'Instrument Serif', serif; /* MANTIDO */
+    font-family: 'Instrument Serif', serif; 
     font-weight: 600; 
 }
 .set-counter:hover {
-    border-color: var(--cor-texto-secundario);
-    background-color: var(--hover-color);
+    border-color: transparent; /* SEM BOX */
+    background-color: transparent; /* SEM BOX */
+    color: var(--cor-texto-secundario); /* Escurece no hover */
 }
 
 .exercicio-item.finalizado .set-counter {
     color: var(--cor-sucesso); 
-    background-color: rgba(var(--cor-sucesso-rgb), 0.1);
-    border-color: rgba(var(--cor-sucesso-rgb), 0.3);
+    background-color: transparent; /* SEM BOX */
+    border-color: transparent; /* SEM BOX */
 }
 .exercicio-item.finalizado .set-counter:hover {
-    background-color: rgba(var(--cor-sucesso-rgb), 0.1);
-    border-color: rgba(var(--cor-sucesso-rgb), 0.3);
+    background-color: transparent; /* SEM BOX */
+    border-color: transparent; /* SEM BOX */
+    color: var(--cor-sucesso); /* Mantém cor de sucesso */
 }
+/* --- FIM DAS MUDANÇAS NO CONTADOR --- */
 
 
 .detalhes-exercicio, .btn-info-inline { position: relative; z-index: 2; user-select: none; } 
@@ -327,7 +331,7 @@ body[data-theme="dark"] #workout-card {
     transition: color 0.3s ease;
 }
 
-/* Botão Info Inline (ATUALIZADO) */
+/* Botão Info Inline */
 .btn-info-inline {
   background-color: transparent;
   color: var(--cor-texto-terciario); 
@@ -346,8 +350,7 @@ body[data-theme="dark"] #workout-card {
   flex-shrink: 0;
   margin: 0;
   margin-left: 1rem; 
-  /* font-family: 'Instrument Serif', serif; (REMOVIDO) */
-  font-style: italic; /* RESTAURADO */
+  font-style: italic; 
 }
 .btn-info-inline:hover {
   background-color: var(--hover-color-icon);
@@ -410,7 +413,6 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
     text-align: left; 
     color: var(--cor-texto-principal); 
     transition: color 0.3s ease;
-    /* font-family: 'Instrument Serif', serif; (REMOVIDO) */
 }
 
 /* HIERARQUIA MODAL */
