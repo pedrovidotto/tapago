@@ -11,21 +11,39 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Ajuste nos pesos da fonte Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<!-- O tema padrão (light) é aplicado diretamente aqui, o JS alterna -->
+<body data-theme="light">
 <div class="container">
   <header>
-    <!-- Logo removido para seguir a inspiração -->
-    <h1 id="workout-day-title">Carregando...</h1> <!-- Título GRANDE do dia -->
+    <div class="header-top-row">
+        <!-- Botão de Tema -->
+        <button id="theme-toggle-btn" class="btn-icon theme-toggle" aria-label="Alternar tema">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 1.75V22.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 22.25C17.799 22.25 22.25 17.799 22.25 12C22.25 6.20101 17.799 1.75 12 1.75V22.25Z" fill="currentColor"/>
+            </svg>
+        </button>
+        <!-- Logo -->
+        <div class="logo-container">
+            <img src="go_logo.png" alt="Go Fitness Logo" id="app-logo">
+        </div>
+        <!-- Espaço vazio para centralizar o logo se necessário ou outro ícone -->
+        <div style="width: 24px;"></div>
+    </div>
+    <hr class="header-divider-subtle">
+    <h1 id="workout-day-title">Carregando...</h1>
+    <hr class="header-divider-subtle">
+    <nav id="day-selector-inline">
+      <!-- Botões inline dos dias serão gerados aqui -->
+    </nav>
     <hr class="header-divider">
   </header>
 
-  <main id="workout-card"> <!-- Agora a lista está dentro de um card -->
+  <main id="workout-card"> <!-- Card branco para os exercícios -->
     <div id="cabecalho-treino">
-        <!-- Título "Exercícios" removido -->
       <div class="progress-container">
         <div id="progress-bar" class="progress-bar"></div>
       </div>
@@ -37,11 +55,9 @@
     </div>
   </main>
 
-  <!-- Navegação movida para o rodapé fixo -->
-  <nav id="bottom-day-selector">
-      <!-- Botões minimalistas dos dias serão gerados aqui -->
-      <button id="botao-resetar" class="btn-secondary btn-reset">Reset</button>
-  </nav>
+  <footer>
+    <button id="botao-resetar" class="btn-secondary">Resetar Progresso</button>
+  </footer>
 </div>
 
 <!-- Modal de Informações com GIF -->
