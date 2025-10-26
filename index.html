@@ -11,7 +11,8 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <!-- Adicionado 800 -->
+  <!-- Ajuste nos pesos da fonte Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"> 
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -19,14 +20,14 @@
   <header>
     <!-- Logo removido para seguir a inspiração -->
     <h1 id="workout-day-title">Carregando...</h1> <!-- Título GRANDE do dia -->
-    <hr class="header-divider">
+    <hr class="header-divider"> 
   </header>
 
   <main id="container-treino">
     <div id="cabecalho-treino">
-        <!-- Título "Exercícios" removido, já implícito -->
+        <!-- Título "Exercícios" removido -->
       <div class="progress-container">
-        <div id="progress-bar" class="progress-bar"></div>
+        <div id="progress-bar" class="progress-bar"></div> 
       </div>
     </div>
     <ul id="lista-exercicios"></ul>
@@ -36,9 +37,10 @@
     </div>
   </main>
 
+  <!-- Navegação movida para o rodapé fixo -->
   <nav id="bottom-day-selector">
       <!-- Botões minimalistas dos dias serão gerados aqui -->
-      <button id="botao-resetar" class="btn-secondary btn-reset">Reset</button> <!-- Botão Reset movido para cá -->
+      <button id="botao-resetar" class="btn-secondary btn-reset">Reset</button> 
   </nav>
 </div>
 
