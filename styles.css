@@ -1,21 +1,21 @@
 /* 1. ROOT & GLOBAL STYLES */
 :root {
-  /* Paleta Básica e Acessível */
-  --cor-fundo: #F8F9FA; /* Quase Branco */
-  --cor-superficie: #FFFFFF; /* Branco Puro */
-  --cor-primaria: #007BFF; /* Azul Padrão */
-  --cor-sucesso: #28A745; /* Verde Padrão */
+  /* Paleta Vibrante e Acessível */
+  --cor-fundo: #F8F9FA;
+  --cor-superficie: #FFFFFF;
+  --cor-primaria: #0D6EFD; /* Azul Vibrante */
+  --cor-sucesso: #198754; /* Verde Escuro */
   --cor-perigo: #DC3545; /* Vermelho Padrão */
   --cor-texto-principal: #212529; /* Preto Suave */
   --cor-texto-secundario: #6C757D; /* Cinza Médio */
   --cor-borda: #DEE2E6; /* Cinza Claro */
   --cor-borda-muted: rgba(33, 37, 41, 0.15);
 
-  --hover-color: rgba(33, 37, 41, 0.03);
+  --hover-color: rgba(13, 110, 253, 0.05); /* Azul bem transparente */
   --hover-color-icon: rgba(33, 37, 41, 0.08);
   --modal-overlay-bg: rgba(33, 37, 41, 0.7);
   --completion-overlay-bg: rgba(33, 37, 41, 0.85);
-  --progresso-fill-bg: rgba(40, 167, 69, 0.15); /* Verde sucesso bem transparente */
+  --progresso-fill-bg: rgba(25, 135, 84, 0.15); /* Verde sucesso transparente */
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,9 +24,9 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--cor-fundo);
   color: var(--cor-texto-principal);
-  font-size: 16px;
+  font-size: 16px; /* Tamanho base */
   line-height: 1.6;
-  font-weight: 400;
+  font-weight: 400; /* Regular */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-top: env(safe-area-inset-top);
@@ -34,304 +34,238 @@ body {
 }
 
 /* 2. LAYOUT & HEADER */
-.container { max-width: 600px; margin: 0 auto; padding: 20px; }
+.container { max-width: 600px; margin: 0 auto; padding: 25px; } /* Mais padding */
 
-header { margin-bottom: 1rem; }
+header { margin-bottom: 1.5rem; text-align: center; }
+#app-logo { max-height: 50px; width: auto; margin-bottom: 1.5rem; }
 
-.header-top-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1rem;
+/* Seção HOJE */
+.today-workout-display {
+    text-align: left;
+    margin-bottom: 1.5rem;
+    padding: 15px 0; /* Aumenta padding */
+    border-bottom: 1px solid var(--cor-borda); /* Divisor abaixo */
+}
+.today-label {
+    font-size: 1rem; /* Maior */
+    font-weight: 500; /* Médio */
+    color: var(--cor-texto-secundario);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 5px;
+}
+#today-workout-name {
+    font-size: 2.2rem; /* Fonte BEM maior */
+    font-weight: 700; /* Bold */
+    color: var(--cor-texto-principal);
+    line-height: 1.2;
 }
 
-#app-logo { max-height: 40px; width: auto; }
 
-#header-title {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--cor-texto-secundario);
-  margin: 0;
-  text-align: right;
+.header-divider { display: none; } /* Remove divisor antigo */
+
+/* 3. DAY CARDS CONTAINER */
+#day-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem; /* Aumenta espaço entre cartões */
 }
 
-.header-divider {
-    border: none;
-    height: 1px;
-    background-color: var(--cor-borda);
-    margin: 1.5rem 0;
+.day-card {
+    background-color: var(--cor-superficie);
+    border: 1px solid var(--cor-borda);
+    border-radius: 16px; /* Mais arredondado */
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Sombra mais pronunciada */
 }
 
-/* Seletor de Dias (Botões Redondos) */
-#seletor-dias {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-  margin-top: 1.5rem;
+.day-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem; /* Mais padding */
+    cursor: pointer;
+    background-color: var(--cor-superficie);
+    position: relative;
+    z-index: 2;
+    transition: background-color 0.2s ease;
+}
+.day-card-header:hover {
+    background-color: var(--hover-color);
 }
 
-.btn-dia {
-  background-color: transparent;
-  color: var(--cor-texto-secundario);
-  border: 1px solid var(--cor-borda);
-  border-radius: 50%;
-  padding: 0;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  width: 42px;
-  height: 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.day-card-header h3 {
+    font-size: 1.5rem; /* Título do dia maior */
+    font-weight: 600; /* Semibold */
+    margin: 0;
+    color: var(--cor-texto-principal);
+    transition: color 0.3s ease-out;
+}
+.day-card.active .day-card-header h3 {
+     color: var(--cor-primaria); /* Cor primária quando ativo */
 }
 
-.btn-dia:hover {
-  color: var(--cor-texto-principal);
-  border-color: var(--cor-texto-secundario);
-  background-color: var(--hover-color);
+
+.day-card-toggle-icon {
+    transition: transform 0.3s ease-out;
+    width: 28px; /* Ícone maior */
+    height: 28px;
+    color: var(--cor-texto-secundario);
+}
+.day-card.active .day-card-toggle-icon {
+    transform: rotate(180deg);
+    color: var(--cor-primaria); /* Cor primária quando ativo */
 }
 
-.btn-dia.active {
-  color: var(--cor-fundo);
-  background-color: var(--cor-texto-principal);
-  border-color: var(--cor-texto-principal);
-  font-weight: 600;
+
+.day-card-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out, border-top-color 0.3s ease-out;
+    padding: 0 1.5rem; /* Padding horizontal maior */
+    border-top: 1px solid transparent;
+    position: relative;
+    z-index: 1;
 }
 
-/* 3. WORKOUT AREA */
-#container-treino { margin-top: 2rem; }
-
-#cabecalho-treino h2 {
-  text-align: left;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--cor-texto-secundario);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.day-card.active .day-card-content {
+    max-height: 2000px;
+    padding: 1.5rem 1.5rem; /* Padding vertical quando aberto */
+    border-top-color: var(--cor-borda);
 }
 
+/* Barra de Progresso dentro do Card */
 .progress-container {
-  width: 100%; height: 6px;
+  width: 100%; height: 8px; /* Mais grossa */
   background-color: #E9ECEF;
-  border-radius: 3px; overflow: hidden; margin-bottom: 2rem;
+  border-radius: 4px; overflow: hidden; margin-bottom: 2rem;
 }
 .progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s; }
 
+/* Lista de Exercícios dentro do Card */
 #lista-exercicios, #completed-list { list-style: none; padding: 0; }
-
-/* Títulos de Categoria (Concluídos) */
 .category-title {
-  margin-top: 3rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--cor-borda);
-  color: var(--cor-texto-secundario);
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--cor-borda); color: var(--cor-texto-secundario);
+  font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;
 }
 
-
 .exercicio-item {
-  border-bottom: 1px solid var(--cor-borda);
-  padding: 18px 0;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden; /* MUDANÇA: Para conter o fill */
+  border-bottom: 1px solid var(--cor-borda-muted); padding: 20px 0; /* Mais padding vertical */
+  display: flex; align-items: center; gap: 1rem; /* Ajusta gap */
+  cursor: pointer; position: relative; overflow: visible;
   transition: opacity 0.4s ease, transform 0.3s ease, background-color 0.2s ease;
   background-color: transparent;
 }
-#lista-exercicios > li:last-child,
-#completed-list > li:last-child {
-   border-bottom: none;
-}
+.day-card-content ul > li:last-child { border-bottom: none; }
 
 .exercicio-item:hover { background-color: var(--hover-color); }
 
-/* Indicador de Progresso (Background Fill) */
 .exercicio-progress-fill {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 0%; /* Começa com largura 0 */
-  height: 100%;
-  background-color: var(--progresso-fill-bg);
-  border-radius: inherit; /* Herda o raio se o card tiver */
-  transition: width 0.4s ease-in-out;
+  position: absolute; left: -12px; /* Mais afastado */
+  top: 20px; bottom: 20px; width: 5px; /* Mais grossa */
+  background-color: var(--cor-sucesso); border-radius: 2.5px;
+  transform-origin: top; transform: scaleY(0); transition: transform 0.4s ease-in-out;
   z-index: 1;
 }
 
-.exercicio-icon, .detalhes-exercicio, .btn-info {
-  position: relative; z-index: 2; user-select: none;
-}
+.exercicio-icon, .detalhes-exercicio, .btn-info { position: relative; z-index: 2; user-select: none; }
+.exercicio-item.finalizado { opacity: 0.5; cursor: default; } /* Mais opaco */
+#completed-list .exercicio-item { opacity: 0.5; cursor: default; }
+#completed-list .exercicio-item:hover { background-color: transparent; }
 
-.exercicio-item.finalizado {
-  opacity: 0.6;
-  cursor: default;
-}
-#completed-list .exercicio-item {
-    opacity: 0.6;
-    cursor: default;
-}
-#completed-list .exercicio-item:hover {
-    background-color: transparent;
-}
-/* A barra de fill completa não precisa mais de estilo especial */
-
+.exercicio-item.finalizado .exercicio-progress-fill { transform: scaleY(1); }
 .exercicio-item.movendo { opacity: 0 !important; transform: translateY(10px); }
-.exercicio-icon { font-size: 1.8rem; margin-left: 0; color: var(--cor-texto-secundario); }
-.detalhes-exercicio { flex-grow: 1; }
+/* Ícone removido dos itens de exercício para um look mais limpo */
+/* .exercicio-icon { font-size: 1.8rem; margin-left: 10px; color: var(--cor-texto-secundario); } */
+.detalhes-exercicio { flex-grow: 1; margin-left: 10px; /* Adiciona espaço onde estava o ícone */}
+/* Hierarquia Tipográfica: Nome do exercício mais pesado */
 .detalhes-exercicio h3 {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin: 0 0 4px 0;
-  line-height: 1.3;
-  color: var(--cor-texto-principal);
+    font-size: 1.25rem; /* Maior */
+    font-weight: 600; /* Semibold */
+    margin: 0 0 5px 0;
+    line-height: 1.4; /* Ajuste linha */
+    color: var(--cor-texto-principal);
 }
-.detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 0.9rem; font-weight: 400; }
-
+.detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; font-weight: 400; } /* Detalhes maiores */
 .btn-info {
-  background-color: transparent;
-  color: var(--cor-texto-secundario);
-  border: none;
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s;
-  font-size: 1.2rem;
-  padding: 0;
-  margin-left: auto;
+  background-color: transparent; color: var(--cor-texto-secundario); border: none;
+  border-radius: 50%; width: 40px; height: 40px; /* Botão maior */
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s; font-size: 1.4rem; /* Ícone maior */
+  padding: 0; margin-left: auto;
 }
-.btn-info:hover {
-  background-color: var(--hover-color-icon);
-  color: var(--cor-texto-principal);
-}
+.btn-info:hover { background-color: var(--hover-color-icon); color: var(--cor-texto-principal); }
 
 /* 4. FOOTER & RESET */
-footer { text-align: center; margin-top: 4rem; padding-bottom: 2rem; }
-#botao-resetar {
-  background-color: transparent;
-  color: var(--cor-texto-secundario);
-  border: 1px solid var(--cor-borda);
-  border-radius: 8px;
-  padding: 10px 20px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
+#botao-resetar { /* Botão Secundário */
+  background-color: transparent; color: var(--cor-texto-secundario);
+  border: 1px solid var(--cor-borda); border-radius: 8px; padding: 12px 25px; /* Padding maior */
+  font-size: 1rem; /* Fonte maior */
+  font-weight: 500; cursor: pointer; transition: all 0.2s ease;
+  text-transform: uppercase; letter-spacing: 0.03em;
 }
-#botao-resetar:hover {
-  color: var(--cor-texto-principal);
-  border-color: var(--cor-texto-secundario);
-  background-color: var(--hover-color);
-}
+#botao-resetar:hover { color: var(--cor-texto-principal); border-color: var(--cor-texto-secundario); background-color: var(--hover-color); }
 
 /* 5. MODALS & OVERLAYS */
 .overlay, .modal-overlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: var(--modal-overlay-bg);
-  backdrop-filter: blur(4px);
+  background: var(--modal-overlay-bg); backdrop-filter: blur(5px); /* Mais desfoque */
   display: flex; justify-content: center; align-items: center;
   z-index: 1000; opacity: 1; transition: opacity 0.3s ease-in-out;
 }
 .modal, .completion-card {
-  background: var(--cor-superficie);
-  padding: 24px; border-radius: 12px;
-  border: 1px solid var(--cor-borda);
-  max-width: 500px; width: 95%; position: relative;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  background: var(--cor-superficie); padding: 28px; border-radius: 16px; /* Mais arredondado */
+  border: 1px solid var(--cor-borda); max-width: 500px; width: 95%; position: relative;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Sombra mais visível */
   transform: scale(1); transition: transform 0.3s ease-in-out;
 }
 .overlay.hidden { opacity: 0; pointer-events: none; }
 .overlay.hidden .modal,
 .overlay.hidden .completion-card { transform: scale(0.95); }
 
-/* Botões do Modal */
 #modal-info-fechar-btn, #completion-close-btn {
   color: var(--cor-texto-secundario); background: none; border: none;
   cursor: pointer; font-weight: 600; transition: color 0.2s;
-  position: absolute; top: 16px; right: 16px;
-  font-size: 1.8rem; line-height: 1; padding: 5px;
+  position: absolute; top: 18px; right: 18px; /* Ajuste posição */
+  font-size: 2rem; /* Maior */
+  line-height: 1; padding: 5px;
 }
 #modal-info-fechar-btn:hover { color: var(--cor-texto-principal); }
 
-#completion-close-btn {
-    position: static;
-    font-size: 0.9rem;
-    padding: 10px 24px;
-    border-radius: 8px;
-    border: 1px solid var(--cor-borda);
-    margin-top: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    background-color: transparent;
-}
-#completion-close-btn:hover {
-    border-color: var(--cor-texto-secundario);
-    background-color: var(--hover-color);
-    color: var(--cor-texto-principal);
-}
+#completion-close-btn { position: static; font-size: 1rem; padding: 12px 28px; border-radius: 8px; border: 1px solid var(--cor-borda); margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 0.03em; background-color: transparent; color: var(--cor-texto-secundario); }
+#completion-close-btn:hover { border-color: var(--cor-texto-secundario); background-color: var(--hover-color); color: var(--cor-texto-principal); }
 
-/* Conteúdo Modal Info */
 .modal-info-conteudo { text-align: center; }
-#modal-info-titulo { font-size: 1.4rem; margin-bottom: 1rem; font-weight: 600; text-align: left; color: var(--cor-texto-principal); }
-#modal-info-gif { max-width: 100%; border-radius: 8px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); }
-#modal-info-instrucoes {
-    font-size: 1rem; line-height: 1.7; color: var(--cor-texto-secundario);
-    white-space: pre-line; text-align: left; font-weight: 400;
+#modal-info-titulo { font-size: 1.6rem; margin-bottom: 1.2rem; font-weight: 700; text-align: left; color: var(--cor-texto-principal); }
+#modal-info-gif { max-width: 100%; border-radius: 12px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); }
+/* Estilo para lista de instruções */
+.instructions-list {
+    font-size: 1.05rem; /* Fonte maior */
+    line-height: 1.8; /* Mais espaçado */
+    color: var(--cor-texto-secundario);
+    text-align: left;
+    font-weight: 400;
+    padding-left: 1.8em; /* Mais espaço para números */
+    margin: 0;
 }
+.instructions-list li { margin-bottom: 1em; }
+.instructions-list li::marker { font-weight: 600; color: var(--cor-texto-principal); } /* Números mais pesados */
 
-/* Modal de Reset */
-.modal-title { font-size: 1.2rem; margin-bottom: 1rem; color: var(--cor-texto-principal); font-weight: 600; text-align: left;}
-.modal-text { color: var(--cor-texto-secundario); margin-bottom: 1.5rem; font-size: 1rem; text-align: left; font-weight: 400;}
-.modal-buttons { display: flex; justify-content: flex-end; gap: 10px; }
-.modal-btn {
-    padding: 10px 20px; border-radius: 8px; border: 1px solid var(--cor-borda);
-    font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
-    text-transform: uppercase; letter-spacing: 0.03em;
-}
+.modal-title { font-size: 1.3rem; margin-bottom: 1rem; color: var(--cor-texto-principal); font-weight: 600; text-align: left;}
+.modal-text { color: var(--cor-texto-secundario); margin-bottom: 1.5rem; font-size: 1.05rem; text-align: left; font-weight: 400;}
+.modal-buttons { display: flex; justify-content: flex-end; gap: 12px; }
+.modal-btn { padding: 12px 22px; border-radius: 8px; border: 1px solid var(--cor-borda); font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.03em; }
 #cancel-reset-btn { background-color: transparent; color: var(--cor-texto-secundario); }
 #cancel-reset-btn:hover { color: var(--cor-texto-principal); border-color: var(--cor-texto-secundario); background-color: var(--hover-color); }
 #confirm-reset-btn { background-color: var(--cor-perigo); color: #fff; border-color: var(--cor-perigo); }
-#confirm-reset-btn:hover { background-color: transparent; color: var(--cor-perigo); }
+#confirm-reset-btn:hover { background-color: #C82333; border-color: #C82333; color: #fff; } /* Hover mais escuro */
 
-/* Card de Conclusão */
-#completion-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--cor-texto-principal); text-transform: uppercase; letter-spacing: 0.05em; }
-#completion-text {
-    font-size: 1.5rem;
-    font-weight: 500;
-    line-height: 1.4;
-    color: var(--cor-sucesso);
-    margin-bottom: 0;
-}
-.completion-card {
-    padding: 30px;
-    text-align: center;
-}
-
-.divider {
-  width: 100%;
-  height: 1px;
-  background-color: var(--cor-borda);
-  margin: 20px 0;
-}
-
-
+#completion-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.8rem; color: var(--cor-texto-principal); text-transform: uppercase; letter-spacing: 0.05em; }
+#completion-text { font-size: 1.6rem; font-weight: 500; line-height: 1.5; color: var(--cor-sucesso); margin-bottom: 0; }
+.completion-card { padding: 35px; text-align: center; }
+.divider { width: 100%; height: 1px; background-color: var(--cor-borda); margin: 24px 0; }
 .hidden { display: none !important; }
