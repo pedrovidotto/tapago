@@ -1,41 +1,18 @@
 /* 1. ROOT & GLOBAL STYLES */
 :root {
-  /* TEMA DARK (GRAYSCALE) */
-  --cor-fundo: #1C1C1E; /* Cinza Muito Escuro */
-  --cor-superficie: #2C2C2E; /* Cinza Escuro */
-  --cor-primaria: #FFFFFF; /* Branco (Ativo/Destaque) */
-  --cor-sucesso: #A0A0A5; /* Cinza Médio (Progresso) */
-  --cor-perigo: #D1D1D6; /* Cinza Claro (Perigo Hover) */
-  --cor-texto-principal: #FFFFFF; /* Branco Puro */
-  --cor-texto-secundario: #8A8A8E; /* Cinza Secundário */
-  --cor-texto-terciario: #48484A; /* Cinza Terciário */
-  --cor-borda: #3A3A3C; /* Borda */
-  --cor-borda-muted: rgba(99, 99, 102, 0.4); /* Borda mais suave */
-
-  --hover-color: rgba(255, 255, 255, 0.05); /* Hover sutil */
-  --hover-color-icon: rgba(255, 255, 255, 0.1);
-  --modal-overlay-bg: rgba(0, 0, 0, 0.8);
-  --completion-overlay-bg: rgba(0, 0, 0, 0.9);
-  --progresso-fill-bg: rgba(160, 160, 165, 0.2); /* Cinza Médio transparente */
-
-  /* RGB para transparências (Cinza Médio) */
-  --cor-sucesso-rgb: 160, 160, 165;
-}
-
-body[data-theme="light"] {
-  /* TEMA CLARO (GRAYSCALE) */
+  /* TEMA CLARO (GRAYSCALE - DEFAULT) */
   --cor-fundo: #F2F2F7; /* Cinza Claro iOS */
   --cor-superficie: #FFFFFF; /* Branco Puro */
   --cor-primaria: #000000; /* Preto (Ativo/Destaque) */
-  --cor-sucesso: #8A8A8E; /* Cinza Médio (Progresso) */
-  --cor-perigo: #C7C7CC; /* Cinza Claro (Perigo Hover) */
+  --cor-sucesso: #8A8A8E; /* Cinza Médio (Progresso & Finalizado) */
+  --cor-perigo: #AEAEB2; /* Cinza Terciário (Perigo Hover) */
   --cor-texto-principal: #000000; /* Preto Puro */
   --cor-texto-secundario: #636366; /* Cinza Secundário */
   --cor-texto-terciario: #AEAEB2; /* Cinza Terciário */
   --cor-borda: #D1D1D6; /* Borda */
   --cor-borda-muted: rgba(60, 60, 67, 0.15); /* Borda mais suave */
 
-  --hover-color: rgba(0, 0, 0, 0.03);
+  --hover-color: rgba(0, 0, 0, 0.03); /* Hover sutil preto */
   --hover-color-icon: rgba(0, 0, 0, 0.06);
   --modal-overlay-bg: rgba(60, 60, 67, 0.7);
   --completion-overlay-bg: rgba(60, 60, 67, 0.85);
@@ -43,6 +20,31 @@ body[data-theme="light"] {
 
   /* RGB para transparências (Cinza Médio) */
    --cor-sucesso-rgb: 138, 138, 142;
+   --cor-perigo-rgb: 220, 53, 69; /* Vermelho padrão para reset */
+}
+
+body[data-theme="dark"] {
+  /* TEMA ESCURO (GRAYSCALE) */
+  --cor-fundo: #000000; /* Preto Puro */
+  --cor-superficie: #1C1C1E; /* Cinza Muito Escuro */
+  --cor-primaria: #FFFFFF; /* Branco (Ativo/Destaque) */
+  --cor-sucesso: #8A8A8E; /* Cinza Médio (Progresso & Finalizado) */
+  --cor-perigo: #C7C7CC; /* Cinza Claro (Perigo Hover) */
+  --cor-texto-principal: #FFFFFF; /* Branco Puro */
+  --cor-texto-secundario: #8A8A8E; /* Cinza Secundário */
+  --cor-texto-terciario: #48484A; /* Cinza Terciário */
+  --cor-borda: #3A3A3C; /* Borda */
+  --cor-borda-muted: rgba(99, 99, 102, 0.4);
+
+  --hover-color: rgba(255, 255, 255, 0.05); /* Hover sutil branco */
+  --hover-color-icon: rgba(255, 255, 255, 0.1);
+  --modal-overlay-bg: rgba(0, 0, 0, 0.8);
+  --completion-overlay-bg: rgba(0, 0, 0, 0.9);
+  --progresso-fill-bg: rgba(138, 138, 142, 0.2); /* Cinza Médio transparente */
+
+  /* RGB para transparências (Cinza Médio) */
+  --cor-sucesso-rgb: 138, 138, 142;
+  --cor-perigo-rgb: 255, 69, 58; /* Vermelho claro iOS */
 }
 
 
@@ -93,20 +95,15 @@ header { margin-bottom: 1.5rem; }
 .btn-icon svg { display: block; width: 24px; height: 24px; }
 
 /* Posiciona botão tema à direita */
-#theme-toggle-btn {
-    order: 3;
-}
+#theme-toggle-btn { order: 3; }
 
-.logo-container {
-    order: 1; /* Garante logo à esquerda */
-    text-align: left;
-    /* padding-left: 10px; */ /* Removido, btn icon já dá espaço */
-}
+.logo-container { order: 1; text-align: left; }
 #app-logo { max-height: 35px; width: auto; display: inline-block; }
 
 /* Filtro para o logo */
 body[data-theme="dark"] #app-logo { filter: brightness(0) invert(1); }
 body[data-theme="light"] #app-logo { filter: none; }
+
 
 .header-divider-subtle {
     border: none; height: 1px;
@@ -133,7 +130,7 @@ body[data-theme="light"] #app-logo { filter: none; }
     gap: 10px;
     margin: 1.5rem 0;
     flex-wrap: wrap;
-    justify-content: center; /* Centraliza botões */
+    justify-content: center;
 }
 
 .inline-day-btn {
@@ -156,9 +153,9 @@ body[data-theme="light"] #app-logo { filter: none; }
 }
 
 .inline-day-btn.active {
-    background-color: var(--cor-texto-principal); /* Fundo "primário" (branco/preto) */
-    color: var(--cor-fundo); /* Texto cor de fundo */
-    border-color: var(--cor-texto-principal);
+    background-color: var(--cor-primaria); /* Preto/Branco */
+    color: var(--cor-fundo); /* Cor de fundo */
+    border-color: var(--cor-primaria);
     font-weight: 600;
 }
 
@@ -176,7 +173,7 @@ body[data-theme="light"] #app-logo { filter: none; }
 }
 body[data-theme="light"] #workout-card {
      box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-     border-color: var(--cor-borda-muted); /* Borda mais suave no claro */
+     border-color: var(--cor-borda-muted);
 }
 body[data-theme="dark"] #workout-card {
      box-shadow: none;
@@ -192,7 +189,7 @@ body[data-theme="dark"] #workout-card {
   border-radius: 4px; overflow: hidden;
   transition: background-color 0.3s ease;
 }
-.progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s, background-color 0.3s ease; }
+.progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s, background-color 0.3s ease; } /* Cinza médio */
 
 #lista-exercicios, #completed-list { list-style: none; padding: 0; margin-top: 1.5rem; }
 
@@ -219,7 +216,7 @@ body[data-theme="dark"] #workout-card {
 /* Indicador de Progresso (Background Fill) */
 .exercicio-progress-fill {
   position: absolute; left: 0; top: 0; bottom: 0; width: 0%; height: 100%;
-  background-color: var(--progresso-fill-bg);
+  background-color: var(--progresso-fill-bg); /* Cinza transparente */
   transition: width 0.4s ease-in-out, background-color 0.3s ease;
   z-index: 1;
 }
@@ -237,7 +234,7 @@ body[data-theme="dark"] #workout-card {
     transition: all 0.3s ease;
 }
 .exercicio-item.finalizado .set-counter {
-    color: var(--cor-sucesso);
+    color: var(--cor-sucesso); /* Cinza Médio */
     background-color: rgba(var(--cor-sucesso-rgb), 0.1);
     border-color: rgba(var(--cor-sucesso-rgb), 0.3);
 }
@@ -250,22 +247,22 @@ body[data-theme="dark"] #workout-card {
 
 .exercicio-item.movendo { opacity: 0 !important; transform: translateY(10px); }
 
-.detalhes-exercicio { flex-grow: 1; display: flex; align-items: center; flex-wrap: wrap;} /* Flex para alinhar botão info */
+.detalhes-exercicio { flex-grow: 1; display: flex; align-items: center; flex-wrap: wrap;}
 .detalhes-exercicio h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    margin: 0 0.75rem 5px 0; /* Espaço à direita para botão info */
+    margin: 0 0.75rem 5px 0;
     line-height: 1.4;
     color: var(--cor-texto-principal);
     transition: color 0.3s ease;
-    display: inline-block; /* Permite ficar lado a lado com p */
+    display: inline-block;
 }
 .detalhes-exercicio p {
     margin: 0; color: var(--cor-texto-secundario);
     font-size: 1rem; font-weight: 400; transition: color 0.3s ease;
-    display: inline-block; /* Fica lado a lado com H3 */
-    margin-bottom: 5px; /* Mesmo espaçamento inferior */
-    margin-right: 0.75rem; /* Espaço à direita para botão info */
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 0.75rem;
 }
 
 /* Botão Info Inline */
@@ -274,21 +271,20 @@ body[data-theme="dark"] #workout-card {
   color: var(--cor-texto-terciario); /* Cinza mais claro */
   border: 1px solid var(--cor-borda-muted);
   border-radius: 50%;
-  width: 28px; /* Menor */
+  width: 28px;
   height: 28px;
   cursor: pointer;
-  display: inline-flex; /* Fica inline */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  font-size: 0.8rem; /* 'i' menor */
+  font-size: 0.8rem;
   font-style: italic;
   font-weight: 500;
   padding: 0;
-  /* margin-left: auto; */ /* Removido - não mais no final */
   flex-shrink: 0;
-  vertical-align: middle; /* Alinha com o texto */
-  margin-bottom: 5px; /* Alinha com H3 e P */
+  vertical-align: middle;
+  margin-bottom: 5px;
 }
 .btn-info-inline:hover {
   background-color: var(--hover-color-icon);
@@ -331,7 +327,7 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
   position: absolute;
   top: 15px;
   right: 15px;
-  font-size: 2.5rem; /* Maior */
+  font-size: 2.5rem; /* Bem maior */
   line-height: 1;
   padding: 8px;
 }
@@ -356,23 +352,24 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 .modal-buttons { display: flex; justify-content: flex-end; gap: 12px; }
 /* Botão Primário Genérico */
 .btn-primary {
-    background-color: var(--cor-primaria);
-    color: var(--cor-superficie);
-    border: 1px solid var(--cor-primaria); border-radius: 8px; padding: 10px 20px;
+    background-color: var(--cor-texto-principal); /* Preto/Branco */
+    color: var(--cor-fundo); /* Fundo */
+    border: 1px solid var(--cor-texto-principal); border-radius: 8px; padding: 10px 20px;
     font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
     text-transform: uppercase; letter-spacing: 0.03em;
 }
-/* Hover Laranja */
-body[data-theme="light"] .btn-primary:hover { background-color: #E67E00; border-color: #CC7000;}
-body[data-theme="dark"] .btn-primary:hover { background-color: #FFA500; border-color: #FF8C00;}
+.btn-primary:hover { background-color: var(--cor-texto-secundario); border-color: var(--cor-texto-secundario); color: var(--cor-fundo); }
 
 /* Botões do modal de reset */
 .modal-btn { padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
 #cancel-reset-btn { /* Já herda do .btn-secondary */ }
 #confirm-reset-btn { /* Usa .btn-primary */ background-color: var(--cor-perigo); border-color: var(--cor-perigo); color: #fff; }
-/* Hover Vermelho */
-body[data-theme="light"] #confirm-reset-btn:hover { background-color: #C82333; border-color: #C82333; color: #fff;}
-body[data-theme="dark"] #confirm-reset-btn:hover { background-color: #FF5F57; border-color: #FF5F57; color: #000;}
+#confirm-reset-btn:hover {
+    background-color: transparent;
+    color: var(--cor-perigo);
+    border-color: var(--cor-perigo); /* Garante borda no hover */
+}
+
 
 #completion-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.8rem; color: var(--cor-texto-principal); text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.3s ease; }
 #completion-text { font-size: 1.6rem; font-weight: 500; line-height: 1.5; color: var(--cor-sucesso); margin-bottom: 0; transition: color 0.3s ease;}
@@ -390,5 +387,5 @@ body[data-theme="dark"] #confirm-reset-btn:hover { background-color: #FF5F57; bo
     .inline-day-btn { padding: 5px 14px; font-size: 0.85rem; }
     #modal-info-titulo { font-size: 1.5rem; }
     .instructions-list { font-size: 1rem; }
-    .btn-info-inline { width: 26px; height: 26px; font-size: 0.75rem;} /* Botão info inline menor */
+    .btn-info-inline { width: 26px; height: 26px; font-size: 0.75rem;}
 }
