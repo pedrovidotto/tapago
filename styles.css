@@ -4,8 +4,8 @@
   --cor-fundo: #F2F2F7; 
   --cor-superficie: #FFFFFF; 
   --cor-primaria: #000000; 
-  --cor-sucesso: #16A34A; /* NOVO: Verde Vibrante (Era Cinza #8A8A8E) */
-  --cor-perigo: #DC2626;  /* NOVO: Vermelho (Era Cinza #AEAEB2) */
+  --cor-sucesso: #16A34A; /* NOVO: Verde Vibrante */
+  --cor-perigo: #DC2626;  /* NOVO: Vermelho */
   --cor-texto-principal: #000000; 
   --cor-texto-secundario: #636366; 
   --cor-texto-terciario: #AEAEB2; 
@@ -73,7 +73,7 @@ header { margin-bottom: 1.5rem; }
 .header-top-row {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Revertido */
+  justify-content: space-between; 
   margin-bottom: 1.5rem;
   height: 44px;
 }
@@ -97,14 +97,25 @@ header { margin-bottom: 1.5rem; }
 .btn-icon svg { display: block; width: 24px; height: 24px; }
 
 /* Posiciona botão tema à direita */
-#theme-toggle-btn { order: 3; } /* Revertido */
+#theme-toggle-btn { order: 3; } 
 
-.logo-container { order: 1; text-align: left; } /* Revertido */
-#app-logo { max-height: 35px; width: auto; display: inline-block; }
+.logo-container { order: 1; text-align: left; } 
 
-/* Filtro para o logo */
-body[data-theme="dark"] #app-logo { filter: brightness(0) invert(1); }
-body[data-theme="light"] #app-logo { filter: none; }
+/* --- ESTILOS DO LOGO ATUALIZADOS --- */
+/* Estilos antigos para #app-logo removidos */
+
+/* Novo estilo para o logo em texto */
+#app-logo-text {
+    font-family: 'Instrument Serif', serif;
+    font-size: 1.6rem; /* Tamanho elegante (aprox 27px) */
+    font-weight: 400;
+    color: var(--cor-texto-principal);
+    line-height: 1.2;
+    display: inline-block;
+}
+
+/* Filtros de tema antigos removidos */
+/* --- FIM DAS MUDANÇAS NO LOGO --- */
 
 
 .header-divider-subtle {
@@ -150,13 +161,13 @@ body[data-theme="light"] #app-logo { filter: none; }
 
 .inline-day-btn:hover {
     background-color: var(--hover-color);
-    border-color: var(--cor-texto-secundario); /* Borda secundária no hover */
-    color: var(--cor-texto-principal); /* Texto principal no hover */
+    border-color: var(--cor-texto-secundario); 
+    color: var(--cor-texto-principal); 
 }
 
 .inline-day-btn.active {
-    background-color: var(--cor-primaria); /* Preto/Branco */
-    color: var(--cor-fundo); /* Cor de fundo */
+    background-color: var(--cor-primaria); 
+    color: var(--cor-fundo); 
     border-color: var(--cor-primaria);
     font-weight: 600;
 }
@@ -283,14 +294,14 @@ body[data-theme="dark"] #workout-card {
 
 .exercicio-item.movendo { opacity: 0 !important; transform: translateY(10px); }
 
-/* --- HIERARQUIA DO ITEM DE EXERCÍCIO --- */
+/* HIERARQUIA DO ITEM DE EXERCÍCIO */
 .detalhes-exercicio { 
-    flex-grow: 1; /* Isso empurra o botão (i) para a direita */
+    flex-grow: 1; 
     display: flex; 
     flex-direction: column; 
     align-items: flex-start; 
     justify-content: center;
-    min-width: 0; /* Impede que o texto transborde */
+    min-width: 0; 
 }
 .detalhes-exercicio h3 {
     font-size: 1.25rem;
@@ -299,7 +310,6 @@ body[data-theme="dark"] #workout-card {
     line-height: 1.3; 
     color: var(--cor-texto-principal);
     transition: color 0.3s ease;
-    /* Adicionado para cortar texto longo */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -327,20 +337,20 @@ body[data-theme="dark"] #workout-card {
   color: var(--cor-texto-terciario); 
   border: 1px solid var(--cor-borda-muted);
   border-radius: 50%;
-  width: 34px;   /* MAIOR */
-  height: 34px;  /* MAIOR */
+  width: 34px;   
+  height: 34px;  
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  font-size: 0.9rem; /* MAIOR */
+  font-size: 0.9rem; 
   font-style: italic;
   font-weight: 500;
   padding: 0;
   flex-shrink: 0;
   margin: 0;
-  margin-left: 1rem; /* Desanexa o botão */
+  margin-left: 1rem; 
 }
 .btn-info-inline:hover {
   background-color: var(--hover-color-icon);
