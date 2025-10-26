@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
         completedList: document.getElementById('completed-list'),
         completedSection: document.getElementById('completed-section'),
         progressBar: document.getElementById('progress-bar'),
+        headerTreino: document.getElementById('cabecalho-treino'), // Adicionado para dia de descanso
         botaoResetar: document.getElementById('botao-resetar'),
         modal: {},
         completion: {},
@@ -93,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const atualizarProgressoGeral = () => {
+        if (diaAtivoIndex < 0 || diaAtivoIndex >= dadosTreino.length) return; // Proteção para dia de descanso
         const exerciciosDoDia = dadosTreino[diaAtivoIndex].exercicios;
         if (!exerciciosDoDia) return;
 
@@ -156,49 +158,50 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
     };
 
+    // --- LÓGICA DE CLIQUE ATUALIZADA ---
     const handleClickExercicio = (e) => {
+        const card = e.currentTarget;
+        const id = card.dataset.id;
+        const exIndex = parseInt(card.dataset.exIndex);
+        const ex = dadosTreino[diaAtivoIndex].exercicios[exIndex];
+        
         // Ignora clique no botão de informação
         if (e.target.closest('.btn-info-inline')) return;
-
-        const card = e.currentTarget;
-        const id = card.dataset.id;
-        const exIndex = parseInt(card.dataset.exIndex);
-        const ex = dadosTreino[diaAtivoIndex].exercicios[exIndex];
-
-        if (card.classList.contains('finalizado')) return;
+        
         let seriesFeitas = progresso[id] || 0;
-        seriesFeitas++;
-        progresso[id] = seriesFeitas;
-        atualizarVisualCardExercicio(card, id, ex);
-        salvarProgresso();
 
-        if (seriesFeitas >= ex.series) {
-            moverCardExercicioParaListaCorreta(card, elementos.completedList);
-            atualizarProgressoGeral();
-        }
-    };
-
-    const handleRightClickExercicio = (e) => {
-        e.preventDefault();
-        const card = e.currentTarget;
-        const id = card.dataset.id;
-        const exIndex = parseInt(card.dataset.exIndex);
-        const ex = dadosTreino[diaAtivoIndex].exercicios[exIndex];
-
-        let seriesFeitas = progresso[id] || 0;
-        if (seriesFeitas > 0) {
-            const estavaFinalizado = card.classList.contains('finalizado');
-            seriesFeitas--;
+        // Se o clique foi no contador, remove uma série
+        if (e.target.closest('.set-counter')) {
+            if (seriesFeitas > 0) {
+                const estavaFinalizado = card.classList.contains('finalizado');
+                seriesFeitas--;
+                progresso[id] = seriesFeitas;
+                
+                if (estavaFinalizado && elementos.listaExercicios) {
+                    moverCardExercicioParaListaCorreta(card, elementos.listaExercicios);
+                }
+            }
+        } 
+        // Senão, adiciona uma série (clique no resto do card)
+        else {
+            if (card.classList.contains('finalizado')) return; // Não adiciona se já estiver finalizado
+            
+            seriesFeitas++;
             progresso[id] = seriesFeitas;
-            atualizarVisualCardExercicio(card, id, ex);
-            salvarProgresso();
 
-            if (estavaFinalizado && elementos.listaExercicios) {
-                 moverCardExercicioParaListaCorreta(card, elementos.listaExercicios);
+            if (seriesFeitas >= ex.series) {
+                moverCardExercicioParaListaCorreta(card, elementos.completedList);
             }
         }
+        
+        atualizarVisualCardExercicio(card, id, ex);
+        salvarProgresso();
         atualizarProgressoGeral();
     };
+    // --- FIM DA LÓGICA DE CLIQUE ATUALIZADA ---
+
+
+    // (Função handleRightClickExercicio removida, não é mais necessária)
 
     const abrirModalInfo = (ex) => {
         elementos.modal.titulo.textContent = ex.nome;
@@ -218,6 +221,23 @@ document.addEventListener('DOMContentLoaded', () => {
         elementos.modal.overlay.classList.remove('hidden');
     };
 
+    const renderizarDiaDeDescanso = () => {
+        diaAtivoIndex = -1; // Define um índice inválido para descanso
+        elementos.workoutDayTitle.textContent = "Dia de Descanso";
+        elementos.listaExercicios.innerHTML = '<li class="rest-day-message">Aproveite para recuperar. Você não tem treinos agendados para hoje.</li>';
+        
+        if (elementos.completedList) elementos.completedList.innerHTML = '';
+        if (elementos.completedSection) elementos.completedSection.classList.add('hidden');
+        if (elementos.headerTreino) elementos.headerTreino.classList.add('hidden'); // Esconde barra de progresso
+        
+        elementos.completion.overlay.classList.add('hidden');
+
+        // Desmarca todos os botões de dia
+        document.querySelectorAll('.inline-day-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+    }
+
     const renderizarTreino = (index) => {
         diaAtivoIndex = index;
         const diaData = dadosTreino[index];
@@ -225,6 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elementos.workoutDayTitle.textContent = diaData.nomeCompleto || diaData.dia;
         elementos.listaExercicios.innerHTML = '';
         if (elementos.completedList) elementos.completedList.innerHTML = '';
+        if (elementos.headerTreino) elementos.headerTreino.classList.remove('hidden'); // Mostra barra de progresso
         elementos.completion.overlay.classList.add('hidden');
 
         document.querySelectorAll('.inline-day-btn').forEach((btn, btnIndex) => {
@@ -257,8 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             atualizarVisualCardExercicio(li, id, ex);
+            
+            // --- ATUALIZADO --- Apenas um listener de clique
             li.addEventListener('click', handleClickExercicio);
-            li.addEventListener('contextmenu', handleRightClickExercicio);
+            // Listener de contextmenu removido
 
             li.querySelector('.btn-info-inline').addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -314,10 +337,18 @@ document.addEventListener('DOMContentLoaded', () => {
             salvarProgresso();
             location.reload();
         });
-
-        let hoje = new Date().getDay() - 1;
-        if(hoje < 0 || hoje > 4) hoje = 0;
-        renderizarTreino(hoje);
+        
+        // --- LÓGICA DE INICIALIZAÇÃO ATUALIZADA ---
+        let hoje = new Date().getDay() - 1; // 0=Seg, 1=Ter, ..., 5=Sab, 6=Dom
+        
+        if (hoje === 5 || hoje === 6) { // Se for Sábado ou Domingo
+            renderizarDiaDeDescanso();
+        } else if (hoje < 0 || hoje > 4) { // Se for Domingo (no cálculo original era -1) ou dia inválido
+             hoje = 0; // Padrão para Segunda
+             renderizarTreino(hoje);
+        } else {
+            renderizarTreino(hoje); // Renderiza o dia da semana (0-4)
+        }
     };
 
     init();
