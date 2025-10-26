@@ -1,32 +1,31 @@
 /* 1. ROOT & GLOBAL STYLES */
 :root {
-  /* Paleta Acessível (Mantida) */
-  --cor-fundo: #1A202C;
-  --cor-superficie: #2D3748;
-  --cor-primaria: #FBBF24;
-  --cor-sucesso: #48BB78;
-  --cor-perigo: #F98080;
-  --cor-texto-principal: #F7FAFC;
-  --cor-texto-secundario: #A0AEC0;
-  --cor-borda: #4A5568;
-  --cor-borda-muted: rgba(74, 85, 104, 0.5);
+  /* Paleta Básica e Acessível */
+  --cor-fundo: #F8F9FA; /* Quase Branco */
+  --cor-superficie: #FFFFFF; /* Branco Puro */
+  --cor-primaria: #007BFF; /* Azul Padrão */
+  --cor-sucesso: #28A745; /* Verde Padrão */
+  --cor-perigo: #DC3545; /* Vermelho Padrão */
+  --cor-texto-principal: #212529; /* Preto Suave */
+  --cor-texto-secundario: #6C757D; /* Cinza Médio */
+  --cor-borda: #DEE2E6; /* Cinza Claro */
+  --cor-borda-muted: rgba(33, 37, 41, 0.15);
 
-  /* Cores UI inspiradas no Bro Split */
-  --hover-color: rgba(247, 250, 252, 0.05);
-  --hover-color-icon: rgba(247, 250, 252, 0.1);
-  --modal-overlay-bg: rgba(26, 32, 44, 0.85);
-  --completion-overlay-bg: rgba(26, 32, 44, 0.9);
+  --hover-color: rgba(33, 37, 41, 0.03);
+  --hover-color-icon: rgba(33, 37, 41, 0.08);
+  --modal-overlay-bg: rgba(33, 37, 41, 0.7);
+  --completion-overlay-bg: rgba(33, 37, 41, 0.85);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Inter', sans-serif; /* Mantendo Inter */
+  font-family: 'Inter', sans-serif;
   background-color: var(--cor-fundo);
   color: var(--cor-texto-principal);
-  font-size: 18px; /* Mantendo tamanho acessível */
+  font-size: 16px; /* Tamanho padrão web */
   line-height: 1.6;
-  font-weight: 400; /* Peso padrão um pouco mais leve */
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-top: env(safe-area-inset-top);
@@ -36,46 +35,38 @@ body {
 /* 2. LAYOUT & HEADER */
 .container { max-width: 600px; margin: 0 auto; padding: 20px; }
 
-header { margin-bottom: 2rem; }
+header { margin-bottom: 1rem; } /* Margem menor */
 
-.header-top-row { /* Nova div para logo e título */
+.header-top-row {
   display: flex;
   align-items: center;
-  justify-content: center; /* Centraliza logo e título */
-  gap: 1rem;
-  margin-bottom: 2rem;
+  justify-content: space-between; /* Logo à esquerda, título à direita */
+  margin-bottom: 1rem;
 }
 
-#app-logo { max-height: 50px; width: auto; }
+#app-logo { max-height: 40px; width: auto; }
 
 #header-title {
-  font-size: 1.8rem; /* Pouco menor */
+  font-size: 1.2rem; /* Título do dia menor */
   font-weight: 600;
-  color: var(--cor-texto-principal);
-  margin: 0; /* Remove margens extras */
-}
-
-/* Card de Citação (Mantido, mas ajustado) */
-#quote-card {
-  background-color: var(--cor-superficie);
-  border-left: 4px solid var(--cor-primaria);
-  border-radius: 8px;
-  padding: 1rem 1.25rem;
-  margin: 1.5rem 0 2rem 0; /* Ajusta espaçamento */
-  text-align: left; /* Alinha à esquerda */
-}
-#quote-text {
-  font-style: normal; /* Remove itálico */
-  font-size: 1.1rem; /* Pouco menor */
-  font-weight: 400;
   color: var(--cor-texto-secundario);
-  line-height: 1.5;
+  margin: 0;
+  text-align: right;
 }
 
-/* Seletor de Dias (Estilo Bro Split) */
+.header-divider { /* Divisor */
+    border: none;
+    height: 1px;
+    background-color: var(--cor-borda);
+    margin: 1.5rem 0; /* Espaçamento ajustado */
+}
+
+/* Card de Citação Removido */
+
+/* Seletor de Dias (Botões Redondos) */
 #seletor-dias {
   display: flex;
-  justify-content: space-between; /* Espaça igualmente */
+  justify-content: space-between;
   gap: 8px;
   margin-top: 1.5rem;
 }
@@ -83,42 +74,40 @@ header { margin-bottom: 2rem; }
 .btn-dia {
   background-color: transparent;
   color: var(--cor-texto-secundario);
-  border: 1px solid var(--cor-borda-muted);
-  border-radius: 50%; /* Botões Redondos */
+  border: 1px solid var(--cor-borda); /* Borda mais visível */
+  border-radius: 50%;
   padding: 0;
   cursor: pointer;
   font-family: 'Inter', sans-serif;
-  font-size: 0.9rem; /* Fonte menor para caber */
-  font-weight: 500; /* Médio */
+  font-size: 0.9rem;
+  font-weight: 500;
   transition: all 0.2s ease;
   text-transform: uppercase;
-  width: 44px; /* Tamanho fixo */
-  height: 44px;
+  width: 42px; /* Pouco maior */
+  height: 42px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0; /* Impede que diminuam */
+  flex-shrink: 0;
 }
 
 .btn-dia:hover {
   color: var(--cor-texto-principal);
-  border-color: var(--cor-borda);
+  border-color: var(--cor-texto-secundario);
   background-color: var(--hover-color);
 }
 
 .btn-dia.active {
-  color: var(--cor-fundo);
-  background-color: var(--cor-texto-principal); /* Fundo branco/claro */
+  color: var(--cor-fundo); /* Texto escuro */
+  background-color: var(--cor-texto-principal); /* Fundo claro */
   border-color: var(--cor-texto-principal);
   font-weight: 600;
 }
 
 /* 3. WORKOUT AREA */
-#container-treino {
-    margin-top: 2rem; /* Adiciona espaço acima */
-}
+#container-treino { margin-top: 2rem; }
 
-#cabecalho-treino h2 { /* Título "Exercícios de Hoje" */
+#cabecalho-treino h2 {
   text-align: left;
   margin-bottom: 0.5rem;
   font-size: 1rem;
@@ -129,42 +118,53 @@ header { margin-bottom: 2rem; }
 }
 
 .progress-container {
-  width: 100%; height: 6px; /* Barra mais fina */
-  background-color: var(--cor-superficie);
-  border-radius: 3px; overflow: hidden; margin-bottom: 2rem; /* Mais espaço abaixo */
+  width: 100%; height: 6px;
+  background-color: #E9ECEF; /* Fundo da barra claro */
+  border-radius: 3px; overflow: hidden; margin-bottom: 2rem;
 }
 .progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s; }
 
-#lista-exercicios { list-style: none; padding: 0; }
+#lista-exercicios, #completed-list { list-style: none; padding: 0; }
+
+/* Títulos de Categoria (Concluídos) */
+.category-title {
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--cor-borda);
+  color: var(--cor-texto-secundario);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 
 .exercicio-item {
-  border-bottom: 1px solid var(--cor-borda-muted); /* Apenas linha inferior */
-  padding: 20px 0; /* Padding vertical apenas */
-  display: flex; /* Mudança para flex */
+  border-bottom: 1px solid var(--cor-borda);
+  padding: 18px 0; /* Padding vertical ajustado */
+  display: flex;
   align-items: center;
   gap: 16px;
   cursor: pointer;
   position: relative;
-  overflow: visible; /* Permite que a barra lateral apareça */
+  overflow: visible;
   transition: opacity 0.4s ease, transform 0.3s ease, background-color 0.2s ease;
-  background-color: transparent; /* Remove fundo */
-  border-radius: 0; /* Remove bordas arredondadas */
-  border-left: none; /* Remove borda esquerda padrão */
+  background-color: transparent;
 }
-#lista-exercicios > li:last-child {
-   border-bottom: none; /* Remove borda do último item */
+#lista-exercicios > li:last-child,
+#completed-list > li:last-child {
+   border-bottom: none;
 }
 
-.exercicio-item:hover {
-  background-color: var(--hover-color);
-}
+.exercicio-item:hover { background-color: var(--hover-color); }
 
 /* Indicador de Progresso (Barra Lateral) */
 .exercicio-progress-fill {
   position: absolute;
-  left: -8px; /* Posição à esquerda */
-  top: 20px;
-  bottom: 20px;
+  left: -10px; /* Mais afastado */
+  top: 18px; /* Alinhado com padding */
+  bottom: 18px;
   width: 4px; /* Largura da barra */
   height: auto; /* Altura automática */
   background-color: var(--cor-sucesso);
@@ -175,31 +175,35 @@ header { margin-bottom: 2rem; }
   z-index: 1;
 }
 
-/* Atualiza a altura da barra lateral em vez da largura do fundo */
-/* A lógica JS precisará setar a propriedade transform: scaleY(porcentagem/100) */
-/* .exercicio-progress-fill.p25 { transform: scaleY(0.25); } ... etc */
-
-
 .exercicio-icon, .detalhes-exercicio, .btn-info {
   position: relative; z-index: 2; user-select: none;
 }
+
 .exercicio-item.finalizado {
-  opacity: 0.5; /* Mais suave */
+  opacity: 0.6; /* Mantém visível mas atenuado */
   cursor: default;
-  border-left: none; /* Remove borda esquerda de sucesso */
 }
+#completed-list .exercicio-item { /* Estilo específico para itens na lista de concluídos */
+    opacity: 0.6;
+    cursor: default;
+}
+#completed-list .exercicio-item:hover {
+    background-color: transparent; /* Remove hover de concluídos */
+}
+
 .exercicio-item.finalizado .exercicio-progress-fill {
-    transform: scaleY(1); /* Barra completa quando finalizado */
+    transform: scaleY(1);
 }
 
 .exercicio-item.movendo { opacity: 0 !important; transform: translateY(10px); }
-.exercicio-icon { font-size: 1.8rem; /* Ícone um pouco menor */ margin-left: 8px; /* Espaço para a barra */}
+.exercicio-icon { font-size: 1.8rem; margin-left: 10px; color: var(--cor-texto-secundario); }
 .detalhes-exercicio { flex-grow: 1; }
 .detalhes-exercicio h3 {
-  font-size: 1.15rem; /* Pouco menor */
-  font-weight: 500; /* Médio */
+  font-size: 1.1rem; /* Tamanho bom para leitura */
+  font-weight: 500;
   margin: 0 0 4px 0;
   line-height: 1.3;
+  color: var(--cor-texto-principal); /* Cor principal */
 }
 .detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 0.9rem; font-weight: 400; }
 
@@ -208,16 +212,16 @@ header { margin-bottom: 2rem; }
   color: var(--cor-texto-secundario);
   border: none;
   border-radius: 50%;
-  width: 36px; /* Tamanho consistente com botões de dia */
-  height: 36px;
+  width: 38px; /* Botão info maior */
+  height: 38px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  font-size: 1.2rem; /* Ícone 'i' */
-  padding: 0; /* Remove padding extra */
-  margin-left: auto; /* Empurra para a direita */
+  font-size: 1.2rem;
+  padding: 0;
+  margin-left: auto;
 }
 .btn-info:hover {
   background-color: var(--hover-color-icon);
@@ -226,13 +230,13 @@ header { margin-bottom: 2rem; }
 
 /* 4. FOOTER & RESET */
 footer { text-align: center; margin-top: 4rem; padding-bottom: 2rem; }
-#botao-resetar {
+#botao-resetar { /* Botão Secundário */
   background-color: transparent;
   color: var(--cor-texto-secundario);
-  border: 1px solid var(--cor-borda-muted);
-  border-radius: 16px;
-  padding: 8px 18px;
-  font-size: 0.8rem;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px; /* Menos arredondado */
+  padding: 10px 20px;
+  font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -241,7 +245,7 @@ footer { text-align: center; margin-top: 4rem; padding-bottom: 2rem; }
 }
 #botao-resetar:hover {
   color: var(--cor-texto-principal);
-  border-color: var(--cor-borda);
+  border-color: var(--cor-texto-secundario);
   background-color: var(--hover-color);
 }
 
@@ -249,16 +253,16 @@ footer { text-align: center; margin-top: 4rem; padding-bottom: 2rem; }
 .overlay, .modal-overlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: var(--modal-overlay-bg);
-  backdrop-filter: blur(5px); /* Efeito de desfoque */
+  backdrop-filter: blur(4px); /* Desfoque mais sutil */
   display: flex; justify-content: center; align-items: center;
   z-index: 1000; opacity: 1; transition: opacity 0.3s ease-in-out;
 }
 .modal, .completion-card {
-  background: var(--cor-fundo); /* Fundo igual ao body */
+  background: var(--cor-superficie); /* Fundo branco */
   padding: 24px; border-radius: 12px;
   border: 1px solid var(--cor-borda);
   max-width: 500px; width: 95%; position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
   transform: scale(1); transition: transform 0.3s ease-in-out;
 }
 .overlay.hidden { opacity: 0; pointer-events: none; }
@@ -275,55 +279,65 @@ footer { text-align: center; margin-top: 4rem; padding-bottom: 2rem; }
 #modal-info-fechar-btn:hover { color: var(--cor-texto-principal); }
 
 #completion-close-btn { /* Botão Continuar */
-    position: static; /* Volta ao fluxo normal */
+    position: static;
     font-size: 0.9rem;
     padding: 10px 24px;
-    border-radius: 16px;
-    border: 1px solid var(--cor-borda-muted);
+    border-radius: 8px; /* Menos arredondado */
+    border: 1px solid var(--cor-borda);
     margin-top: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 0.03em;
+    background-color: transparent; /* Consistente com secundário */
 }
 #completion-close-btn:hover {
-    border-color: var(--cor-borda);
+    border-color: var(--cor-texto-secundario);
     background-color: var(--hover-color);
+    color: var(--cor-texto-principal);
 }
 
 /* Conteúdo Modal Info */
 .modal-info-conteudo { text-align: center; }
-#modal-info-titulo { font-size: 1.4rem; margin-bottom: 1rem; font-weight: 500; text-align: left; }
-#modal-info-gif { max-width: 100%; /* Ocupa largura total */ border-radius: 8px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); }
+#modal-info-titulo { font-size: 1.4rem; margin-bottom: 1rem; font-weight: 600; text-align: left; color: var(--cor-texto-principal); }
+#modal-info-gif { max-width: 100%; border-radius: 8px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); }
 #modal-info-instrucoes {
-    font-size: 1rem; /* Pouco menor */ line-height: 1.7; color: var(--cor-texto-secundario);
-    white-space: pre-line; text-align: left; font-weight: 400; /* Mais legível */
+    font-size: 1rem; line-height: 1.7; color: var(--cor-texto-secundario);
+    white-space: pre-line; text-align: left; font-weight: 400;
 }
 
 /* Modal de Reset */
-.modal-title { font-size: 1.2rem; margin-bottom: 1rem; color: var(--cor-texto-principal); font-weight: 500; text-align: left;}
+.modal-title { font-size: 1.2rem; margin-bottom: 1rem; color: var(--cor-texto-principal); font-weight: 600; text-align: left;}
 .modal-text { color: var(--cor-texto-secundario); margin-bottom: 1.5rem; font-size: 1rem; text-align: left; font-weight: 400;}
 .modal-buttons { display: flex; justify-content: flex-end; gap: 10px; }
-.modal-btn {
-    padding: 8px 18px; border-radius: 16px; border: 1px solid var(--cor-borda-muted);
-    font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
+.modal-btn { /* Estilo base para botões de modal */
+    padding: 10px 20px; border-radius: 8px; border: 1px solid var(--cor-borda);
+    font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s;
     text-transform: uppercase; letter-spacing: 0.03em;
 }
 #cancel-reset-btn { background-color: transparent; color: var(--cor-texto-secundario); }
-#cancel-reset-btn:hover { color: var(--cor-texto-principal); border-color: var(--cor-borda); background-color: var(--hover-color); }
-#confirm-reset-btn { background-color: var(--cor-perigo); color: var(--cor-texto-principal); border-color: var(--cor-perigo); }
+#cancel-reset-btn:hover { color: var(--cor-texto-principal); border-color: var(--cor-texto-secundario); background-color: var(--hover-color); }
+#confirm-reset-btn { background-color: var(--cor-perigo); color: #fff; border-color: var(--cor-perigo); } /* Botão primário de perigo */
 #confirm-reset-btn:hover { background-color: transparent; color: var(--cor-perigo); }
 
 /* Card de Conclusão */
+#completion-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--cor-texto-principal); text-transform: uppercase; letter-spacing: 0.05em; }
 #completion-text {
-    font-size: 1.5rem; /* Mantém tamanho reduzido */
-    font-weight: 500; /* Médio */
+    font-size: 1.5rem;
+    font-weight: 500;
     line-height: 1.4;
-    color: var(--cor-primaria);
-    margin-bottom: 0; /* Remove espaço extra antes do botão */
+    color: var(--cor-sucesso); /* Verde sucesso */
+    margin-bottom: 0;
 }
 .completion-card {
-    padding: 30px; /* Padding padrão */
+    padding: 30px;
     text-align: center;
 }
 
-.hidden { display: none !important; }
+.divider { /* Divisor padrão */
+  width: 100%;
+  height: 1px;
+  background-color: var(--cor-borda);
+  margin: 20px 0;
+}
 
+
+.hidden { display: none !important; }
