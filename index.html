@@ -11,28 +11,35 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"> <!-- Adicionado 800 -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <div class="container">
   <header>
-    <h1><img src="go_logo.png" alt="Go Fitness Logo" id="app-logo"></h1>
-    <!-- Seção HOJE adicionada -->
-    <div class="today-workout-display">
-        <span class="today-label">Hoje:</span>
-        <span id="today-workout-name">Carregando...</span>
-    </div>
+    <!-- Logo removido para seguir a inspiração -->
+    <h1 id="workout-day-title">Carregando...</h1> <!-- Título GRANDE do dia -->
     <hr class="header-divider">
   </header>
 
-  <main id="day-cards-container">
-    <!-- Os cartões dos dias serão gerados aqui pelo JavaScript -->
+  <main id="container-treino">
+    <div id="cabecalho-treino">
+        <!-- Título "Exercícios" removido, já implícito -->
+      <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+    </div>
+    <ul id="lista-exercicios"></ul>
+    <div id="completed-section" class="hidden">
+       <h3 id="completed-title" class="category-title">Concluídos</h3>
+       <ul id="completed-list"></ul>
+    </div>
   </main>
 
-  <footer>
-    <button id="botao-resetar" class="btn-secondary">Resetar Progresso</button>
-  </footer>
+  <nav id="bottom-day-selector">
+      <!-- Botões minimalistas dos dias serão gerados aqui -->
+      <button id="botao-resetar" class="btn-secondary btn-reset">Reset</button> <!-- Botão Reset movido para cá -->
+  </nav>
 </div>
 
 <!-- Modal de Informações com GIF -->
@@ -43,7 +50,6 @@
     <hr class="divider">
     <div class="modal-info-conteudo">
         <img id="modal-info-gif" src="" alt="Demonstração do exercício" />
-        <!-- Instruções agora como lista ordenada -->
         <ol id="modal-info-instrucoes" class="instructions-list"></ol>
     </div>
   </div>
