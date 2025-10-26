@@ -103,7 +103,7 @@ header { margin-bottom: 1.5rem; }
 
 /* Novo estilo para o logo em texto */
 #app-logo-text {
-    font-family: 'Instrument Serif', serif;
+    font-family: 'Instrument Serif', serif; /* MANTIDO */
     font-size: 1.6rem; 
     font-weight: 400;
     color: var(--cor-texto-principal);
@@ -150,7 +150,7 @@ header { margin-bottom: 1.5rem; }
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
-    font-family: 'Instrument Serif', serif; /* NOVO */
+    /* font-family: 'Instrument Serif', serif; (REMOVIDO) */
 }
 
 .inline-day-btn:hover {
@@ -264,8 +264,8 @@ body[data-theme="dark"] #workout-card {
     margin-right: 0.5rem; flex-shrink: 0;
     border: 1px solid var(--cor-borda);
     transition: all 0.3s ease;
-    font-family: 'Instrument Serif', serif; /* NOVO */
-    font-weight: 600; /* NOVO: Mais legível */
+    font-family: 'Instrument Serif', serif; /* MANTIDO */
+    font-weight: 600; 
 }
 .set-counter:hover {
     border-color: var(--cor-texto-secundario);
@@ -346,8 +346,8 @@ body[data-theme="dark"] #workout-card {
   flex-shrink: 0;
   margin: 0;
   margin-left: 1rem; 
-  font-family: 'Instrument Serif', serif; /* NOVO */
-  font-style: normal; /* NOVO: Remove o itálico antigo */
+  /* font-family: 'Instrument Serif', serif; (REMOVIDO) */
+  font-style: italic; /* RESTAURADO */
 }
 .btn-info-inline:hover {
   background-color: var(--hover-color-icon);
@@ -367,8 +367,8 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 }
 .btn-secondary:hover { color: var(--cor-texto-principal); border-color: var(--cor-texto-secundario); background-color: var(--hover-color); }
 
-/* REGRA REMOVIDA: Os estilos de #botao-resetar foram removidos 
-   pois agora ele usa a classe .inline-day-btn */
+/* ESTILO RESTAURADO */
+#botao-resetar { padding: 12px 25px; font-size: 1rem; }
 
 
 /* 5. MODALS & OVERLAYS */
@@ -410,7 +410,7 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
     text-align: left; 
     color: var(--cor-texto-principal); 
     transition: color 0.3s ease;
-    font-family: 'Instrument Serif', serif; /* NOVO */
+    /* font-family: 'Instrument Serif', serif; (REMOVIDO) */
 }
 
 /* HIERARQUIA MODAL */
