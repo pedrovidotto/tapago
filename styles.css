@@ -1,50 +1,52 @@
 /* 1. ROOT & GLOBAL STYLES */
 :root {
-  /* TEMA CLARO (GRAYSCALE - DEFAULT) */
-  --cor-fundo: #F2F2F7; /* Cinza Claro iOS */
-  --cor-superficie: #FFFFFF; /* Branco Puro */
-  --cor-primaria: #000000; /* Preto (Ativo/Destaque) */
-  --cor-sucesso: #8A8A8E; /* Cinza Médio (Progresso & Finalizado) */
-  --cor-perigo: #AEAEB2; /* Cinza Terciário (Perigo Hover) */
-  --cor-texto-principal: #000000; /* Preto Puro */
-  --cor-texto-secundario: #636366; /* Cinza Secundário */
-  --cor-texto-terciario: #AEAEB2; /* Cinza Terciário */
-  --cor-borda: #D1D1D6; /* Borda */
-  --cor-borda-muted: rgba(60, 60, 67, 0.15); /* Borda mais suave */
+  /* TEMA CLARO (PALETA ATUALIZADA) */
+  --cor-fundo: #F2F2F7; 
+  --cor-superficie: #FFFFFF; 
+  --cor-primaria: #000000; 
+  --cor-sucesso: #16A34A; /* NOVO: Verde Vibrante (Era Cinza #8A8A8E) */
+  --cor-perigo: #DC2626;  /* NOVO: Vermelho (Era Cinza #AEAEB2) */
+  --cor-texto-principal: #000000; 
+  --cor-texto-secundario: #636366; 
+  --cor-texto-terciario: #AEAEB2; 
+  --cor-borda: #D1D1D6; 
+  --cor-borda-muted: rgba(60, 60, 67, 0.15); 
 
-  --hover-color: rgba(0, 0, 0, 0.03); /* Hover sutil preto */
+  --hover-color: rgba(0, 0, 0, 0.03); 
   --hover-color-icon: rgba(0, 0, 0, 0.06);
   --modal-overlay-bg: rgba(60, 60, 67, 0.7);
   --completion-overlay-bg: rgba(60, 60, 67, 0.85);
-  --progresso-fill-bg: rgba(138, 138, 142, 0.15); /* Cinza Médio transparente */
-
-  /* RGB para transparências (Cinza Médio) */
-   --cor-sucesso-rgb: 138, 138, 142;
-   --cor-perigo-rgb: 220, 53, 69; /* Vermelho padrão para reset */
+  
+  /* RGB para transparências */
+   --cor-sucesso-rgb: 22, 163, 74;   /* NOVO: RGB do Verde */
+   --cor-perigo-rgb: 220, 38, 38;    /* NOVO: RGB do Vermelho */
+   
+  --progresso-fill-bg: rgba(var(--cor-sucesso-rgb), 0.15); /* Fundo verde claro */
 }
 
 body[data-theme="dark"] {
-  /* TEMA ESCURO (GRAYSCALE) */
-  --cor-fundo: #000000; /* Preto Puro */
-  --cor-superficie: #1C1C1E; /* Cinza Muito Escuro */
-  --cor-primaria: #FFFFFF; /* Branco (Ativo/Destaque) */
-  --cor-sucesso: #8A8A8E; /* Cinza Médio (Progresso & Finalizado) */
-  --cor-perigo: #C7C7CC; /* Cinza Claro (Perigo Hover) */
-  --cor-texto-principal: #FFFFFF; /* Branco Puro */
-  --cor-texto-secundario: #8A8A8E; /* Cinza Secundário */
-  --cor-texto-terciario: #48484A; /* Cinza Terciário */
-  --cor-borda: #3A3A3C; /* Borda */
+  /* TEMA ESCURO (PALETA ATUALIZADA) */
+  --cor-fundo: #000000; 
+  --cor-superficie: #1C1C1E; 
+  --cor-primaria: #FFFFFF; 
+  --cor-sucesso: #22C55E; /* NOVO: Verde mais claro */
+  --cor-perigo: #EF4444;  /* NOVO: Vermelho mais claro */
+  --cor-texto-principal: #FFFFFF; 
+  --cor-texto-secundario: #8A8A8E; 
+  --cor-texto-terciario: #48484A; 
+  --cor-borda: #3A3A3C; 
   --cor-borda-muted: rgba(99, 99, 102, 0.4);
 
-  --hover-color: rgba(255, 255, 255, 0.05); /* Hover sutil branco */
+  --hover-color: rgba(255, 255, 255, 0.05); 
   --hover-color-icon: rgba(255, 255, 255, 0.1);
   --modal-overlay-bg: rgba(0, 0, 0, 0.8);
   --completion-overlay-bg: rgba(0, 0, 0, 0.9);
-  --progresso-fill-bg: rgba(138, 138, 142, 0.2); /* Cinza Médio transparente */
 
-  /* RGB para transparências (Cinza Médio) */
-  --cor-sucesso-rgb: 138, 138, 142;
-  --cor-perigo-rgb: 255, 69, 58; /* Vermelho claro iOS */
+  /* RGB para transparências */
+  --cor-sucesso-rgb: 34, 197, 94; /* NOVO: RGB do Verde Claro */
+  --cor-perigo-rgb: 239, 68, 68;  /* NOVO: RGB do Vermelho Claro */
+
+  --progresso-fill-bg: rgba(var(--cor-sucesso-rgb), 0.2); 
 }
 
 
@@ -63,16 +65,17 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 2. LAYOUT & HEADER */
+/* 2. LAYOUT & HEADER (REVERTIDO) */
 .container { max-width: 600px; margin: 0 auto; padding: 20px; }
 
 header { margin-bottom: 1.5rem; }
 
 .header-top-row {
-  display: grid; /* MUDADO */
-  grid-template-columns: 1fr auto 1fr; /* MUDADO: Layout de 3 colunas */
+  display: flex;
   align-items: center;
+  justify-content: space-between; /* Revertido */
   margin-bottom: 1.5rem;
+  height: 44px;
 }
 
 /* Botão Ícone Genérico */
@@ -93,22 +96,10 @@ header { margin-bottom: 1.5rem; }
 }
 .btn-icon svg { display: block; width: 24px; height: 24px; }
 
-/* NOVO: Define a coluna do "fantasma" */
-.header-left-ghost {
-    grid-column: 1;
-}
-
 /* Posiciona botão tema à direita */
-#theme-toggle-btn { 
-    grid-column: 3; /* NOVO */
-    justify-self: end; /* NOVO: Alinha o botão à direita */
-}
+#theme-toggle-btn { order: 3; } /* Revertido */
 
-.logo-container { 
-    grid-column: 2; /* NOVO */
-    text-align: center; /* MUDADO: Centraliza o logo */
-}
-
+.logo-container { order: 1; text-align: left; } /* Revertido */
 #app-logo { max-height: 35px; width: auto; display: inline-block; }
 
 /* Filtro para o logo */
@@ -200,7 +191,7 @@ body[data-theme="dark"] #workout-card {
   border-radius: 4px; overflow: hidden;
   transition: background-color 0.3s ease;
 }
-.progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s, background-color 0.3s ease; } /* Cinza médio */
+.progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s, background-color 0.3s ease; } /* Cor de Sucesso (Verde) */
 
 #lista-exercicios, #completed-list { list-style: none; padding: 0; margin-top: 1.5rem; }
 
@@ -244,7 +235,6 @@ body[data-theme="dark"] #workout-card {
 .rest-day-message:hover {
   background-color: transparent !important;
 }
-/* Remove o :active para o item de descanso */
 .rest-day-message:active {
   transform: none;
 }
@@ -253,7 +243,7 @@ body[data-theme="dark"] #workout-card {
 /* Indicador de Progresso (Background Fill) */
 .exercicio-progress-fill {
   position: absolute; left: 0; top: 0; bottom: 0; width: 0%; height: 100%;
-  background-color: var(--progresso-fill-bg); /* Cinza transparente */
+  background-color: var(--progresso-fill-bg); /* Fundo Verde transparente */
   transition: width 0.4s ease-in-out, background-color 0.3s ease;
   z-index: 1;
 }
@@ -270,83 +260,87 @@ body[data-theme="dark"] #workout-card {
     border: 1px solid var(--cor-borda);
     transition: all 0.3s ease;
 }
-/* Adiciona :hover ao contador para indicar clicabilidade */
 .set-counter:hover {
     border-color: var(--cor-texto-secundario);
     background-color: var(--hover-color);
 }
 
 .exercicio-item.finalizado .set-counter {
-    color: var(--cor-sucesso); /* Cinza Médio */
+    color: var(--cor-sucesso); /* Cor de Sucesso (Verde) */
     background-color: rgba(var(--cor-sucesso-rgb), 0.1);
     border-color: rgba(var(--cor-sucesso-rgb), 0.3);
 }
-/* Remove o hover de finalizado */
 .exercicio-item.finalizado .set-counter:hover {
     background-color: rgba(var(--cor-sucesso-rgb), 0.1);
     border-color: rgba(var(--cor-sucesso-rgb), 0.3);
 }
 
 
-.detalhes-exercicio, .btn-info-inline { position: relative; z-index: 2; user-select: none; }
+.detalhes-exercicio, .btn-info-inline { position: relative; z-index: 2; user-select: none; } 
 .exercicio-item.finalizado { opacity: 0.6; cursor: default; }
 #completed-list .exercicio-item { opacity: 0.6; cursor: default; }
 #completed-list .exercicio-item:hover { background-color: transparent; }
 
 .exercicio-item.movendo { opacity: 0 !important; transform: translateY(10px); }
 
-/* --- HIERARQUIA ATUALIZADA --- */
+/* --- HIERARQUIA DO ITEM DE EXERCÍCIO --- */
 .detalhes-exercicio { 
-    flex-grow: 1; 
+    flex-grow: 1; /* Isso empurra o botão (i) para a direita */
     display: flex; 
-    flex-direction: column; /* Empilha o h3 e o .exercicio-meta */
-    align-items: flex-start; /* Alinha à esquerda */
+    flex-direction: column; 
+    align-items: flex-start; 
     justify-content: center;
+    min-width: 0; /* Impede que o texto transborde */
 }
 .detalhes-exercicio h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    margin: 0; /* Remove margens */
-    line-height: 1.3; /* Altura de linha mais justa */
+    margin: 0; 
+    line-height: 1.3; 
     color: var(--cor-texto-principal);
     transition: color 0.3s ease;
+    /* Adicionado para cortar texto longo */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 
-/* NOVO: Container para os metadados */
 .exercicio-meta {
     display: flex;
     align-items: center;
-    gap: 0.75rem; /* Espaça os itens */
-    margin-top: 4px; /* Pequena distância do título */
+    gap: 0.75rem; 
+    margin-top: 4px; 
 }
 
 .detalhes-exercicio p {
-    margin: 0; /* Remove margens */
+    margin: 0; 
     color: var(--cor-texto-secundario);
     font-size: 1rem; 
     font-weight: 400; 
     transition: color 0.3s ease;
 }
 
-/* Botão Info Inline */
+/* Botão Info Inline (ATUALIZADO) */
 .btn-info-inline {
   background-color: transparent;
-  color: var(--cor-texto-terciario); /* Cinza mais claro */
+  color: var(--cor-texto-terciario); 
   border: 1px solid var(--cor-borda-muted);
   border-radius: 50%;
-  width: 28px;
-  height: 28px;
+  width: 34px;   /* MAIOR */
+  height: 34px;  /* MAIOR */
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  font-size: 0.8rem;
+  font-size: 0.9rem; /* MAIOR */
   font-style: italic;
   font-weight: 500;
   padding: 0;
   flex-shrink: 0;
-  margin: 0; /* Remove margens */
+  margin: 0;
+  margin-left: 1rem; /* Desanexa o botão */
 }
 .btn-info-inline:hover {
   background-color: var(--hover-color-icon);
@@ -389,7 +383,7 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
   position: absolute;
   top: 15px;
   right: 15px;
-  font-size: 2.5rem; /* Bem maior */
+  font-size: 2.5rem; 
   line-height: 1;
   padding: 8px;
 }
@@ -401,10 +395,9 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 .modal-info-conteudo { text-align: center; }
 #modal-info-titulo { font-size: 1.7rem; margin-bottom: 1.2rem; font-weight: 700; text-align: left; color: var(--cor-texto-principal); transition: color 0.3s ease;}
 
-/* --- HIERARQUIA MODAL ATUALIZADA --- */
+/* HIERARQUIA MODAL */
 #modal-info-gif { max-width: 100%; border-radius: 12px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); transition: border-color 0.3s ease;}
 
-/* NOVO: Estilo do Subtítulo */
 .modal-subheader {
     font-size: 1.1rem;
     font-weight: 600;
@@ -423,10 +416,9 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
     text-align: left; 
     font-weight: 400; 
     padding-left: 1.8em; 
-    margin: 1rem 0 0 0; /* Adiciona margin-top */
+    margin: 1rem 0 0 0; 
     transition: color 0.3s ease;
 }
-/* --- FIM DAS MUDANÇAS NO MODAL --- */
 
 .instructions-list li { margin-bottom: 1em; }
 .instructions-list li::marker { font-weight: 600; color: var(--cor-texto-principal); transition: color 0.3s ease;}
@@ -436,25 +428,25 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 .modal-buttons { display: flex; justify-content: flex-end; gap: 12px; }
 /* Botão Primário Genérico */
 .btn-primary {
-    background-color: var(--cor-texto-principal); /* Preto/Branco */
-    color: var(--cor-fundo); /* Fundo */
+    background-color: var(--cor-texto-principal); 
+    color: var(--cor-fundo); 
     border: 1px solid var(--cor-texto-principal); border-radius: 8px; padding: 10px 20px;
     font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
     text-transform: uppercase; letter-spacing: 0.03em;
 }
 .btn-primary:hover { background-color: var(--cor-texto-secundario); border-color: var(--cor-texto-secundario); color: var(--cor-fundo); }
 
-/* Botões do modal de reset */
+/* Botões do modal de reset (ATUALIZADO COM COR DE PERIGO) */
 .modal-btn { padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
 #cancel-reset-btn { /* Já herda do .btn-secondary */ }
-#confirm-reset-btn { /* Usa .btn-primary */ background-color: var(--cor-perigo); border-color: var(--cor-perigo); color: #fff; }
+#confirm-reset-btn { background-color: var(--cor-perigo); border-color: var(--cor-perigo); color: #fff; }
 #confirm-reset-btn:hover {
     background-color: transparent;
     color: var(--cor-perigo);
-    border-color: var(--cor-perigo); /* Garante borda no hover */
+    border-color: var(--cor-perigo); 
 }
 
-
+/* ATUALIZADO COM COR DE SUCESSO */
 #completion-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.8rem; color: var(--cor-texto-principal); text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.3s ease; }
 #completion-text { font-size: 1.6rem; font-weight: 500; line-height: 1.5; color: var(--cor-sucesso); margin-bottom: 0; transition: color 0.3s ease;}
 .completion-card { padding: 35px; text-align: center; }
@@ -466,11 +458,9 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
     body { font-size: 16px; }
     #workout-day-title { font-size: 3rem; }
     
-    /* --- HIERARQUIA ATUALIZADA (Mobile) --- */
     .detalhes-exercicio h3 { font-size: 1.15rem; }
     .detalhes-exercicio p { font-size: 0.95rem; }
-    .btn-info-inline { width: 26px; height: 26px; font-size: 0.75rem;}
-    /* --- Fim --- */
+    .btn-info-inline { width: 32px; height: 32px; font-size: 0.85rem; margin-left: 0.5rem;} /* Botão (i) no mobile */
 
     #day-selector-inline { gap: 8px; justify-content: center; }
     .inline-day-btn { padding: 5px 14px; font-size: 0.85rem; }
