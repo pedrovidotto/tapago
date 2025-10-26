@@ -1,48 +1,48 @@
 /* 1. ROOT & GLOBAL STYLES */
 :root {
-  /* TEMA DARK (DEFAULT - PALETA NOVA) */
-  --cor-fundo: #121212; /* Preto Suave */
-  --cor-superficie: #1E1E1E; /* Cinza Escuro */
-  --cor-primaria: #EE8C46; /* Laranja */
-  --cor-sucesso: #30D158; /* Verde iOS Dark */
-  --cor-perigo: #FF453A; /* Vermelho iOS Dark */
+  /* TEMA DARK (GRAYSCALE) */
+  --cor-fundo: #1C1C1E; /* Cinza Muito Escuro */
+  --cor-superficie: #2C2C2E; /* Cinza Escuro */
+  --cor-primaria: #FFFFFF; /* Branco (Ativo/Destaque) */
+  --cor-sucesso: #A0A0A5; /* Cinza Médio (Progresso) */
+  --cor-perigo: #D1D1D6; /* Cinza Claro (Perigo Hover) */
   --cor-texto-principal: #FFFFFF; /* Branco Puro */
-  --cor-texto-secundario: #8E8E93; /* Cinza Secundário iOS */
-  --cor-texto-terciario: #48484A; /* Cinza Terciário iOS */
-  --cor-borda: #3A3A3C; /* Borda iOS Dark */
-  --cor-borda-muted: rgba(99, 99, 102, 0.3);
+  --cor-texto-secundario: #8A8A8E; /* Cinza Secundário */
+  --cor-texto-terciario: #48484A; /* Cinza Terciário */
+  --cor-borda: #3A3A3C; /* Borda */
+  --cor-borda-muted: rgba(99, 99, 102, 0.4); /* Borda mais suave */
 
-  --hover-color: rgba(238, 140, 70, 0.1); /* Laranja hover suave */
-  --hover-color-icon: rgba(255, 255, 255, 0.08);
-  --modal-overlay-bg: rgba(0, 0, 0, 0.75);
+  --hover-color: rgba(255, 255, 255, 0.05); /* Hover sutil */
+  --hover-color-icon: rgba(255, 255, 255, 0.1);
+  --modal-overlay-bg: rgba(0, 0, 0, 0.8);
   --completion-overlay-bg: rgba(0, 0, 0, 0.9);
-  --progresso-fill-bg: rgba(48, 209, 88, 0.2); /* Verde transparente */
+  --progresso-fill-bg: rgba(160, 160, 165, 0.2); /* Cinza Médio transparente */
 
-  /* RGB para transparências */
-  --cor-sucesso-rgb: 48, 209, 88;
+  /* RGB para transparências (Cinza Médio) */
+  --cor-sucesso-rgb: 160, 160, 165;
 }
 
 body[data-theme="light"] {
-  /* TEMA CLARO (PALETA NOVA) */
-  --cor-fundo: #F5F1E9; /* Bege */
-  --cor-superficie: #FFFEFC; /* Off-white */
-  --cor-primaria: #FF8C00; /* Laranja (Ativo/Destaque) */
-  --cor-sucesso: #198754; /* Verde Escuro (Progresso) */
-  --cor-perigo: #DC3545; /* Vermelho Padrão */
-  --cor-texto-principal: #1B5E20; /* Verde Escuro (Tipografia) */
-  --cor-texto-secundario: #556B2F; /* Cinza Esverdeado */
-  --cor-texto-terciario: #A9A9A9; /* Cinza claro */
-  --cor-borda: #1976D2; /* Azul Escuro (Linhas/Bordas) */
-  --cor-borda-muted: rgba(25, 118, 210, 0.3); /* Azul Escuro Transparente */
+  /* TEMA CLARO (GRAYSCALE) */
+  --cor-fundo: #F2F2F7; /* Cinza Claro iOS */
+  --cor-superficie: #FFFFFF; /* Branco Puro */
+  --cor-primaria: #000000; /* Preto (Ativo/Destaque) */
+  --cor-sucesso: #8A8A8E; /* Cinza Médio (Progresso) */
+  --cor-perigo: #C7C7CC; /* Cinza Claro (Perigo Hover) */
+  --cor-texto-principal: #000000; /* Preto Puro */
+  --cor-texto-secundario: #636366; /* Cinza Secundário */
+  --cor-texto-terciario: #AEAEB2; /* Cinza Terciário */
+  --cor-borda: #D1D1D6; /* Borda */
+  --cor-borda-muted: rgba(60, 60, 67, 0.15); /* Borda mais suave */
 
-  --hover-color: rgba(255, 140, 0, 0.08);
-  --hover-color-icon: rgba(27, 94, 32, 0.08);
-  --modal-overlay-bg: rgba(27, 94, 32, 0.7);
-  --completion-overlay-bg: rgba(27, 94, 32, 0.85);
-  --progresso-fill-bg: rgba(25, 135, 84, 0.15);
+  --hover-color: rgba(0, 0, 0, 0.03);
+  --hover-color-icon: rgba(0, 0, 0, 0.06);
+  --modal-overlay-bg: rgba(60, 60, 67, 0.7);
+  --completion-overlay-bg: rgba(60, 60, 67, 0.85);
+  --progresso-fill-bg: rgba(138, 138, 142, 0.15); /* Cinza Médio transparente */
 
-  /* RGB para transparências */
-   --cor-sucesso-rgb: 25, 135, 84;
+  /* RGB para transparências (Cinza Médio) */
+   --cor-sucesso-rgb: 138, 138, 142;
 }
 
 
@@ -83,6 +83,8 @@ header { margin-bottom: 1.5rem; }
     border-radius: 50%;
     transition: color 0.2s ease, background-color 0.2s ease;
     flex-shrink: 0;
+    width: 40px;
+    height: 40px;
 }
 .btn-icon:hover {
     color: var(--cor-texto-principal);
@@ -90,18 +92,21 @@ header { margin-bottom: 1.5rem; }
 }
 .btn-icon svg { display: block; width: 24px; height: 24px; }
 
+/* Posiciona botão tema à direita */
+#theme-toggle-btn {
+    order: 3;
+}
 
-.logo-container { flex-grow: 1; text-align: left; padding-left: 10px; } /* Alinha logo à esquerda */
+.logo-container {
+    order: 1; /* Garante logo à esquerda */
+    text-align: left;
+    /* padding-left: 10px; */ /* Removido, btn icon já dá espaço */
+}
 #app-logo { max-height: 35px; width: auto; display: inline-block; }
-/* Filtro para o logo no tema escuro */
-body[data-theme="dark"] #app-logo {
-   filter: brightness(0) invert(1); /* Tenta inverter para branco */
-}
-/* No tema claro, remove o filtro */
-body[data-theme="light"] #app-logo {
-   filter: none;
-}
 
+/* Filtro para o logo */
+body[data-theme="dark"] #app-logo { filter: brightness(0) invert(1); }
+body[data-theme="light"] #app-logo { filter: none; }
 
 .header-divider-subtle {
     border: none; height: 1px;
@@ -146,14 +151,14 @@ body[data-theme="light"] #app-logo {
 
 .inline-day-btn:hover {
     background-color: var(--hover-color);
-    border-color: var(--cor-primaria);
-    color: var(--cor-primaria);
+    border-color: var(--cor-texto-secundario); /* Borda secundária no hover */
+    color: var(--cor-texto-principal); /* Texto principal no hover */
 }
 
 .inline-day-btn.active {
-    background-color: var(--cor-primaria);
-    color: var(--cor-superficie);
-    border-color: var(--cor-primaria);
+    background-color: var(--cor-texto-principal); /* Fundo "primário" (branco/preto) */
+    color: var(--cor-fundo); /* Texto cor de fundo */
+    border-color: var(--cor-texto-principal);
     font-weight: 600;
 }
 
@@ -171,10 +176,11 @@ body[data-theme="light"] #app-logo {
 }
 body[data-theme="light"] #workout-card {
      box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+     border-color: var(--cor-borda-muted); /* Borda mais suave no claro */
 }
 body[data-theme="dark"] #workout-card {
      box-shadow: none;
-     border-color: var(--cor-borda-muted); /* Borda mais suave no dark */
+     border-color: var(--cor-borda-muted);
 }
 
 
@@ -232,35 +238,64 @@ body[data-theme="dark"] #workout-card {
 }
 .exercicio-item.finalizado .set-counter {
     color: var(--cor-sucesso);
-    background-color: rgba(var(--cor-sucesso-rgb), 0.1); /* Usa RGB */
+    background-color: rgba(var(--cor-sucesso-rgb), 0.1);
     border-color: rgba(var(--cor-sucesso-rgb), 0.3);
 }
 
-.detalhes-exercicio, .btn-info { position: relative; z-index: 2; user-select: none; }
+
+.detalhes-exercicio, .btn-info-inline { position: relative; z-index: 2; user-select: none; } /* Botão Info agora é inline */
 .exercicio-item.finalizado { opacity: 0.6; cursor: default; }
 #completed-list .exercicio-item { opacity: 0.6; cursor: default; }
 #completed-list .exercicio-item:hover { background-color: transparent; }
 
 .exercicio-item.movendo { opacity: 0 !important; transform: translateY(10px); }
 
-.detalhes-exercicio { flex-grow: 1; }
+.detalhes-exercicio { flex-grow: 1; display: flex; align-items: center; flex-wrap: wrap;} /* Flex para alinhar botão info */
 .detalhes-exercicio h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    margin: 0 0 5px 0;
+    margin: 0 0.75rem 5px 0; /* Espaço à direita para botão info */
     line-height: 1.4;
     color: var(--cor-texto-principal);
     transition: color 0.3s ease;
+    display: inline-block; /* Permite ficar lado a lado com p */
 }
-.detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; font-weight: 400; transition: color 0.3s ease;}
-.btn-info {
-  background-color: transparent; color: var(--cor-texto-secundario); border: none;
-  border-radius: 50%; width: 42px; height: 42px;
-  cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s; font-size: 1.5rem;
-  padding: 0; margin-left: auto;
+.detalhes-exercicio p {
+    margin: 0; color: var(--cor-texto-secundario);
+    font-size: 1rem; font-weight: 400; transition: color 0.3s ease;
+    display: inline-block; /* Fica lado a lado com H3 */
+    margin-bottom: 5px; /* Mesmo espaçamento inferior */
+    margin-right: 0.75rem; /* Espaço à direita para botão info */
 }
-.btn-info:hover { background-color: var(--hover-color-icon); color: var(--cor-texto-principal); }
+
+/* Botão Info Inline */
+.btn-info-inline {
+  background-color: transparent;
+  color: var(--cor-texto-terciario); /* Cinza mais claro */
+  border: 1px solid var(--cor-borda-muted);
+  border-radius: 50%;
+  width: 28px; /* Menor */
+  height: 28px;
+  cursor: pointer;
+  display: inline-flex; /* Fica inline */
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  font-size: 0.8rem; /* 'i' menor */
+  font-style: italic;
+  font-weight: 500;
+  padding: 0;
+  /* margin-left: auto; */ /* Removido - não mais no final */
+  flex-shrink: 0;
+  vertical-align: middle; /* Alinha com o texto */
+  margin-bottom: 5px; /* Alinha com H3 e P */
+}
+.btn-info-inline:hover {
+  background-color: var(--hover-color-icon);
+  color: var(--cor-texto-secundario);
+  border-color: var(--cor-borda);
+}
+
 
 /* 4. FOOTER & RESET */
 footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
@@ -291,6 +326,17 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 .overlay.hidden .modal,
 .overlay.hidden .completion-card { transform: scale(0.95); }
 
+/* Botão Fechar Modal (Maior e Direita) */
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 2.5rem; /* Maior */
+  line-height: 1;
+  padding: 8px;
+}
+
+
 #completion-close-btn { position: static; font-size: 1rem; padding: 12px 28px; border-radius: 8px; border: 1px solid var(--cor-borda); margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 0.03em; background-color: transparent; color: var(--cor-texto-secundario); }
 #completion-close-btn:hover { border-color: var(--cor-texto-secundario); background-color: var(--hover-color); color: var(--cor-texto-principal); }
 
@@ -311,14 +357,14 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 /* Botão Primário Genérico */
 .btn-primary {
     background-color: var(--cor-primaria);
-    color: var(--cor-superficie); /* Cor da superfície como texto */
+    color: var(--cor-superficie);
     border: 1px solid var(--cor-primaria); border-radius: 8px; padding: 10px 20px;
     font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
     text-transform: uppercase; letter-spacing: 0.03em;
 }
 /* Hover Laranja */
 body[data-theme="light"] .btn-primary:hover { background-color: #E67E00; border-color: #CC7000;}
-body[data-theme="dark"] .btn-primary:hover { background-color: #FFA500; border-color: #FF8C00;} /* Laranja mais claro no dark */
+body[data-theme="dark"] .btn-primary:hover { background-color: #FFA500; border-color: #FF8C00;}
 
 /* Botões do modal de reset */
 .modal-btn { padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
@@ -336,7 +382,7 @@ body[data-theme="dark"] #confirm-reset-btn:hover { background-color: #FF5F57; bo
 
 /* Media Query para telas menores */
 @media (max-width: 480px) {
-    body { font-size: 16px; } /* Ajusta tamanho base menor */
+    body { font-size: 16px; }
     #workout-day-title { font-size: 3rem; }
     .detalhes-exercicio h3 { font-size: 1.15rem; }
     .detalhes-exercicio p { font-size: 0.95rem; }
@@ -344,5 +390,5 @@ body[data-theme="dark"] #confirm-reset-btn:hover { background-color: #FF5F57; bo
     .inline-day-btn { padding: 5px 14px; font-size: 0.85rem; }
     #modal-info-titulo { font-size: 1.5rem; }
     .instructions-list { font-size: 1rem; }
-    .btn-info { width: 38px; height: 38px; font-size: 1.4rem;}
+    .btn-info-inline { width: 26px; height: 26px; font-size: 0.75rem;} /* Botão info inline menor */
 }
