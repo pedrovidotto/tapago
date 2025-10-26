@@ -1,17 +1,18 @@
 /* 1. ROOT & GLOBAL STYLES */
 :root {
-  /* Paleta Vibrante e Acessível */
-  --cor-fundo: #F8F9FA;
-  --cor-superficie: #FFFFFF;
+  /* Paleta Vibrante e Acessível Refinada */
+  --cor-fundo: #F8F9FA; /* Branco Gelo */
+  --cor-superficie: #FFFFFF; /* Branco Puro */
   --cor-primaria: #0D6EFD; /* Azul Vibrante */
   --cor-sucesso: #198754; /* Verde Escuro */
   --cor-perigo: #DC3545; /* Vermelho Padrão */
   --cor-texto-principal: #212529; /* Preto Suave */
   --cor-texto-secundario: #6C757D; /* Cinza Médio */
-  --cor-borda: #DEE2E6; /* Cinza Claro */
-  --cor-borda-muted: rgba(33, 37, 41, 0.1); /* Borda mais suave ainda */
+  --cor-texto-terciario: #ADB5BD; /* Cinza mais claro */
+  --cor-borda: #E9ECEF; /* Cinza Muito Claro */
+  --cor-borda-muted: rgba(33, 37, 41, 0.1); /* Borda ainda mais suave */
 
-  --hover-color: rgba(13, 110, 253, 0.05);
+  --hover-color: rgba(13, 110, 253, 0.05); /* Azul hover */
   --hover-color-icon: rgba(33, 37, 41, 0.08);
   --modal-overlay-bg: rgba(33, 37, 41, 0.7);
   --completion-overlay-bg: rgba(33, 37, 41, 0.85);
@@ -24,13 +25,12 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--cor-fundo);
   color: var(--cor-texto-principal);
-  font-size: 16px;
-  line-height: 1.6;
-  font-weight: 400;
+  font-size: 17px; /* Aumenta tamanho base */
+  line-height: 1.7; /* Aumenta espaçamento entre linhas */
+  font-weight: 400; /* Regular */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Garante espaço para a barra de navegação fixa no fundo em iOS */
-  padding-bottom: 80px; /* Ajuste conforme a altura da barra inferior */
+  padding-bottom: 90px; /* Garante espaço para a barra inferior */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -41,38 +41,42 @@ header { margin-bottom: 1.5rem; }
 
 /* Título GRANDE do dia */
 #workout-day-title {
-    font-size: 3.5rem; /* BEM GRANDE */
-    font-weight: 800; /* Extra Bold */
+    font-size: 4rem; /* Bem maior */
+    font-weight: 300; /* Light */
     color: var(--cor-texto-principal);
     line-height: 1.1;
     margin-bottom: 1.5rem;
     text-align: left;
+    letter-spacing: -0.03em; /* Levemente mais junto */
 }
 
 .header-divider { border: none; height: 1px; background-color: var(--cor-borda); margin: 1.5rem 0; }
 
 /* 3. WORKOUT AREA */
-#container-treino { margin-top: 0; } /* Remove margem superior extra */
+#container-treino { margin-top: 0; }
 
-#cabecalho-treino { margin-bottom: 1.5rem; } /* Espaçamento abaixo da barra */
+#cabecalho-treino { margin-bottom: 1.5rem; }
 
 .progress-container {
   width: 100%; height: 8px;
-  background-color: #E9ECEF;
+  background-color: var(--cor-borda); /* Fundo mais visível */
   border-radius: 4px; overflow: hidden;
 }
 .progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s; }
 
-#lista-exercicios, #completed-list { list-style: none; padding: 0; }
+#lista-exercicios, #completed-list { list-style: none; padding: 0; margin-top: 1.5rem; } /* Margem adicionada */
 
+/* Títulos de Categoria (Concluídos) */
 .category-title {
   margin-top: 3rem; margin-bottom: 1rem; padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--cor-borda); color: var(--cor-texto-secundario);
   font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;
 }
 
+
 .exercicio-item {
-  border-bottom: 1px solid var(--cor-borda-muted); padding: 20px 0;
+  border-bottom: 1px solid var(--cor-borda-muted); /* Borda mais suave */
+  padding: 22px 0; /* Mais padding vertical */
   display: flex; align-items: center; gap: 1rem;
   cursor: pointer; position: relative; overflow: visible;
   transition: opacity 0.4s ease, transform 0.3s ease, background-color 0.2s ease;
@@ -83,14 +87,16 @@ header { margin-bottom: 1.5rem; }
 
 .exercicio-item:hover { background-color: var(--hover-color); }
 
+/* Indicador de Progresso (Barra Lateral) */
 .exercicio-progress-fill {
-  position: absolute; left: -12px; top: 20px; bottom: 20px; width: 5px;
+  position: absolute; left: -12px; top: 22px; bottom: 22px; width: 5px; /* Alinhado com padding */
   background-color: var(--cor-sucesso); border-radius: 2.5px;
   transform-origin: top; transform: scaleY(0); transition: transform 0.4s ease-in-out;
   z-index: 1;
 }
 
-.exercicio-icon, .detalhes-exercicio, .btn-info { position: relative; z-index: 2; user-select: none; }
+.detalhes-exercicio, .btn-info { position: relative; z-index: 2; user-select: none; } /* Ícone removido do fluxo */
+
 .exercicio-item.finalizado { opacity: 0.5; cursor: default; }
 #completed-list .exercicio-item { opacity: 0.5; cursor: default; }
 #completed-list .exercicio-item:hover { background-color: transparent; }
@@ -98,21 +104,21 @@ header { margin-bottom: 1.5rem; }
 .exercicio-item.finalizado .exercicio-progress-fill { transform: scaleY(1); }
 .exercicio-item.movendo { opacity: 0 !important; transform: translateY(10px); }
 
-/* Ícone Removido */
 .detalhes-exercicio { flex-grow: 1; margin-left: 10px; }
+/* Hierarquia Tipográfica Refinada */
 .detalhes-exercicio h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 1.3rem; /* Título do exercício maior */
+    font-weight: 600; /* Semibold */
     margin: 0 0 5px 0;
     line-height: 1.4;
     color: var(--cor-texto-principal);
 }
-.detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; font-weight: 400; }
+.detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; font-weight: 400; } /* Detalhes maiores */
 .btn-info {
   background-color: transparent; color: var(--cor-texto-secundario); border: none;
-  border-radius: 50%; width: 40px; height: 40px;
+  border-radius: 50%; width: 42px; height: 42px; /* Botão info maior */
   cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s; font-size: 1.4rem;
+  transition: all 0.2s; font-size: 1.5rem; /* Ícone maior */
   padding: 0; margin-left: auto;
 }
 .btn-info:hover { background-color: var(--hover-color-icon); color: var(--cor-texto-principal); }
@@ -124,13 +130,13 @@ header { margin-bottom: 1.5rem; }
     left: 0;
     right: 0;
     display: flex;
-    justify-content: space-around; /* Espaça igualmente */
+    justify-content: space-around;
     align-items: center;
-    background-color: var(--cor-superficie);
-    padding: 10px 15px env(safe-area-inset-bottom); /* Padding com segurança para iOS */
+    background-color: var(--cor-superficie); /* Fundo branco */
+    padding: 12px 15px calc(12px + env(safe-area-inset-bottom)); /* Padding com segurança para iOS */
     border-top: 1px solid var(--cor-borda);
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-    z-index: 500; /* Garante que fique acima do conteúdo */
+    box-shadow: 0 -3px 15px rgba(0,0,0,0.06); /* Sombra mais visível */
+    z-index: 500;
 }
 
 .bottom-day-btn {
@@ -138,13 +144,15 @@ header { margin-bottom: 1.5rem; }
     border: none;
     color: var(--cor-texto-secundario);
     font-family: 'Inter', sans-serif;
-    font-size: 0.85rem; /* Ligeiramente menor */
+    font-size: 0.9rem; /* Aumenta um pouco */
     font-weight: 500; /* Médio */
-    padding: 8px 10px; /* Padding interno */
+    padding: 8px 5px; /* Ajusta padding */
     cursor: pointer;
     transition: color 0.2s ease, background-color 0.2s ease;
-    border-radius: 6px; /* Bordas levemente arredondadas */
+    border-radius: 8px; /* Bordas arredondadas */
     text-align: center;
+    flex-grow: 1; /* Ocupa espaço disponível */
+    margin: 0 4px; /* Pequeno espaçamento lateral */
 }
 
 .bottom-day-btn:hover {
@@ -153,28 +161,27 @@ header { margin-bottom: 1.5rem; }
 }
 
 .bottom-day-btn.active {
-    color: var(--cor-primaria); /* Cor primária quando ativo */
+    color: var(--cor-primaria); /* Azul quando ativo */
     font-weight: 600; /* Semibold */
 }
 
 /* Botão Reset na barra inferior */
 .btn-reset {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     padding: 8px 15px;
     color: var(--cor-texto-secundario);
-    border: 1px solid var(--cor-borda-muted);
-    border-radius: 6px;
+    border: 1px solid transparent; /* Sem borda inicial */
+    border-radius: 8px;
     background: transparent;
+    margin-left: 10px; /* Espaço antes do reset */
+    flex-shrink: 0; /* Não encolhe */
 }
 .btn-reset:hover {
     color: var(--cor-perigo);
-    border-color: var(--cor-perigo);
     background-color: rgba(220, 53, 69, 0.05);
 }
 
-
-/* Footer antigo removido, botão reset foi para a barra */
-footer { display: none; }
+footer { display: none; } /* Footer antigo removido */
 
 /* 5. MODALS & OVERLAYS */
 .overlay, .modal-overlay {
@@ -203,10 +210,11 @@ footer { display: none; }
 #completion-close-btn:hover { border-color: var(--cor-texto-secundario); background-color: var(--hover-color); color: var(--cor-texto-principal); }
 
 .modal-info-conteudo { text-align: center; }
-#modal-info-titulo { font-size: 1.6rem; margin-bottom: 1.2rem; font-weight: 700; text-align: left; color: var(--cor-texto-principal); }
+#modal-info-titulo { font-size: 1.7rem; margin-bottom: 1.2rem; font-weight: 700; text-align: left; color: var(--cor-texto-principal); } /* Título maior */
 #modal-info-gif { max-width: 100%; border-radius: 12px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); }
 .instructions-list {
-    font-size: 1.05rem; line-height: 1.8; color: var(--cor-texto-secundario);
+    font-size: 1.1rem; /* Instruções maiores */
+    line-height: 1.8; color: var(--cor-texto-secundario);
     text-align: left; font-weight: 400; padding-left: 1.8em; margin: 0;
 }
 .instructions-list li { margin-bottom: 1em; }
@@ -215,7 +223,7 @@ footer { display: none; }
 .modal-title { font-size: 1.3rem; margin-bottom: 1rem; color: var(--cor-texto-principal); font-weight: 600; text-align: left;}
 .modal-text { color: var(--cor-texto-secundario); margin-bottom: 1.5rem; font-size: 1.05rem; text-align: left; font-weight: 400;}
 .modal-buttons { display: flex; justify-content: flex-end; gap: 12px; }
-/* Estilo Botão Secundário */
+/* Estilo Botão Secundário (Reutilizado) */
 .btn-secondary {
     background-color: transparent; color: var(--cor-texto-secundario);
     border: 1px solid var(--cor-borda); border-radius: 8px; padding: 10px 20px;
@@ -223,14 +231,14 @@ footer { display: none; }
     text-transform: uppercase; letter-spacing: 0.03em;
 }
 .btn-secondary:hover { color: var(--cor-texto-principal); border-color: var(--cor-texto-secundario); background-color: var(--hover-color); }
-/* Estilo Botão Primário */
+/* Estilo Botão Primário (Reutilizado) */
 .btn-primary {
     background-color: var(--cor-primaria); color: #fff;
     border: 1px solid var(--cor-primaria); border-radius: 8px; padding: 10px 20px;
     font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
     text-transform: uppercase; letter-spacing: 0.03em;
 }
-.btn-primary:hover { background-color: #0B5ED7; border-color: #0A58CA;} /* Azul mais escuro no hover */
+.btn-primary:hover { background-color: #0B5ED7; border-color: #0A58CA;}
 .confirm-btn { background-color: var(--cor-perigo); border-color: var(--cor-perigo); color: #fff; }
 .confirm-btn:hover { background-color: #C82333; border-color: #C82333; color: #fff;}
 
