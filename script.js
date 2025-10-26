@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const frasesMotivacionais = [
-        "A jornada de mil quilômetros começa com um único passo. Você já está no caminho.", "Não se compare com os outros. Compare-se com a pessoa que você era ontem.", "A consistência transforma o esforço em resultado.", "Acredite no seu potencial. Você é mais forte do que imagina.", "Cada gota de suor é um degrau a mais na escada do seu objetivo.", "Feito é melhor que perfeito. Apenas comece.", "A dor que você sente hoje é a força que você sentirá amanhã.", "Sua mente desistirá cem vezes antes do seu corpo.", "A motivação te faz começar. O hábito te faz continuar.", "Um pequeno progresso a cada dia resulta em grandes resultados.", "O corpo alcança o que a mente acredita.", "Não diminua o objetivo. Aumente o esforço.", "Você não encontrará a força de vontade, você precisa criá-la.", "Se você quer algo que nunca teve, precisa fazer algo que nunca fez.", "O segredo do sucesso é a constância no propósito."
-    ];
+    // Frases motivacionais removidas conforme solicitado anteriormente
+    // const frasesMotivacionais = [...];
 
     const mensagensDeConclusao = [
         "Mandou bem hoje! O descanso é parte do processo. Volte com tudo no próximo treino!",
@@ -12,46 +11,46 @@ document.addEventListener('DOMContentLoaded', () => {
         "Missão cumprida! Sinta orgulho do seu progresso. Estamos te esperando para o próximo desafio!"
     ];
 
-    const dadosTreino = [
+    const dadosTreino = [ // Mantém a rotina PPLUL
         {
             dia: "Push", iconEmoji: "💪", exercicios: [
-                { nome: "Supino na Máquina", series: 3, reps: "10-12 reps", gifUrl: "gifs/supino-maquina.gif", instrucoes: "1. Posição: Sente-se com as costas bem apoiadas e ajuste o banco para que os pegadores fiquem na altura do meio do seu peito.\n2. Execução: Empurre os pegadores para a frente de forma controlada, sem travar os cotovelos. Retorne lentamente, sentindo o peitoral alongar.\n3. Dica: Mantenha os ombros para trás durante todo o movimento." },
-                { nome: "Desenvolvimento na Máquina", series: 3, reps: "10-12 reps", gifUrl: "gifs/desenvolvimento-maquina.gif", instrucoes: "1. Posição: Sente-se com as costas apoiadas e segure os pegadores na altura dos ombros, com as palmas das mãos para frente.\n2. Execução: Empurre para cima até os braços estarem quase estendidos. Desça de forma controlada até a posição inicial.\n3. Dica: Mantenha o abdômen contraído para não arquear as costas." },
-                { nome: "Elevação Lateral com Halteres", series: 3, reps: "12-15 reps", gifUrl: "gifs/elevacao-lateral.gif", instrucoes: "1. Posição: Em pé, com os pés na largura dos ombros e halteres ao lado do corpo.\n2. Execução: Com os cotovelos levemente dobrados, levante os braços para os lados até a altura dos ombros. Desça ainda mais lentamente.\n3. Dica: Evite usar o impulso do corpo. O movimento deve ser focado nos ombros." },
-                { nome: "Tríceps na Polia (Barra)", series: 4, reps: "12-15 reps", gifUrl: "gifs/triceps-polia.gif", instrucoes: "1. Posição: Fique de pé em frente à polia alta. Mantenha os cotovelos 'colados' na lateral do seu corpo.\n2. Execução: Empurre a barra para baixo até estender completamente os braços. Faça uma pequena pausa e retorne de forma controlada.\n3. Dica: Apenas o antebraço se move; o resto do braço fica parado." }
+                { nome: "Supino na Máquina", series: 3, reps: "10-12 reps", gifUrl: "gifs/supino-maquina.gif", instrucoes: "1. Posição: Sente-se com as costas bem apoiadas...\n2. Execução: Empurre os pegadores para a frente...\n3. Dica: Mantenha os ombros para trás." },
+                { nome: "Desenvolvimento na Máquina", series: 3, reps: "10-12 reps", gifUrl: "gifs/desenvolvimento-maquina.gif", instrucoes: "1. Posição: Sente-se com as costas apoiadas...\n2. Execução: Empurre para cima...\n3. Dica: Mantenha o abdômen contraído." },
+                { nome: "Elevação Lateral com Halteres", series: 3, reps: "12-15 reps", gifUrl: "gifs/elevacao-lateral.gif", instrucoes: "1. Posição: Em pé, com os halteres ao lado...\n2. Execução: Levante os braços para os lados...\n3. Dica: Evite usar o impulso." },
+                { nome: "Tríceps na Polia (Barra)", series: 4, reps: "12-15 reps", gifUrl: "gifs/triceps-polia.gif", instrucoes: "1. Posição: Fique de pé em frente à polia...\n2. Execução: Empurre a barra para baixo...\n3. Dica: Apenas o antebraço se move." }
             ]
         },
         {
             dia: "Pull", iconEmoji: "🏋️", exercicios: [
-                { nome: "Puxada Frontal (Pulldown)", series: 3, reps: "10-12 reps", gifUrl: "gifs/puxada-frontal.gif", instrucoes: "1. Posição: Sente-se e ajuste o apoio dos joelhos. Segure a barra com uma pegada mais aberta que os ombros.\n2. Execução: Incline o tronco levemente para trás e puxe a barra em direção à parte de cima do peito. Volte de forma controlada, alongando bem as costas.\n3. Dica: Puxe com os cotovelos, imaginando que suas mãos são apenas ganchos." },
-                { nome: "Remada na Máquina", series: 3, reps: "10-12 reps", gifUrl: "gifs/remada-maquina.gif", instrucoes: "1. Posição: Sente-se com o peito bem apoiado na máquina.\n2. Execução: Puxe os pegadores em direção ao abdômen. No final do movimento, junte as escápulas (omoplatas) com força.\n3. Dica: Mantenha as costas retas e não dê solavancos." },
-                { nome: "Crucifixo Invertido na Máquina", series: 3, reps: "15 reps", gifUrl: "gifs/crucifixo-invertido-maquina.gif", instrucoes: "1. Posição: Sente-se virado para a máquina, com o peito apoiado.\n2. Execução: Com os braços quase retos, abra-os em um grande arco para trás, contraindo a parte de trás dos ombros.\n3. Dica: O movimento deve ser controlado, sem impulso." },
-                { nome: "Rosca Direta com Halteres", series: 4, reps: "10-12 reps", gifUrl: "gifs/rosca-direta.gif", instrucoes: "1. Posição: Em pé, com os halteres ao lado do corpo e palmas para frente.\n2. Execução: Mantendo os cotovelos parados ao lado do corpo, levante um halter de cada vez em direção ao ombro. Desça lentamente.\n3. Dica: Não balance o corpo para ajudar a levantar o peso." }
+                { nome: "Puxada Frontal (Pulldown)", series: 3, reps: "10-12 reps", gifUrl: "gifs/puxada-frontal.gif", instrucoes: "1. Posição: Sente-se e ajuste o apoio...\n2. Execução: Puxe a barra em direção ao peito...\n3. Dica: Puxe com os cotovelos." },
+                { nome: "Remada na Máquina", series: 3, reps: "10-12 reps", gifUrl: "gifs/remada-maquina.gif", instrucoes: "1. Posição: Sente-se com o peito apoiado...\n2. Execução: Puxe os pegadores em direção ao abdômen...\n3. Dica: Junte as escápulas." },
+                { nome: "Crucifixo Invertido na Máquina", series: 3, reps: "15 reps", gifUrl: "gifs/crucifixo-invertido-maquina.gif", instrucoes: "1. Posição: Sente-se virado para a máquina...\n2. Execução: Abra os braços em um grande arco...\n3. Dica: Movimento controlado." },
+                { nome: "Rosca Direta com Halteres", series: 4, reps: "10-12 reps", gifUrl: "gifs/rosca-direta.gif", instrucoes: "1. Posição: Em pé, com halteres ao lado...\n2. Execução: Levante um halter de cada vez...\n3. Dica: Não balance o corpo." }
             ]
         },
         {
             dia: "Legs", iconEmoji: "🦵", exercicios: [
-                { nome: "Leg Press", series: 3, reps: "10-12 reps", gifUrl: "gifs/leg-press.gif", instrucoes: "1. Posição: Sente-se com costas e quadril totalmente apoiados. Pés na plataforma, na largura dos ombros.\n2. Execução: Desça o peso de forma controlada até os joelhos formarem 90 graus. Empurre de volta sem travar os joelhos no final.\n3. Dica: A força deve vir dos calcanhares, não da ponta dos pés." },
-                { nome: "Cadeira Extensora", series: 3, reps: "12-15 reps", gifUrl: "gifs/cadeira-extensora.gif", instrucoes: "1. Posição: Sente-se com as costas bem apoiadas.\n2. Execução: Estenda as pernas e segure a contração máxima por 1 a 2 segundos no topo.\n3. Dica: A qualidade da contração no topo é mais importante que a quantidade de peso." },
-                { nome: "Cadeira Flexora", series: 3, reps: "12-15 reps", gifUrl: "gifs/cadeira-flexora.gif", instrucoes: "1. Posição: Ajuste a máquina para que o apoio fique acima dos tornozelos.\n2. Execução: Puxe os calcanhares em direção aos glúteos de forma controlada. Sinta a contração na parte de trás da coxa.\n3. Dica: Faça a fase de volta (negativa) de forma lenta." },
-                { nome: "Elevação Pélvica", series: 3, reps: "15 reps", gifUrl: "gifs/elevacao-pelvica.gif", instrucoes: "1. Posição: Deite-se com as costas apoiadas em um banco e os pés no chão.\n2. Execução: Eleve o quadril até o corpo ficar reto, contraindo os glúteos com força no topo. Segure por 2 segundos e desça.\n3. Dica: Mantenha o queixo levemente para baixo." },
-                { nome: "Panturrilha em Pé", series: 4, reps: "15-20 reps", gifUrl: "gifs/panturrilha-pe.gif", instrucoes: "1. Posição: Em um degrau ou na máquina, com os calcanhares para fora.\n2. Execução: Alongue o máximo na descida. Suba até a ponta do pé e segure a contração por 2 segundos no topo.\n3. Dica: Não faça o movimento 'saltitando'. Amplitude é a chave." }
+                { nome: "Leg Press", series: 3, reps: "10-12 reps", gifUrl: "gifs/leg-press.gif", instrucoes: "1. Posição: Sente-se com costas e quadril apoiados...\n2. Execução: Desça o peso de forma controlada...\n3. Dica: A força deve vir dos calcanhares." },
+                { nome: "Cadeira Extensora", series: 3, reps: "12-15 reps", gifUrl: "gifs/cadeira-extensora.gif", instrucoes: "1. Posição: Sente-se com as costas apoiadas...\n2. Execução: Estenda as pernas e segure a contração...\n3. Dica: A qualidade da contração é chave." },
+                { nome: "Cadeira Flexora", series: 3, reps: "12-15 reps", gifUrl: "gifs/cadeira-flexora.gif", instrucoes: "1. Posição: Ajuste o apoio acima dos tornozelos...\n2. Execução: Puxe os calcanhares em direção aos glúteos...\n3. Dica: Faça a volta de forma lenta." },
+                { nome: "Elevação Pélvica", series: 3, reps: "15 reps", gifUrl: "gifs/elevacao-pelvica.gif", instrucoes: "1. Posição: Costas apoiadas em um banco...\n2. Execução: Eleve o quadril e contraia os glúteos...\n3. Dica: Mantenha o queixo para baixo." },
+                { nome: "Panturrilha em Pé", series: 4, reps: "15-20 reps", gifUrl: "gifs/panturrilha-pe.gif", instrucoes: "1. Posição: Em um degrau ou máquina...\n2. Execução: Alongue o máximo na descida e suba...\n3. Dica: Amplitude é a chave." }
             ]
         },
         {
             dia: "Upper", iconEmoji: "💪", exercicios: [
-                { nome: "Remada Curvada com Halteres", series: 3, reps: "10-12 reps", gifUrl: "gifs/remada-curvada.gif", instrucoes: "1. Posição: Incline o tronco para a frente, mantendo as costas retas. Segure os halteres com os braços estendidos.\n2. Execução: Puxe os halteres em direção ao seu quadril, mantendo os cotovelos próximos ao corpo.\n3. Dica: Imagine que está guardando os halteres nos bolsos da calça." },
-                { nome: "Supino Inclinado com Halteres", series: 3, reps: "10-12 reps", gifUrl: "gifs/supino-inclinado.gif", instrucoes: "1. Posição: Deite-se em um banco inclinado (30-45 graus) com os halteres na altura do peito.\n2. Execução: Empurre os pesos para cima até os braços estarem quase estendidos. Desça lentamente até sentir o peito alongar.\n3. Dica: Não bata um halter no outro no topo do movimento." },
-                { nome: "Elevação Frontal com Halteres", series: 3, reps: "12-15 reps", gifUrl: "gifs/elevacao-frontal.gif", instrucoes: "1. Posição: Em pé, segurando os halteres à frente do corpo.\n2. Execução: Eleve um halter de cada vez à sua frente, até a altura dos ombros, mantendo o braço reto. Desça devagar.\n3. Dica: Evite balançar o corpo para levantar o peso." },
-                { nome: "Rosca Martelo", series: 4, reps: "10-12 reps", gifUrl: "gifs/rosca-martelo.gif", instrucoes: "1. Posição: Segure os halteres com as palmas das mãos viradas uma para a outra (pegada de martelo).\n2. Execução: Levante os halteres, alternadamente ou juntos, sem girar os punhos.\n3. Dica: Mantenha os cotovelos parados ao lado do corpo." }
+                { nome: "Remada Curvada com Halteres", series: 3, reps: "10-12 reps", gifUrl: "gifs/remada-curvada.gif", instrucoes: "1. Posição: Incline o tronco com as costas retas...\n2. Execução: Puxe os halteres em direção ao quadril...\n3. Dica: Imagine guardar os halteres nos bolsos." },
+                { nome: "Supino Inclinado com Halteres", series: 3, reps: "10-12 reps", gifUrl: "gifs/supino-inclinado.gif", instrucoes: "1. Posição: Deite-se em um banco inclinado...\n2. Execução: Empurre os pesos para cima...\n3. Dica: Não bata um halter no outro." },
+                { nome: "Elevação Frontal com Halteres", series: 3, reps: "12-15 reps", gifUrl: "gifs/elevacao-frontal.gif", instrucoes: "1. Posição: Em pé, com halteres à frente...\n2. Execução: Eleve um halter de cada vez...\n3. Dica: Evite balançar o corpo." },
+                { nome: "Rosca Martelo", series: 4, reps: "10-12 reps", gifUrl: "gifs/rosca-martelo.gif", instrucoes: "1. Posição: Segure os halteres como martelos...\n2. Execução: Levante-os sem girar os punhos...\n3. Dica: Mantenha os cotovelos parados." }
             ]
         },
         {
             dia: "Lower", iconEmoji: "🦵", exercicios: [
-                { nome: "Agachamento Goblet", series: 3, reps: "10-12 reps", gifUrl: "gifs/agachamento-goblet.gif", instrucoes: "1. Posição: Segure um halter na vertical, colado ao peito. Pés um pouco mais afastados que os ombros.\n2. Execução: Agache como se fosse sentar em uma cadeira, mantendo as costas retas e o peito para cima. Empurre o chão com os calcanhares para subir.\n3. Dica: A profundidade é importante, mas não sacrifique a boa forma." },
-                { nome: "Afundo (Lunge)", series: 3, reps: "12-15 reps por perna", gifUrl: "gifs/afundo.gif", instrucoes: "1. Posição: Em pé, segurando halteres (opcional).\n2. Execução: Dê um passo grande para a frente e flexione ambos os joelhos a 90 graus. O joelho de trás deve quase tocar o chão. Volte à posição inicial.\n3. Dica: Mantenha o tronco reto e o abdômen firme para ter equilíbrio." },
-                { nome: "Stiff com Halteres", series: 3, reps: "15 reps", gifUrl: "gifs/stiff-halteres.gif", instrucoes: "1. Posição: Em pé, com halteres à frente das coxas.\n2. Execução: Mantendo as pernas quase retas, desça o tronco com as costas retas, como se fosse 'varrer' o chão com os pesos. Sinta alongar a parte de trás da coxa.\n3. Dica: Não precisa descer até o chão. Vá até o seu limite de flexibilidade." },
-                { nome: "Panturrilha Sentado", series: 4, reps: "15-20 reps", gifUrl: "gifs/panturrilha-sentado.gif", instrucoes: "1. Posição: Sentado na máquina, com o apoio sobre os joelhos.\n2. Execução: Alongue o máximo na descida e eleve os calcanhares o máximo possível. Segure a contração por 2 segundos no topo.\n3. Dica: Este exercício trabalha uma parte diferente da panturrilha. Faça devagar." }
+                { nome: "Agachamento Goblet", series: 3, reps: "10-12 reps", gifUrl: "gifs/agachamento-goblet.gif", instrucoes: "1. Posição: Segure um halter junto ao peito...\n2. Execução: Agache como se fosse sentar...\n3. Dica: Não sacrifique a boa forma pela profundidade." },
+                { nome: "Afundo (Lunge)", series: 3, reps: "12-15 reps por perna", gifUrl: "gifs/afundo.gif", instrucoes: "1. Posição: Em pé, com halteres (opcional)...\n2. Execução: Dê um passo à frente e flexione...\n3. Dica: Mantenha o tronco reto." },
+                { nome: "Stiff com Halteres", series: 3, reps: "15 reps", gifUrl: "gifs/stiff-halteres.gif", instrucoes: "1. Posição: Em pé, com halteres à frente...\n2. Execução: Desça o tronco com as costas retas...\n3. Dica: Vá até seu limite de flexibilidade." },
+                { nome: "Panturrilha Sentado", series: 4, reps: "15-20 reps", gifUrl: "gifs/panturrilha-sentado.gif", instrucoes: "1. Posição: Sentado na máquina...\n2. Execução: Eleve os calcanhares o máximo possível...\n3. Dica: Faça devagar." }
             ]
         }
     ];
@@ -60,8 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
         seletorDias: document.getElementById('seletor-dias'),
         headerTitle: document.getElementById('header-title'),
         listaExercicios: document.getElementById('lista-exercicios'),
+        completedList: document.getElementById('completed-list'),
+        completedSection: document.getElementById('completed-section'),
         progressBar: document.getElementById('progress-bar'),
-        quoteText: document.getElementById('quote-text'),
+        // quoteText: document.getElementById('quote-text'), // Removido
         botaoResetar: document.getElementById('botao-resetar'),
         modal: {
             overlay: document.getElementById('modal-info-overlay'),
@@ -72,52 +73,52 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         completion: {
             overlay: document.getElementById('completion-overlay'),
+            title: document.getElementById('completion-title'),
             text: document.getElementById('completion-text'),
             closeBtn: document.getElementById('completion-close-btn')
+        },
+        reset: {
+            overlay: document.getElementById('reset-overlay'),
+            confirmBtn: document.getElementById('confirm-reset-btn'),
+            cancelBtn: document.getElementById('cancel-reset-btn')
         }
     };
     
     let progresso = {};
     let diaAtivoIndex = 0;
 
-    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaInterativaLocal')) || {}; };
-    const salvarProgresso = () => { localStorage.setItem('minhaRotinaInterativaLocal', JSON.stringify(progresso)); };
+    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaMinimalInterativaFinal')) || {}; };
+    const salvarProgresso = () => { localStorage.setItem('minhaRotinaMinimalInterativaFinal', JSON.stringify(progresso)); };
 
     const verificarConclusaoSemanal = () => {
-        for (let i = 0; i < dadosTreino.length; i++) {
-            const diaData = dadosTreino[i];
-            for (let j = 0; j < diaData.exercicios.length; j++) {
-                const ex = diaData.exercicios[j];
-                const id = `dia${i}-ex${j}`;
-                const seriesFeitas = progresso[id] || 0;
-                if (seriesFeitas < ex.series) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        if (diaAtivoIndex !== dadosTreino.length - 1) return false;
+        const ultimoDiaExercicios = dadosTreino[diaAtivoIndex].exercicios;
+        return ultimoDiaExercicios.every((ex, exIndex) => {
+            const id = `dia${diaAtivoIndex}-ex${exIndex}`;
+            return (progresso[id] || 0) >= ex.series;
+        });
     };
 
     const atualizarProgressoGeral = () => {
         const exerciciosDoDia = dadosTreino[diaAtivoIndex].exercicios;
         if (!exerciciosDoDia) return;
 
-        const totalExercicios = exerciciosDoDia.length;
-        let concluidos = 0;
-        exerciciosDoDia.forEach((ex, exIndex) => {
-            const id = `dia${diaAtivoIndex}-ex${exIndex}`;
-            const seriesFeitas = progresso[id] || 0;
-            if (seriesFeitas >= ex.series) {
-                concluidos++;
-            }
-        });
-        const porcentagem = totalExercicios > 0 ? (concluidos / totalExercicios) * 100 : 0;
+        let concluidos = exerciciosDoDia.filter((ex, i) => (progresso[`dia${diaAtivoIndex}-ex${i}`] || 0) >= ex.series).length;
+        const porcentagem = exerciciosDoDia.length > 0 ? (concluidos / exerciciosDoDia.length) * 100 : 0;
         elementos.progressBar.style.width = `${porcentagem}%`;
+
+        // Verifica se a seção de concluídos deve ser exibida
+        const listaConcluidos = elementos.completedList;
+        elementos.completedSection.classList.toggle('hidden', listaConcluidos.children.length === 0);
 
         if (porcentagem === 100 && elementos.completion.overlay.classList.contains('hidden')) {
             setTimeout(() => {
+                const aindaConcluidos = dadosTreino[diaAtivoIndex].exercicios.every((ex, i) => (progresso[`dia${diaAtivoIndex}-ex${i}`] || 0) >= ex.series);
+                if (!aindaConcluidos) return;
+
                 if (verificarConclusaoSemanal()) {
-                    elementos.completion.text.textContent = "PARABÉNS! Você completou todos os treinos da semana! O ciclo será reiniciado em 5 segundos.";
+                    elementos.completion.title.textContent = "Semana Completa!";
+                    elementos.completion.text.textContent = "PARABÉNS! Você completou todos os treinos! O ciclo reinicia em 5 seg.";
                     elementos.completion.overlay.classList.remove('hidden');
                     confetti({ particleCount: 300, spread: 180, startVelocity: 40, origin: { y: 0.6 }, zIndex: 2000 });
                     setTimeout(() => {
@@ -126,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         location.reload();
                     }, 5000);
                 } else {
+                    elementos.completion.title.textContent = "Ótimo Trabalho!";
                     const mensagem = mensagensDeConclusao[Math.floor(Math.random() * mensagensDeConclusao.length)];
                     elementos.completion.text.textContent = mensagem;
                     elementos.completion.overlay.classList.remove('hidden');
@@ -137,9 +139,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const atualizarVisualCard = (card, id, ex) => {
         const seriesFeitas = progresso[id] || 0;
-        const porcentagem = (seriesFeitas / ex.series) * 100;
-        card.querySelector('.exercicio-progress-fill').style.width = `${porcentagem}%`;
+        const porcentagem = seriesFeitas / ex.series;
+        card.querySelector('.exercicio-progress-fill').style.transform = `scaleY(${porcentagem})`;
         card.classList.toggle('finalizado', seriesFeitas >= ex.series);
+    };
+
+    const moverCardParaListaCorreta = (card, listaDestino) => {
+        card.classList.add('movendo');
+        setTimeout(() => {
+            listaDestino.appendChild(card);
+            card.classList.remove('movendo');
+            atualizarProgressoGeral(); // Atualiza visibilidade da seção "Concluídos"
+        }, 300);
     };
 
     const handleClickCard = (e) => {
@@ -156,12 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
         salvarProgresso();
         
         if (seriesFeitas >= ex.series) {
-            atualizarProgressoGeral();
-            card.classList.add('movendo');
-            setTimeout(() => {
-                elementos.listaExercicios.appendChild(card);
-                card.classList.remove('movendo');
-            }, 400);
+            moverCardParaListaCorreta(card, elementos.completedList); // Move para concluídos
+            atualizarProgressoGeral(); // Verifica conclusão do dia/semana
         }
     };
 
@@ -174,26 +181,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let seriesFeitas = progresso[id] || 0;
         if (seriesFeitas > 0) {
+            const estavaFinalizado = card.classList.contains('finalizado');
             seriesFeitas--;
             progresso[id] = seriesFeitas;
+            atualizarVisualCard(card, id, ex);
+            salvarProgresso();
+            
+            if (estavaFinalizado) {
+                 moverCardParaListaCorreta(card, elementos.listaExercicios); // Move de volta para principal
+            }
         }
-        atualizarVisualCard(card, id, ex);
-        salvarProgresso();
         atualizarProgressoGeral();
     };
 
     const renderizarTreino = (index) => {
         diaAtivoIndex = index;
         const diaData = dadosTreino[index];
-        elementos.headerTitle.textContent = `Treino de Hoje: ${diaData.dia}`;
+        elementos.headerTitle.textContent = `${diaData.dia}`; // Mostra só o nome do dia
         elementos.listaExercicios.innerHTML = '';
+        elementos.completedList.innerHTML = '';
         elementos.completion.overlay.classList.add('hidden');
 
         if (!diaData.exercicios) return;
 
-        const exerciciosOrdenados = [], exerciciosFinalizados = [];
         diaData.exercicios.forEach((ex, exIndex) => {
             const id = `dia${index}-ex${exIndex}`;
+            const seriesFeitas = progresso[id] || 0;
             const li = document.createElement('li');
             li.className = 'exercicio-item';
             li.dataset.id = id;
@@ -220,26 +233,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 elementos.modal.overlay.classList.remove('hidden');
             });
 
+            // Decide em qual lista colocar inicialmente
             if (li.classList.contains('finalizado')) {
-                exerciciosFinalizados.push(li);
+                elementos.completedList.appendChild(li);
             } else {
-                exerciciosOrdenados.push(li);
+                elementos.listaExercicios.appendChild(li);
             }
         });
-
-        exerciciosOrdenados.forEach(li => elementos.listaExercicios.appendChild(li));
-        exerciciosFinalizados.forEach(li => elementos.listaExercicios.appendChild(li));
-        atualizarProgressoGeral();
+        atualizarProgressoGeral(); // Atualiza barra geral e visibilidade da seção "Concluídos"
     };
     
     const init = () => {
         carregarProgresso();
-        elementos.quoteText.textContent = frasesMotivacionais[Math.floor(Math.random() * frasesMotivacionais.length)];
+        // elementos.quoteText.textContent = frasesMotivacionais[Math.floor(Math.random() * frasesMotivacionais.length)]; // Removido
 
         dadosTreino.forEach((dia, index) => {
             const btn = document.createElement('button');
             btn.className = 'btn-dia';
-            btn.textContent = dia.dia;
+            btn.textContent = dia.dia.substring(0, 3); 
+            btn.title = dia.dia;
             btn.dataset.index = index;
             elementos.seletorDias.appendChild(btn);
             btn.addEventListener('click', () => {
@@ -253,11 +265,15 @@ document.addEventListener('DOMContentLoaded', () => {
         elementos.completion.closeBtn.addEventListener('click', () => elementos.completion.overlay.classList.add('hidden'));
         
         elementos.botaoResetar.addEventListener('click', () => {
-            if (confirm('Tem certeza que quer apagar todo o progresso da semana?')) {
-                progresso = {};
-                salvarProgresso();
-                location.reload();
-            }
+            elementos.reset.overlay.classList.remove('hidden');
+        });
+        elementos.reset.cancelBtn.addEventListener('click', () => {
+            elementos.reset.overlay.classList.add('hidden');
+        });
+        elementos.reset.confirmBtn.addEventListener('click', () => {
+            progresso = {};
+            salvarProgresso();
+            location.reload();
         });
         
         let hoje = new Date().getDay() - 1;
