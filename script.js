@@ -201,8 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- FIM DA LÓGICA DE CLIQUE ATUALIZADA ---
 
 
-    // (Função handleRightClickExercicio removida, não é mais necessária)
-
     const abrirModalInfo = (ex) => {
         elementos.modal.titulo.textContent = ex.nome;
         elementos.modal.gif.src = ex.gifUrl;
@@ -266,22 +264,24 @@ document.addEventListener('DOMContentLoaded', () => {
             li.dataset.id = id;
             li.dataset.exIndex = exIndex;
 
-            // Botão Info Inline
+            // --- NOVO innerHTML com melhor hierarquia ---
             li.innerHTML = `
                 <div class="exercicio-progress-fill"></div>
                 <div class="set-counter">${seriesFeitas}/${ex.series}</div>
                 <div class="detalhes-exercicio">
                     <h3>${ex.nome}</h3>
-                    <p>${ex.reps}</p>
-                    <button class="btn-info-inline">i</button>
+                    <div class="exercicio-meta">
+                        <p>${ex.reps}</p>
+                        <button class="btn-info-inline">i</button>
+                    </div>
                 </div>
             `;
+            // --- Fim da alteração ---
 
             atualizarVisualCardExercicio(li, id, ex);
             
-            // --- ATUALIZADO --- Apenas um listener de clique
+            // Apenas um listener de clique
             li.addEventListener('click', handleClickExercicio);
-            // Listener de contextmenu removido
 
             li.querySelector('.btn-info-inline').addEventListener('click', (e) => {
                 e.stopPropagation();
