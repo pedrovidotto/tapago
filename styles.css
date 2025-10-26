@@ -1,14 +1,14 @@
 /* 1. ROOT & GLOBAL STYLES */
 :root {
-  /* NOVA PALETA DEFINITIVA */
+  /* TEMA CLARO (DEFAULT - PALETA NOVA) */
   --cor-fundo: #F5F1E9; /* Bege */
   --cor-superficie: #FFFEFC; /* Off-white */
   --cor-primaria: #FF8C00; /* Laranja (Ativo/Destaque) */
-  --cor-sucesso: #198754; /* Verde Escuro (Mantido para progresso) */
+  --cor-sucesso: #198754; /* Verde Escuro (Progresso) */
   --cor-perigo: #DC3545; /* Vermelho Padrão */
   --cor-texto-principal: #1B5E20; /* Verde Escuro (Tipografia) */
   --cor-texto-secundario: #556B2F; /* Cinza Esverdeado */
-  --cor-texto-terciario: #A9A9A9; /* Cinza mais claro (DarkGray) */
+  --cor-texto-terciario: #A9A9A9; /* Cinza claro */
   --cor-borda: #1976D2; /* Azul Escuro (Linhas/Bordas) */
   --cor-borda-muted: rgba(25, 118, 210, 0.3); /* Azul Escuro Transparente */
 
@@ -18,6 +18,27 @@
   --completion-overlay-bg: rgba(27, 94, 32, 0.85);
   --progresso-fill-bg: rgba(25, 135, 84, 0.15); /* Verde sucesso transparente */
 }
+
+body[data-theme="dark"] {
+  /* TEMA ESCURO (DERIVADO) */
+  --cor-fundo: #2D2A27; /* Marrom escuro */
+  --cor-superficie: #3E3B39; /* Marrom superfície */
+  --cor-primaria: #FF8C00; /* Laranja (Mantido) */
+  --cor-sucesso: #2AAA8A; /* Verde Água (Contraste) */
+  --cor-perigo: #FA8072; /* Salmão (Contraste) */
+  --cor-texto-principal: #F5F1E9; /* Bege (Texto claro) */
+  --cor-texto-secundario: #BDB7AE; /* Bege acinzentado */
+  --cor-texto-terciario: #8B867E; /* Bege mais escuro */
+  --cor-borda: #4A5C6A; /* Azul acinzentado */
+  --cor-borda-muted: rgba(74, 92, 106, 0.4);
+
+  --hover-color: rgba(255, 140, 0, 0.15);
+  --hover-color-icon: rgba(245, 241, 233, 0.1);
+  --modal-overlay-bg: rgba(45, 42, 39, 0.8);
+  --completion-overlay-bg: rgba(45, 42, 39, 0.9);
+  --progresso-fill-bg: rgba(42, 170, 138, 0.25);
+}
+
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -42,18 +63,36 @@ header { margin-bottom: 1.5rem; }
 .header-top-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-between; /* Espaça botão, logo, div vazia */
   margin-bottom: 1.5rem;
   height: 44px;
 }
 
-.logo-container { text-align: center; }
-#app-logo { max-height: 35px; width: auto; display: block; margin: 0 auto;}
+/* Botão Ícone Genérico (usado para tema e fechar modal) */
+.btn-icon {
+    background: none; border: none;
+    color: var(--cor-texto-secundario);
+    cursor: pointer; padding: 8px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    flex-shrink: 0; /* Impede que encolha */
+}
+.btn-icon:hover {
+    color: var(--cor-texto-principal);
+    background-color: var(--hover-color-icon);
+}
+.btn-icon svg { display: block; width: 24px; height: 24px; }
+
+
+.logo-container { flex-grow: 1; text-align: center; } /* Permite centralizar o logo */
+#app-logo { max-height: 35px; width: auto; display: inline-block; /* Alinha verticalmente se necessário */ }
 
 .header-divider-subtle {
     border: none; height: 1px;
     background-color: var(--cor-borda-muted); /* Azul transparente */
     margin: 0;
+    transition: background-color 0.3s ease;
 }
 
 /* Título GRANDE do dia */
@@ -65,6 +104,7 @@ header { margin-bottom: 1.5rem; }
     margin: 1.5rem 0;
     text-align: left;
     letter-spacing: -0.03em;
+    transition: color 0.3s ease;
 }
 
 /* Navegação inline dos dias */
@@ -97,12 +137,12 @@ header { margin-bottom: 1.5rem; }
 
 .inline-day-btn.active {
     background-color: var(--cor-primaria); /* Laranja */
-    color: var(--cor-superficie); /* Texto branco */
+    color: var(--cor-superficie); /* Texto branco/off-white */
     border-color: var(--cor-primaria); /* Laranja */
     font-weight: 600;
 }
 
-.header-divider { border: none; height: 1px; background-color: var(--cor-borda); margin: 1.5rem 0; }
+.header-divider { border: none; height: 1px; background-color: var(--cor-borda); margin: 1.5rem 0; transition: background-color 0.3s ease; }
 
 /* 3. WORKOUT CARD & AREA */
 #workout-card {
@@ -111,6 +151,7 @@ header { margin-bottom: 1.5rem; }
     padding: 1rem 1.5rem 1.5rem 1.5rem;
     box-shadow: 0 4px 15px rgba(0,0,0,0.07);
     margin-top: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
     border: 1px solid var(--cor-borda); /* Azul */
 }
 
@@ -118,7 +159,7 @@ header { margin-bottom: 1.5rem; }
 
 .progress-container {
   width: 100%; height: 8px;
-  background-color: var(--cor-borda); /* Azul bem claro */
+  background-color: var(--cor-borda); /* Azul claro */
   border-radius: 4px; overflow: hidden;
 }
 .progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s; } /* Verde */
@@ -129,7 +170,9 @@ header { margin-bottom: 1.5rem; }
   margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--cor-borda); color: var(--cor-texto-secundario);
   font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
+
 
 .exercicio-item {
   border-bottom: 1px solid var(--cor-borda-muted); /* Azul transparente */
@@ -184,8 +227,9 @@ header { margin-bottom: 1.5rem; }
     margin: 0 0 5px 0;
     line-height: 1.4;
     color: var(--cor-texto-principal); /* Verde Escuro */
+    transition: color 0.3s ease;
 }
-.detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; font-weight: 400; }
+.detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; font-weight: 400; transition: color 0.3s ease;}
 .btn-info {
   background-color: transparent; color: var(--cor-texto-secundario); border: none;
   border-radius: 50%; width: 42px; height: 42px;
@@ -216,9 +260,9 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
   z-index: 1000; opacity: 1; transition: opacity 0.3s ease-in-out;
 }
 .modal, .completion-card {
-  background: var(--cor-superficie); /* Off-white */
+  background: var(--cor-superficie); /* Off-white / Cinza superfície */
   padding: 28px; border-radius: 16px;
-  border: 1px solid var(--cor-borda); /* Azul */
+  border: 1px solid var(--cor-borda); /* Azul / Azul acinzentado */
   max-width: 500px; width: 95%; position: relative;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); transform: scale(1);
   transition: transform 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
@@ -227,49 +271,42 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 .overlay.hidden .modal,
 .overlay.hidden .completion-card { transform: scale(0.95); }
 
-/* Botão Ícone Genérico (Fecha Modal) */
-.btn-icon {
-  color: var(--cor-texto-secundario); background: none; border: none;
-  cursor: pointer; font-weight: 600; transition: color 0.2s;
-  position: absolute; top: 18px; right: 18px; font-size: 2rem; line-height: 1; padding: 5px;
-}
-.btn-icon:hover { color: var(--cor-texto-principal); }
-
 #completion-close-btn { position: static; font-size: 1rem; padding: 12px 28px; border-radius: 8px; border: 1px solid var(--cor-borda); margin-top: 1.5rem; text-transform: uppercase; letter-spacing: 0.03em; background-color: transparent; color: var(--cor-texto-secundario); }
 #completion-close-btn:hover { border-color: var(--cor-texto-secundario); background-color: var(--hover-color); color: var(--cor-texto-principal); }
 
 .modal-info-conteudo { text-align: center; }
-#modal-info-titulo { font-size: 1.7rem; margin-bottom: 1.2rem; font-weight: 700; text-align: left; color: var(--cor-texto-principal); }
-#modal-info-gif { max-width: 100%; border-radius: 12px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); }
+#modal-info-titulo { font-size: 1.7rem; margin-bottom: 1.2rem; font-weight: 700; text-align: left; color: var(--cor-texto-principal); transition: color 0.3s ease;}
+#modal-info-gif { max-width: 100%; border-radius: 12px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); transition: border-color 0.3s ease;}
 .instructions-list {
     font-size: 1.05rem; line-height: 1.8; color: var(--cor-texto-secundario);
     text-align: left; font-weight: 400; padding-left: 1.8em; margin: 0;
+    transition: color 0.3s ease;
 }
 .instructions-list li { margin-bottom: 1em; }
-.instructions-list li::marker { font-weight: 600; color: var(--cor-texto-principal); }
+.instructions-list li::marker { font-weight: 600; color: var(--cor-texto-principal); transition: color 0.3s ease;}
 
-.modal-title { font-size: 1.3rem; margin-bottom: 1rem; color: var(--cor-texto-principal); font-weight: 600; text-align: left;}
-.modal-text { color: var(--cor-texto-secundario); margin-bottom: 1.5rem; font-size: 1.05rem; text-align: left; font-weight: 400;}
+.modal-title { font-size: 1.3rem; margin-bottom: 1rem; color: var(--cor-texto-principal); font-weight: 600; text-align: left; transition: color 0.3s ease;}
+.modal-text { color: var(--cor-texto-secundario); margin-bottom: 1.5rem; font-size: 1.05rem; text-align: left; font-weight: 400; transition: color 0.3s ease;}
 .modal-buttons { display: flex; justify-content: flex-end; gap: 12px; }
 /* Botão Primário Genérico */
 .btn-primary {
     background-color: var(--cor-primaria); /* Laranja */
-    color: var(--cor-superficie); /* Branco */
+    color: var(--cor-superficie); /* Branco/Off-white */
     border: 1px solid var(--cor-primaria); border-radius: 8px; padding: 10px 20px;
     font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
     text-transform: uppercase; letter-spacing: 0.03em;
 }
-.btn-primary:hover { background-color: #E67E00; border-color: #CC7000;} /* Laranja mais escuro */
+.btn-primary:hover { background-color: #E67E00; border-color: #CC7000;}
 /* Botões do modal de reset */
 .modal-btn { padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
 #cancel-reset-btn { /* Já herda do .btn-secondary */ }
 #confirm-reset-btn { /* Usa .btn-primary */ background-color: var(--cor-perigo); border-color: var(--cor-perigo); color: #fff; }
-#confirm-reset-btn:hover { background-color: #C82333; border-color: #C82333; color: #fff;}
+#confirm-reset-btn:hover { background-color: #C82333; border-color: #C82333; color: #fff;} /* Vermelho mais escuro */
 
-#completion-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.8rem; color: var(--cor-texto-principal); text-transform: uppercase; letter-spacing: 0.05em; }
-#completion-text { font-size: 1.6rem; font-weight: 500; line-height: 1.5; color: var(--cor-sucesso); margin-bottom: 0; }
+#completion-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.8rem; color: var(--cor-texto-principal); text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.3s ease; }
+#completion-text { font-size: 1.6rem; font-weight: 500; line-height: 1.5; color: var(--cor-sucesso); margin-bottom: 0; transition: color 0.3s ease;}
 .completion-card { padding: 35px; text-align: center; }
-.divider { width: 100%; height: 1px; background-color: var(--cor-borda); margin: 24px 0; }
+.divider { width: 100%; height: 1px; background-color: var(--cor-borda); margin: 24px 0; transition: background-color 0.3s ease;}
 .hidden { display: none !important; }
 
 /* Media Query para telas menores */
