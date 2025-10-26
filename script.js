@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Frases motivacionais removidas conforme solicitado anteriormente
-    // const frasesMotivacionais = [...];
+    const frasesMotivacionais = [
+        "A jornada de mil quilômetros começa com um único passo. Você já está no caminho.", "Não se compare com os outros. Compare-se com a pessoa que você era ontem.", "A consistência transforma o esforço em resultado.", "Acredite no seu potencial. Você é mais forte do que imagina.", "Cada gota de suor é um degrau a mais na escada do seu objetivo.", "Feito é melhor que perfeito. Apenas comece.", "A dor que você sente hoje é a força que você sentirá amanhã.", "Sua mente desistirá cem vezes antes do seu corpo.", "A motivação te faz começar. O hábito te faz continuar.", "Um pequeno progresso a cada dia resulta em grandes resultados.", "O corpo alcança o que a mente acredita.", "Não diminua o objetivo. Aumente o esforço.", "Você não encontrará a força de vontade, você precisa criá-la.", "Se você quer algo que nunca teve, precisa fazer algo que nunca fez.", "O segredo do sucesso é a constância no propósito."
+    ];
 
     const mensagensDeConclusao = [
         "Mandou bem hoje! O descanso é parte do processo. Volte com tudo no próximo treino!",
@@ -91,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const salvarProgresso = () => { localStorage.setItem('minhaRotinaMinimalInterativaFinal', JSON.stringify(progresso)); };
 
     const verificarConclusaoSemanal = () => {
+        // Verifica se é o último dia E se todos os exercícios dele estão completos
         if (diaAtivoIndex !== dadosTreino.length - 1) return false;
         const ultimoDiaExercicios = dadosTreino[diaAtivoIndex].exercicios;
         return ultimoDiaExercicios.every((ex, exIndex) => {
@@ -137,10 +139,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // FUNÇÃO ATUALIZADA para usar width no fill do background
     const atualizarVisualCard = (card, id, ex) => {
         const seriesFeitas = progresso[id] || 0;
-        const porcentagem = seriesFeitas / ex.series;
-        card.querySelector('.exercicio-progress-fill').style.transform = `scaleY(${porcentagem})`;
+        const porcentagem = (seriesFeitas / ex.series) * 100; // Porcentagem de 0 a 100
+        card.querySelector('.exercicio-progress-fill').style.width = `${porcentagem}%`; // Usa width
         card.classList.toggle('finalizado', seriesFeitas >= ex.series);
     };
 
@@ -197,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const renderizarTreino = (index) => {
         diaAtivoIndex = index;
         const diaData = dadosTreino[index];
-        elementos.headerTitle.textContent = `${diaData.dia}`; // Mostra só o nome do dia
+        elementos.headerTitle.textContent = `${diaData.dia}`;
         elementos.listaExercicios.innerHTML = '';
         elementos.completedList.innerHTML = '';
         elementos.completion.overlay.classList.add('hidden');
@@ -228,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             li.querySelector('.btn-info').addEventListener('click', (e) => {
                 e.stopPropagation();
                 elementos.modal.titulo.textContent = ex.nome;
-                elementos.modal.gif.src = ex.gifUrl;
+                elementos.modal.gif.src = ex.gifUrl; // Usa o caminho local
                 elementos.modal.instrucoes.textContent = ex.instrucoes;
                 elementos.modal.overlay.classList.remove('hidden');
             });
