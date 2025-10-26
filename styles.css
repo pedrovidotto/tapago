@@ -1,43 +1,23 @@
 /* 1. ROOT & GLOBAL STYLES */
 :root {
-  /* TEMA CLARO (DEFAULT) */
-  --cor-fundo: #F1F3F5; /* Cinza Mais Claro */
-  --cor-superficie: #FFFFFF; /* Branco Puro */
-  --cor-primaria: #0D6EFD; /* Azul Vibrante */
-  --cor-sucesso: #198754; /* Verde Escuro */
+  /* NOVA PALETA DEFINITIVA */
+  --cor-fundo: #F5F1E9; /* Bege */
+  --cor-superficie: #FFFEFC; /* Off-white */
+  --cor-primaria: #FF8C00; /* Laranja (Ativo/Destaque) */
+  --cor-sucesso: #198754; /* Verde Escuro (Mantido para progresso) */
   --cor-perigo: #DC3545; /* Vermelho Padrão */
-  --cor-texto-principal: #212529; /* Preto Suave */
-  --cor-texto-secundario: #6C757D; /* Cinza Médio */
-  --cor-texto-terciario: #ADB5BD; /* Cinza mais claro */
-  --cor-borda: #E9ECEF; /* Cinza Muito Claro */
-  --cor-borda-muted: rgba(33, 37, 41, 0.1);
+  --cor-texto-principal: #1B5E20; /* Verde Escuro (Tipografia) */
+  --cor-texto-secundario: #556B2F; /* Cinza Esverdeado */
+  --cor-texto-terciario: #A9A9A9; /* Cinza mais claro (DarkGray) */
+  --cor-borda: #1976D2; /* Azul Escuro (Linhas/Bordas) */
+  --cor-borda-muted: rgba(25, 118, 210, 0.3); /* Azul Escuro Transparente */
 
-  --hover-color: rgba(13, 110, 253, 0.05); /* Azul hover */
-  --hover-color-icon: rgba(33, 37, 41, 0.08);
-  --modal-overlay-bg: rgba(33, 37, 41, 0.7);
-  --completion-overlay-bg: rgba(33, 37, 41, 0.85);
-  --progresso-fill-bg: rgba(25, 135, 84, 0.1); /* Verde mais suave */
+  --hover-color: rgba(255, 140, 0, 0.08); /* Laranja hover suave */
+  --hover-color-icon: rgba(27, 94, 32, 0.08); /* Verde hover suave */
+  --modal-overlay-bg: rgba(27, 94, 32, 0.7); /* Fundo modal verde escuro semi-transparente */
+  --completion-overlay-bg: rgba(27, 94, 32, 0.85);
+  --progresso-fill-bg: rgba(25, 135, 84, 0.15); /* Verde sucesso transparente */
 }
-
-body[data-theme="dark"] {
-  --cor-fundo: #1C1C1E; /* Cinza Escuro iOS */
-  --cor-superficie: #2C2C2E; /* Cinza Superfície iOS */
-  --cor-primaria: #0A84FF; /* Azul iOS Dark */
-  --cor-sucesso: #30D158; /* Verde iOS Dark */
-  --cor-perigo: #FF453A; /* Vermelho iOS Dark */
-  --cor-texto-principal: #FFFFFF; /* Branco Puro */
-  --cor-texto-secundario: #8E8E93; /* Cinza Secundário iOS */
-  --cor-texto-terciario: #48484A; /* Cinza Terciário iOS */
-  --cor-borda: #3A3A3C; /* Borda iOS Dark */
-  --cor-borda-muted: rgba(99, 99, 102, 0.3);
-
-  --hover-color: rgba(10, 132, 255, 0.1);
-  --hover-color-icon: rgba(255, 255, 255, 0.1);
-  --modal-overlay-bg: rgba(0, 0, 0, 0.75);
-  --completion-overlay-bg: rgba(0, 0, 0, 0.9);
-  --progresso-fill-bg: rgba(48, 209, 88, 0.2);
-}
-
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -46,133 +26,102 @@ body {
   background-color: var(--cor-fundo);
   color: var(--cor-texto-principal);
   font-size: 17px;
-  line-height: 1.7; 
+  line-height: 1.7;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-bottom: 2rem; 
+  padding-bottom: 2rem;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 2. LAYOUT & HEADER */
-.container { max-width: 600px; margin: 0 auto; padding: 20px; } /* Padding ligeiramente menor */
+.container { max-width: 600px; margin: 0 auto; padding: 20px; }
 
 header { margin-bottom: 1.5rem; }
 
 .header-top-row {
   display: flex;
   align-items: center;
-  justify-content: space-between; 
-  margin-bottom: 1.5rem; 
-  height: 44px; 
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  height: 44px;
 }
 
-/* Botão Genérico de Ícone (usado para tema e fechar modal) */
-.btn-icon {
-    background: none;
-    border: none;
-    color: var(--cor-texto-secundario);
-    cursor: pointer;
-    padding: 8px; /* Área clicável */
-    display: flex; /* Para alinhar SVG */
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%; /* Fica redondo no hover */
-    transition: color 0.2s ease, background-color 0.2s ease;
-}
-.btn-icon:hover {
-    color: var(--cor-texto-principal);
-    background-color: var(--hover-color-icon);
-}
-.btn-icon svg {
-    display: block; /* Remove espaço extra abaixo do SVG */
-    width: 24px;
-    height: 24px;
-}
+.logo-container { text-align: center; }
+#app-logo { max-height: 35px; width: auto; display: block; margin: 0 auto;}
 
-
-.logo-container {
-    text-align: center; 
-}
-
-#app-logo { max-height: 35px; width: auto; display: block; margin: 0 auto;} 
-
-.header-divider-subtle { /* Linha fina */
-    border: none;
-    height: 1px;
-    background-color: var(--cor-borda-muted);
-    margin: 0; 
-    transition: background-color 0.3s ease;
+.header-divider-subtle {
+    border: none; height: 1px;
+    background-color: var(--cor-borda-muted); /* Azul transparente */
+    margin: 0;
 }
 
 /* Título GRANDE do dia */
 #workout-day-title {
-    font-size: 3.8rem; 
+    font-size: 3.8rem;
     font-weight: 300; /* Light */
     color: var(--cor-texto-principal);
-    line-height: 1.15; 
-    margin: 1.5rem 0; 
+    line-height: 1.15;
+    margin: 1.5rem 0;
     text-align: left;
     letter-spacing: -0.03em;
-    transition: color 0.3s ease;
 }
 
 /* Navegação inline dos dias */
 #day-selector-inline {
     display: flex;
-    gap: 10px; 
+    gap: 10px;
     margin: 1.5rem 0;
-    flex-wrap: wrap; 
-    justify-content: flex-start; 
+    flex-wrap: wrap;
+    justify-content: center; /* Centraliza os botões */
 }
 
 .inline-day-btn {
     background-color: transparent;
     color: var(--cor-texto-secundario);
-    border: 1px solid var(--cor-borda);
-    border-radius: 20px; /* Formato pílula */
-    padding: 6px 16px; 
+    border: 1px solid var(--cor-borda); /* Azul */
+    border-radius: 20px;
+    padding: 6px 16px;
     font-size: 0.9rem;
-    font-weight: 500; /* Medium */
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
 }
 
 .inline-day-btn:hover {
-    background-color: var(--hover-color);
-    border-color: var(--cor-texto-secundario);
-    color: var(--cor-texto-principal);
+    background-color: var(--hover-color); /* Laranja suave */
+    border-color: var(--cor-primaria); /* Laranja */
+    color: var(--cor-primaria);
 }
 
 .inline-day-btn.active {
-    background-color: var(--cor-primaria);
+    background-color: var(--cor-primaria); /* Laranja */
     color: var(--cor-superficie); /* Texto branco */
-    border-color: var(--cor-primaria);
-    font-weight: 600; /* Semibold */
+    border-color: var(--cor-primaria); /* Laranja */
+    font-weight: 600;
 }
 
-.header-divider { border: none; height: 1px; background-color: var(--cor-borda); margin: 1.5rem 0; transition: background-color 0.3s ease; }
+.header-divider { border: none; height: 1px; background-color: var(--cor-borda); margin: 1.5rem 0; }
 
 /* 3. WORKOUT CARD & AREA */
 #workout-card {
-    background-color: var(--cor-superficie);
+    background-color: var(--cor-superficie); /* Off-white */
     border-radius: 16px;
-    padding: 1rem 1.5rem 1.5rem 1.5rem; 
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
     box-shadow: 0 4px 15px rgba(0,0,0,0.07);
     margin-top: 1rem;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-    border: 1px solid var(--cor-borda); /* Borda adicionada */
+    border: 1px solid var(--cor-borda); /* Azul */
 }
 
 #cabecalho-treino { margin-bottom: 1.5rem; }
 
 .progress-container {
-  width: 100%; height: 8px; 
-  background-color: var(--cor-borda); 
+  width: 100%; height: 8px;
+  background-color: var(--cor-borda); /* Azul bem claro */
   border-radius: 4px; overflow: hidden;
 }
-.progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s; }
+.progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s; } /* Verde */
 
 #lista-exercicios, #completed-list { list-style: none; padding: 0; margin-top: 1.5rem; }
 
@@ -180,14 +129,13 @@ header { margin-bottom: 1.5rem; }
   margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--cor-borda); color: var(--cor-texto-secundario);
   font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;
-  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
-
 .exercicio-item {
-  border-bottom: 1px solid var(--cor-borda-muted); padding: 20px 0;
-  display: flex; align-items: center; gap: 1rem; 
-  cursor: pointer; position: relative; overflow: hidden; /* Volta para hidden */
+  border-bottom: 1px solid var(--cor-borda-muted); /* Azul transparente */
+  padding: 20px 0;
+  display: flex; align-items: center; gap: 1rem;
+  cursor: pointer; position: relative; overflow: hidden;
   transition: opacity 0.4s ease, transform 0.3s ease, background-color 0.2s ease;
   background-color: transparent;
 }
@@ -199,7 +147,7 @@ header { margin-bottom: 1.5rem; }
 /* Indicador de Progresso (Background Fill) */
 .exercicio-progress-fill {
   position: absolute; left: 0; top: 0; bottom: 0; width: 0%; height: 100%;
-  background-color: var(--progresso-fill-bg);
+  background-color: var(--progresso-fill-bg); /* Verde transparente */
   transition: width 0.4s ease-in-out;
   z-index: 1;
 }
@@ -207,21 +155,20 @@ header { margin-bottom: 1.5rem; }
 /* Contador de Séries */
 .set-counter {
     position: relative; z-index: 2; user-select: none;
-    font-size: 1rem; font-weight: 500; 
+    font-size: 1rem; font-weight: 500;
     color: var(--cor-texto-secundario);
-    background-color: var(--cor-fundo); /* Fundo igual ao body */
-    padding: 4px 10px; border-radius: 6px; 
+    background-color: var(--cor-fundo); /* Bege */
+    padding: 4px 10px; border-radius: 6px;
     min-width: 45px; text-align: center;
     margin-right: 0.5rem; flex-shrink: 0;
-    border: 1px solid var(--cor-borda);
+    border: 1px solid var(--cor-borda); /* Azul */
     transition: all 0.3s ease;
 }
 .exercicio-item.finalizado .set-counter {
-    color: var(--cor-sucesso); 
-    background-color: rgba(25, 135, 84, 0.08); 
-    border-color: rgba(25, 135, 84, 0.3); 
+    color: var(--cor-sucesso);
+    background-color: rgba(25, 135, 84, 0.08);
+    border-color: rgba(25, 135, 84, 0.3);
 }
-
 
 .detalhes-exercicio, .btn-info { position: relative; z-index: 2; user-select: none; }
 .exercicio-item.finalizado { opacity: 0.6; cursor: default; }
@@ -232,19 +179,18 @@ header { margin-bottom: 1.5rem; }
 
 .detalhes-exercicio { flex-grow: 1; }
 .detalhes-exercicio h3 {
-    font-size: 1.25rem; 
+    font-size: 1.25rem;
     font-weight: 600; /* Semibold */
     margin: 0 0 5px 0;
-    line-height: 1.4; 
-    color: var(--cor-texto-principal);
-    transition: color 0.3s ease;
+    line-height: 1.4;
+    color: var(--cor-texto-principal); /* Verde Escuro */
 }
-.detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; font-weight: 400; transition: color 0.3s ease;}
+.detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; font-weight: 400; }
 .btn-info {
   background-color: transparent; color: var(--cor-texto-secundario); border: none;
-  border-radius: 50%; width: 42px; height: 42px; 
+  border-radius: 50%; width: 42px; height: 42px;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s; font-size: 1.5rem; 
+  transition: all 0.2s; font-size: 1.5rem;
   padding: 0; margin-left: auto;
 }
 .btn-info:hover { background-color: var(--hover-color-icon); color: var(--cor-texto-principal); }
@@ -254,28 +200,27 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 /* Botão Secundário Genérico */
 .btn-secondary {
     background-color: transparent; color: var(--cor-texto-secundario);
-    border: 1px solid var(--cor-borda); border-radius: 8px; padding: 10px 20px;
+    border: 1px solid var(--cor-borda); /* Azul */
+    border-radius: 8px; padding: 10px 20px;
     font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
     text-transform: uppercase; letter-spacing: 0.03em;
 }
 .btn-secondary:hover { color: var(--cor-texto-principal); border-color: var(--cor-texto-secundario); background-color: var(--hover-color); }
-#botao-resetar { /* Específico se necessário */
-    padding: 12px 25px; 
-    font-size: 1rem; 
-}
-
+#botao-resetar { padding: 12px 25px; font-size: 1rem; }
 
 /* 5. MODALS & OVERLAYS */
 .overlay, .modal-overlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: var(--modal-overlay-bg); backdrop-filter: blur(5px); 
+  background: var(--modal-overlay-bg); backdrop-filter: blur(5px);
   display: flex; justify-content: center; align-items: center;
   z-index: 1000; opacity: 1; transition: opacity 0.3s ease-in-out;
 }
 .modal, .completion-card {
-  background: var(--cor-superficie); padding: 28px; border-radius: 16px; 
-  border: 1px solid var(--cor-borda); max-width: 500px; width: 95%; position: relative;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); transform: scale(1); 
+  background: var(--cor-superficie); /* Off-white */
+  padding: 28px; border-radius: 16px;
+  border: 1px solid var(--cor-borda); /* Azul */
+  max-width: 500px; width: 95%; position: relative;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); transform: scale(1);
   transition: transform 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
 }
 .overlay.hidden { opacity: 0; pointer-events: none; }
@@ -283,7 +228,7 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 .overlay.hidden .completion-card { transform: scale(0.95); }
 
 /* Botão Ícone Genérico (Fecha Modal) */
-.btn-icon { /* Reutilizado para fechar */
+.btn-icon {
   color: var(--cor-texto-secundario); background: none; border: none;
   cursor: pointer; font-weight: 600; transition: color 0.2s;
   position: absolute; top: 18px; right: 18px; font-size: 2rem; line-height: 1; padding: 5px;
@@ -294,67 +239,46 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 #completion-close-btn:hover { border-color: var(--cor-texto-secundario); background-color: var(--hover-color); color: var(--cor-texto-principal); }
 
 .modal-info-conteudo { text-align: center; }
-#modal-info-titulo { font-size: 1.7rem; margin-bottom: 1.2rem; font-weight: 700; text-align: left; color: var(--cor-texto-principal); transition: color 0.3s ease;}
-#modal-info-gif { max-width: 100%; border-radius: 12px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); transition: border-color 0.3s ease;}
+#modal-info-titulo { font-size: 1.7rem; margin-bottom: 1.2rem; font-weight: 700; text-align: left; color: var(--cor-texto-principal); }
+#modal-info-gif { max-width: 100%; border-radius: 12px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); }
 .instructions-list {
     font-size: 1.05rem; line-height: 1.8; color: var(--cor-texto-secundario);
     text-align: left; font-weight: 400; padding-left: 1.8em; margin: 0;
-    transition: color 0.3s ease;
 }
 .instructions-list li { margin-bottom: 1em; }
-.instructions-list li::marker { font-weight: 600; color: var(--cor-texto-principal); transition: color 0.3s ease;}
+.instructions-list li::marker { font-weight: 600; color: var(--cor-texto-principal); }
 
-.modal-title { font-size: 1.3rem; margin-bottom: 1rem; color: var(--cor-texto-principal); font-weight: 600; text-align: left; transition: color 0.3s ease;}
-.modal-text { color: var(--cor-texto-secundario); margin-bottom: 1.5rem; font-size: 1.05rem; text-align: left; font-weight: 400; transition: color 0.3s ease;}
+.modal-title { font-size: 1.3rem; margin-bottom: 1rem; color: var(--cor-texto-principal); font-weight: 600; text-align: left;}
+.modal-text { color: var(--cor-texto-secundario); margin-bottom: 1.5rem; font-size: 1.05rem; text-align: left; font-weight: 400;}
 .modal-buttons { display: flex; justify-content: flex-end; gap: 12px; }
 /* Botão Primário Genérico */
 .btn-primary {
-    background-color: var(--cor-primaria); color: #fff;
+    background-color: var(--cor-primaria); /* Laranja */
+    color: var(--cor-superficie); /* Branco */
     border: 1px solid var(--cor-primaria); border-radius: 8px; padding: 10px 20px;
     font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
     text-transform: uppercase; letter-spacing: 0.03em;
 }
-.btn-primary:hover { background-color: #0B5ED7; border-color: #0A58CA;} /* Ajuste se a cor primária mudar */
+.btn-primary:hover { background-color: #E67E00; border-color: #CC7000;} /* Laranja mais escuro */
 /* Botões do modal de reset */
-.modal-btn { /* Estilo base herdado do btn-secondary e btn-primary */
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-}
+.modal-btn { padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
 #cancel-reset-btn { /* Já herda do .btn-secondary */ }
-#confirm-reset-btn { /* Já herda do .btn-primary */
-    background-color: var(--cor-perigo); border-color: var(--cor-perigo); color: #fff;
-}
+#confirm-reset-btn { /* Usa .btn-primary */ background-color: var(--cor-perigo); border-color: var(--cor-perigo); color: #fff; }
 #confirm-reset-btn:hover { background-color: #C82333; border-color: #C82333; color: #fff;}
 
-#completion-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.8rem; color: var(--cor-texto-principal); text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.3s ease; }
-#completion-text { font-size: 1.6rem; font-weight: 500; line-height: 1.5; color: var(--cor-sucesso); margin-bottom: 0; transition: color 0.3s ease;}
+#completion-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.8rem; color: var(--cor-texto-principal); text-transform: uppercase; letter-spacing: 0.05em; }
+#completion-text { font-size: 1.6rem; font-weight: 500; line-height: 1.5; color: var(--cor-sucesso); margin-bottom: 0; }
 .completion-card { padding: 35px; text-align: center; }
-.divider { width: 100%; height: 1px; background-color: var(--cor-borda); margin: 24px 0; transition: background-color 0.3s ease;}
+.divider { width: 100%; height: 1px; background-color: var(--cor-borda); margin: 24px 0; }
 .hidden { display: none !important; }
 
 /* Media Query para telas menores */
 @media (max-width: 480px) {
-    #workout-day-title {
-        font-size: 3rem; /* Diminui título principal */
-    }
-    .detalhes-exercicio h3 {
-        font-size: 1.1rem;
-    }
-    .detalhes-exercicio p {
-        font-size: 0.9rem;
-    }
-    #day-selector-inline {
-        gap: 8px; /* Diminui espaço */
-        justify-content: center; /* Centraliza botões se quebrar linha */
-    }
-    .inline-day-btn {
-        padding: 5px 14px; /* Menor */
-        font-size: 0.85rem;
-    }
-     #modal-info-titulo { font-size: 1.5rem; }
-     .instructions-list { font-size: 1rem; }
+    #workout-day-title { font-size: 3rem; }
+    .detalhes-exercicio h3 { font-size: 1.1rem; }
+    .detalhes-exercicio p { font-size: 0.9rem; }
+    #day-selector-inline { gap: 8px; justify-content: center; }
+    .inline-day-btn { padding: 5px 14px; font-size: 0.85rem; }
+    #modal-info-titulo { font-size: 1.5rem; }
+    .instructions-list { font-size: 1rem; }
 }
