@@ -46,62 +46,72 @@ body {
   background-color: var(--cor-fundo);
   color: var(--cor-texto-principal);
   font-size: 17px;
-  line-height: 1.7; /* Aumenta mais */
+  line-height: 1.7; 
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-bottom: 2rem; /* Espaço no final */
+  padding-bottom: 2rem; 
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 2. LAYOUT & HEADER */
-.container { max-width: 600px; margin: 0 auto; padding: 20px; }
+.container { max-width: 600px; margin: 0 auto; padding: 20px; } /* Padding ligeiramente menor */
 
 header { margin-bottom: 1.5rem; }
 
 .header-top-row {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Espaça os itens */
-  margin-bottom: 1.5rem; /* Aumenta espaço abaixo */
-  height: 44px; /* Altura definida */
+  justify-content: space-between; 
+  margin-bottom: 1.5rem; 
+  height: 44px; 
 }
+
+/* Botão Genérico de Ícone (usado para tema e fechar modal) */
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--cor-texto-secundario);
+    cursor: pointer;
+    padding: 8px; /* Área clicável */
+    display: flex; /* Para alinhar SVG */
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Fica redondo no hover */
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+.btn-icon:hover {
+    color: var(--cor-texto-principal);
+    background-color: var(--hover-color-icon);
+}
+.btn-icon svg {
+    display: block; /* Remove espaço extra abaixo do SVG */
+    width: 24px;
+    height: 24px;
+}
+
 
 .logo-container {
-    /* O flex-grow faria o logo centralizar se não houvesse o botão esquerdo */
-    /* Se quiser centralizado mesmo com o botão, use position absolute no botão */
-    text-align: center; /* Centraliza a imagem dentro */
+    text-align: center; 
 }
 
-#app-logo { max-height: 35px; width: auto; display: block; margin: 0 auto;} /* Reduz logo */
-
-.theme-toggle {
-    padding: 8px; /* Área clicável maior */
-}
-.theme-toggle svg {
-    display: block;
-    color: var(--cor-texto-secundario);
-    transition: color 0.2s ease;
-}
-.theme-toggle:hover svg {
-    color: var(--cor-texto-principal);
-}
-
+#app-logo { max-height: 35px; width: auto; display: block; margin: 0 auto;} 
 
 .header-divider-subtle { /* Linha fina */
     border: none;
     height: 1px;
     background-color: var(--cor-borda-muted);
-    margin: 0; /* Remove margens */
+    margin: 0; 
+    transition: background-color 0.3s ease;
 }
 
 /* Título GRANDE do dia */
 #workout-day-title {
-    font-size: 3.8rem; /* Pouco menor que antes */
+    font-size: 3.8rem; 
     font-weight: 300; /* Light */
     color: var(--cor-texto-principal);
-    line-height: 1.15; /* Ajuste */
-    margin: 1.5rem 0; /* Espaçamento vertical */
+    line-height: 1.15; 
+    margin: 1.5rem 0; 
     text-align: left;
     letter-spacing: -0.03em;
     transition: color 0.3s ease;
@@ -110,10 +120,10 @@ header { margin-bottom: 1.5rem; }
 /* Navegação inline dos dias */
 #day-selector-inline {
     display: flex;
-    gap: 10px; /* Espaço entre botões */
+    gap: 10px; 
     margin: 1.5rem 0;
-    flex-wrap: wrap; /* Quebra linha em telas pequenas */
-    justify-content: flex-start; /* Alinha à esquerda */
+    flex-wrap: wrap; 
+    justify-content: flex-start; 
 }
 
 .inline-day-btn {
@@ -121,7 +131,7 @@ header { margin-bottom: 1.5rem; }
     color: var(--cor-texto-secundario);
     border: 1px solid var(--cor-borda);
     border-radius: 20px; /* Formato pílula */
-    padding: 6px 16px; /* Padding interno */
+    padding: 6px 16px; 
     font-size: 0.9rem;
     font-weight: 500; /* Medium */
     cursor: pointer;
@@ -142,23 +152,24 @@ header { margin-bottom: 1.5rem; }
     font-weight: 600; /* Semibold */
 }
 
-.header-divider { border: none; height: 1px; background-color: var(--cor-borda); margin: 1.5rem 0; }
+.header-divider { border: none; height: 1px; background-color: var(--cor-borda); margin: 1.5rem 0; transition: background-color 0.3s ease; }
 
 /* 3. WORKOUT CARD & AREA */
 #workout-card {
     background-color: var(--cor-superficie);
     border-radius: 16px;
-    padding: 1rem 1.5rem 1.5rem 1.5rem; /* Ajusta padding */
+    padding: 1rem 1.5rem 1.5rem 1.5rem; 
     box-shadow: 0 4px 15px rgba(0,0,0,0.07);
     margin-top: 1rem;
     transition: background-color 0.3s ease, border-color 0.3s ease;
+    border: 1px solid var(--cor-borda); /* Borda adicionada */
 }
 
 #cabecalho-treino { margin-bottom: 1.5rem; }
 
 .progress-container {
-  width: 100%; height: 8px;
-  background-color: var(--cor-borda); /* Fundo claro */
+  width: 100%; height: 8px; 
+  background-color: var(--cor-borda); 
   border-radius: 4px; overflow: hidden;
 }
 .progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s; }
@@ -172,9 +183,10 @@ header { margin-bottom: 1.5rem; }
   transition: color 0.3s ease, border-color 0.3s ease;
 }
 
+
 .exercicio-item {
   border-bottom: 1px solid var(--cor-borda-muted); padding: 20px 0;
-  display: flex; align-items: center; gap: 1rem;
+  display: flex; align-items: center; gap: 1rem; 
   cursor: pointer; position: relative; overflow: hidden; /* Volta para hidden */
   transition: opacity 0.4s ease, transform 0.3s ease, background-color 0.2s ease;
   background-color: transparent;
@@ -195,20 +207,21 @@ header { margin-bottom: 1.5rem; }
 /* Contador de Séries */
 .set-counter {
     position: relative; z-index: 2; user-select: none;
-    font-size: 1rem; font-weight: 500;
+    font-size: 1rem; font-weight: 500; 
     color: var(--cor-texto-secundario);
     background-color: var(--cor-fundo); /* Fundo igual ao body */
-    padding: 4px 10px; border-radius: 6px;
+    padding: 4px 10px; border-radius: 6px; 
     min-width: 45px; text-align: center;
     margin-right: 0.5rem; flex-shrink: 0;
     border: 1px solid var(--cor-borda);
     transition: all 0.3s ease;
 }
 .exercicio-item.finalizado .set-counter {
-    color: var(--cor-sucesso);
-    background-color: rgba(25, 135, 84, 0.08); /* Fundo verde mais suave */
-    border-color: rgba(25, 135, 84, 0.3); /* Borda verde suave */
+    color: var(--cor-sucesso); 
+    background-color: rgba(25, 135, 84, 0.08); 
+    border-color: rgba(25, 135, 84, 0.3); 
 }
+
 
 .detalhes-exercicio, .btn-info { position: relative; z-index: 2; user-select: none; }
 .exercicio-item.finalizado { opacity: 0.6; cursor: default; }
@@ -219,19 +232,19 @@ header { margin-bottom: 1.5rem; }
 
 .detalhes-exercicio { flex-grow: 1; }
 .detalhes-exercicio h3 {
-    font-size: 1.25rem; /* Nome maior */
+    font-size: 1.25rem; 
     font-weight: 600; /* Semibold */
     margin: 0 0 5px 0;
-    line-height: 1.4;
+    line-height: 1.4; 
     color: var(--cor-texto-principal);
     transition: color 0.3s ease;
 }
 .detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; font-weight: 400; transition: color 0.3s ease;}
 .btn-info {
   background-color: transparent; color: var(--cor-texto-secundario); border: none;
-  border-radius: 50%; width: 42px; height: 42px; /* Botão info maior */
+  border-radius: 50%; width: 42px; height: 42px; 
   cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s; font-size: 1.5rem; /* Ícone maior */
+  transition: all 0.2s; font-size: 1.5rem; 
   padding: 0; margin-left: auto;
 }
 .btn-info:hover { background-color: var(--hover-color-icon); color: var(--cor-texto-principal); }
@@ -247,22 +260,22 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 }
 .btn-secondary:hover { color: var(--cor-texto-principal); border-color: var(--cor-texto-secundario); background-color: var(--hover-color); }
 #botao-resetar { /* Específico se necessário */
-    padding: 12px 25px; /* Padding maior */
-    font-size: 1rem; /* Fonte maior */
+    padding: 12px 25px; 
+    font-size: 1rem; 
 }
 
 
 /* 5. MODALS & OVERLAYS */
 .overlay, .modal-overlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: var(--modal-overlay-bg); backdrop-filter: blur(5px);
+  background: var(--modal-overlay-bg); backdrop-filter: blur(5px); 
   display: flex; justify-content: center; align-items: center;
   z-index: 1000; opacity: 1; transition: opacity 0.3s ease-in-out;
 }
 .modal, .completion-card {
-  background: var(--cor-superficie); padding: 28px; border-radius: 16px;
+  background: var(--cor-superficie); padding: 28px; border-radius: 16px; 
   border: 1px solid var(--cor-borda); max-width: 500px; width: 95%; position: relative;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); transform: scale(1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); transform: scale(1); 
   transition: transform 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
 }
 .overlay.hidden { opacity: 0; pointer-events: none; }
@@ -270,7 +283,7 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 .overlay.hidden .completion-card { transform: scale(0.95); }
 
 /* Botão Ícone Genérico (Fecha Modal) */
-.btn-icon {
+.btn-icon { /* Reutilizado para fechar */
   color: var(--cor-texto-secundario); background: none; border: none;
   cursor: pointer; font-weight: 600; transition: color 0.2s;
   position: absolute; top: 18px; right: 18px; font-size: 2rem; line-height: 1; padding: 5px;
@@ -322,3 +335,26 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 .completion-card { padding: 35px; text-align: center; }
 .divider { width: 100%; height: 1px; background-color: var(--cor-borda); margin: 24px 0; transition: background-color 0.3s ease;}
 .hidden { display: none !important; }
+
+/* Media Query para telas menores */
+@media (max-width: 480px) {
+    #workout-day-title {
+        font-size: 3rem; /* Diminui título principal */
+    }
+    .detalhes-exercicio h3 {
+        font-size: 1.1rem;
+    }
+    .detalhes-exercicio p {
+        font-size: 0.9rem;
+    }
+    #day-selector-inline {
+        gap: 8px; /* Diminui espaço */
+        justify-content: center; /* Centraliza botões se quebrar linha */
+    }
+    .inline-day-btn {
+        padding: 5px 14px; /* Menor */
+        font-size: 0.85rem;
+    }
+     #modal-info-titulo { font-size: 1.5rem; }
+     .instructions-list { font-size: 1rem; }
+}
