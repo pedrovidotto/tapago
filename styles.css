@@ -65,7 +65,7 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 2. LAYOUT & HEADER (REVERTIDO) */
+/* 2. LAYOUT & HEADER */
 .container { max-width: 600px; margin: 0 auto; padding: 20px; }
 
 header { margin-bottom: 1.5rem; }
@@ -101,22 +101,15 @@ header { margin-bottom: 1.5rem; }
 
 .logo-container { order: 1; text-align: left; } 
 
-/* --- ESTILOS DO LOGO ATUALIZADOS --- */
-/* Estilos antigos para #app-logo removidos */
-
 /* Novo estilo para o logo em texto */
 #app-logo-text {
     font-family: 'Instrument Serif', serif;
-    font-size: 1.6rem; /* Tamanho elegante (aprox 27px) */
+    font-size: 1.6rem; 
     font-weight: 400;
     color: var(--cor-texto-principal);
     line-height: 1.2;
     display: inline-block;
 }
-
-/* Filtros de tema antigos removidos */
-/* --- FIM DAS MUDANÇAS NO LOGO --- */
-
 
 .header-divider-subtle {
     border: none; height: 1px;
@@ -128,7 +121,7 @@ header { margin-bottom: 1.5rem; }
 /* Título GRANDE do dia */
 #workout-day-title {
     font-size: 3.8rem;
-    font-weight: 300; /* Light */
+    font-weight: 300; 
     color: var(--cor-texto-principal);
     line-height: 1.15;
     margin: 1.5rem 0;
@@ -157,6 +150,7 @@ header { margin-bottom: 1.5rem; }
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
+    font-family: 'Instrument Serif', serif; /* NOVO */
 }
 
 .inline-day-btn:hover {
@@ -202,7 +196,7 @@ body[data-theme="dark"] #workout-card {
   border-radius: 4px; overflow: hidden;
   transition: background-color 0.3s ease;
 }
-.progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s, background-color 0.3s ease; } /* Cor de Sucesso (Verde) */
+.progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s, background-color 0.3s ease; } 
 
 #lista-exercicios, #completed-list { list-style: none; padding: 0; margin-top: 1.5rem; }
 
@@ -254,7 +248,7 @@ body[data-theme="dark"] #workout-card {
 /* Indicador de Progresso (Background Fill) */
 .exercicio-progress-fill {
   position: absolute; left: 0; top: 0; bottom: 0; width: 0%; height: 100%;
-  background-color: var(--progresso-fill-bg); /* Fundo Verde transparente */
+  background-color: var(--progresso-fill-bg); 
   transition: width 0.4s ease-in-out, background-color 0.3s ease;
   z-index: 1;
 }
@@ -262,7 +256,7 @@ body[data-theme="dark"] #workout-card {
 /* Contador de Séries */
 .set-counter {
     position: relative; z-index: 2; user-select: none;
-    font-size: 1rem; font-weight: 500;
+    font-size: 1rem; 
     color: var(--cor-texto-secundario);
     background-color: var(--cor-fundo);
     padding: 4px 10px; border-radius: 6px;
@@ -270,6 +264,8 @@ body[data-theme="dark"] #workout-card {
     margin-right: 0.5rem; flex-shrink: 0;
     border: 1px solid var(--cor-borda);
     transition: all 0.3s ease;
+    font-family: 'Instrument Serif', serif; /* NOVO */
+    font-weight: 600; /* NOVO: Mais legível */
 }
 .set-counter:hover {
     border-color: var(--cor-texto-secundario);
@@ -277,7 +273,7 @@ body[data-theme="dark"] #workout-card {
 }
 
 .exercicio-item.finalizado .set-counter {
-    color: var(--cor-sucesso); /* Cor de Sucesso (Verde) */
+    color: var(--cor-sucesso); 
     background-color: rgba(var(--cor-sucesso-rgb), 0.1);
     border-color: rgba(var(--cor-sucesso-rgb), 0.3);
 }
@@ -345,12 +341,13 @@ body[data-theme="dark"] #workout-card {
   justify-content: center;
   transition: all 0.2s;
   font-size: 0.9rem; 
-  font-style: italic;
   font-weight: 500;
   padding: 0;
   flex-shrink: 0;
   margin: 0;
   margin-left: 1rem; 
+  font-family: 'Instrument Serif', serif; /* NOVO */
+  font-style: normal; /* NOVO: Remove o itálico antigo */
 }
 .btn-info-inline:hover {
   background-color: var(--hover-color-icon);
@@ -369,7 +366,10 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
     text-transform: uppercase; letter-spacing: 0.03em;
 }
 .btn-secondary:hover { color: var(--cor-texto-principal); border-color: var(--cor-texto-secundario); background-color: var(--hover-color); }
-#botao-resetar { padding: 12px 25px; font-size: 1rem; }
+
+/* REGRA REMOVIDA: Os estilos de #botao-resetar foram removidos 
+   pois agora ele usa a classe .inline-day-btn */
+
 
 /* 5. MODALS & OVERLAYS */
 .overlay, .modal-overlay {
@@ -403,7 +403,15 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 #completion-close-btn:hover { border-color: var(--cor-texto-secundario); background-color: var(--hover-color); color: var(--cor-texto-principal); }
 
 .modal-info-conteudo { text-align: center; }
-#modal-info-titulo { font-size: 1.7rem; margin-bottom: 1.2rem; font-weight: 700; text-align: left; color: var(--cor-texto-principal); transition: color 0.3s ease;}
+#modal-info-titulo { 
+    font-size: 1.7rem; 
+    margin-bottom: 1.2rem; 
+    font-weight: 700; 
+    text-align: left; 
+    color: var(--cor-texto-principal); 
+    transition: color 0.3s ease;
+    font-family: 'Instrument Serif', serif; /* NOVO */
+}
 
 /* HIERARQUIA MODAL */
 #modal-info-gif { max-width: 100%; border-radius: 12px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); transition: border-color 0.3s ease;}
