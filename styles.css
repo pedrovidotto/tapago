@@ -9,13 +9,13 @@
   --cor-texto-principal: #212529; /* Preto Suave */
   --cor-texto-secundario: #6C757D; /* Cinza Médio */
   --cor-borda: #DEE2E6; /* Cinza Claro */
-  --cor-borda-muted: rgba(33, 37, 41, 0.15);
+  --cor-borda-muted: rgba(33, 37, 41, 0.1); /* Borda mais suave ainda */
 
-  --hover-color: rgba(13, 110, 253, 0.05); /* Azul bem transparente */
+  --hover-color: rgba(13, 110, 253, 0.05);
   --hover-color-icon: rgba(33, 37, 41, 0.08);
   --modal-overlay-bg: rgba(33, 37, 41, 0.7);
   --completion-overlay-bg: rgba(33, 37, 41, 0.85);
-  --progresso-fill-bg: rgba(25, 135, 84, 0.15); /* Verde sucesso transparente */
+  --progresso-fill-bg: rgba(25, 135, 84, 0.15);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,204 +24,169 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--cor-fundo);
   color: var(--cor-texto-principal);
-  font-size: 16px; /* Tamanho base */
+  font-size: 16px;
   line-height: 1.6;
-  font-weight: 400; /* Regular */
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-top: env(safe-area-inset-top);
+  /* Garante espaço para a barra de navegação fixa no fundo em iOS */
+  padding-bottom: 80px; /* Ajuste conforme a altura da barra inferior */
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 2. LAYOUT & HEADER */
-.container { max-width: 600px; margin: 0 auto; padding: 25px; } /* Mais padding */
+.container { max-width: 600px; margin: 0 auto; padding: 25px; }
 
-header { margin-bottom: 1.5rem; text-align: center; }
-#app-logo { max-height: 50px; width: auto; margin-bottom: 1.5rem; }
+header { margin-bottom: 1.5rem; }
 
-/* Seção HOJE */
-.today-workout-display {
-    text-align: left;
+/* Título GRANDE do dia */
+#workout-day-title {
+    font-size: 3.5rem; /* BEM GRANDE */
+    font-weight: 800; /* Extra Bold */
+    color: var(--cor-texto-principal);
+    line-height: 1.1;
     margin-bottom: 1.5rem;
-    padding: 15px 0; /* Aumenta padding */
-    border-bottom: 1px solid var(--cor-borda); /* Divisor abaixo */
-}
-.today-label {
-    font-size: 1rem; /* Maior */
-    font-weight: 500; /* Médio */
-    color: var(--cor-texto-secundario);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    display: block;
-    margin-bottom: 5px;
-}
-#today-workout-name {
-    font-size: 2.2rem; /* Fonte BEM maior */
-    font-weight: 700; /* Bold */
-    color: var(--cor-texto-principal);
-    line-height: 1.2;
+    text-align: left;
 }
 
+.header-divider { border: none; height: 1px; background-color: var(--cor-borda); margin: 1.5rem 0; }
 
-.header-divider { display: none; } /* Remove divisor antigo */
+/* 3. WORKOUT AREA */
+#container-treino { margin-top: 0; } /* Remove margem superior extra */
 
-/* 3. DAY CARDS CONTAINER */
-#day-cards-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem; /* Aumenta espaço entre cartões */
-}
+#cabecalho-treino { margin-bottom: 1.5rem; } /* Espaçamento abaixo da barra */
 
-.day-card {
-    background-color: var(--cor-superficie);
-    border: 1px solid var(--cor-borda);
-    border-radius: 16px; /* Mais arredondado */
-    overflow: hidden;
-    transition: all 0.3s ease-out;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* Sombra mais pronunciada */
-}
-
-.day-card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.25rem 1.5rem; /* Mais padding */
-    cursor: pointer;
-    background-color: var(--cor-superficie);
-    position: relative;
-    z-index: 2;
-    transition: background-color 0.2s ease;
-}
-.day-card-header:hover {
-    background-color: var(--hover-color);
-}
-
-.day-card-header h3 {
-    font-size: 1.5rem; /* Título do dia maior */
-    font-weight: 600; /* Semibold */
-    margin: 0;
-    color: var(--cor-texto-principal);
-    transition: color 0.3s ease-out;
-}
-.day-card.active .day-card-header h3 {
-     color: var(--cor-primaria); /* Cor primária quando ativo */
-}
-
-
-.day-card-toggle-icon {
-    transition: transform 0.3s ease-out;
-    width: 28px; /* Ícone maior */
-    height: 28px;
-    color: var(--cor-texto-secundario);
-}
-.day-card.active .day-card-toggle-icon {
-    transform: rotate(180deg);
-    color: var(--cor-primaria); /* Cor primária quando ativo */
-}
-
-
-.day-card-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-out, padding 0.4s ease-out, border-top-color 0.3s ease-out;
-    padding: 0 1.5rem; /* Padding horizontal maior */
-    border-top: 1px solid transparent;
-    position: relative;
-    z-index: 1;
-}
-
-.day-card.active .day-card-content {
-    max-height: 2000px;
-    padding: 1.5rem 1.5rem; /* Padding vertical quando aberto */
-    border-top-color: var(--cor-borda);
-}
-
-/* Barra de Progresso dentro do Card */
 .progress-container {
-  width: 100%; height: 8px; /* Mais grossa */
+  width: 100%; height: 8px;
   background-color: #E9ECEF;
-  border-radius: 4px; overflow: hidden; margin-bottom: 2rem;
+  border-radius: 4px; overflow: hidden;
 }
 .progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s; }
 
-/* Lista de Exercícios dentro do Card */
 #lista-exercicios, #completed-list { list-style: none; padding: 0; }
+
 .category-title {
-  margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem;
+  margin-top: 3rem; margin-bottom: 1rem; padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--cor-borda); color: var(--cor-texto-secundario);
   font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;
 }
 
 .exercicio-item {
-  border-bottom: 1px solid var(--cor-borda-muted); padding: 20px 0; /* Mais padding vertical */
-  display: flex; align-items: center; gap: 1rem; /* Ajusta gap */
+  border-bottom: 1px solid var(--cor-borda-muted); padding: 20px 0;
+  display: flex; align-items: center; gap: 1rem;
   cursor: pointer; position: relative; overflow: visible;
   transition: opacity 0.4s ease, transform 0.3s ease, background-color 0.2s ease;
   background-color: transparent;
 }
-.day-card-content ul > li:last-child { border-bottom: none; }
+#lista-exercicios > li:last-child,
+#completed-list > li:last-child { border-bottom: none; }
 
 .exercicio-item:hover { background-color: var(--hover-color); }
 
 .exercicio-progress-fill {
-  position: absolute; left: -12px; /* Mais afastado */
-  top: 20px; bottom: 20px; width: 5px; /* Mais grossa */
+  position: absolute; left: -12px; top: 20px; bottom: 20px; width: 5px;
   background-color: var(--cor-sucesso); border-radius: 2.5px;
   transform-origin: top; transform: scaleY(0); transition: transform 0.4s ease-in-out;
   z-index: 1;
 }
 
 .exercicio-icon, .detalhes-exercicio, .btn-info { position: relative; z-index: 2; user-select: none; }
-.exercicio-item.finalizado { opacity: 0.5; cursor: default; } /* Mais opaco */
+.exercicio-item.finalizado { opacity: 0.5; cursor: default; }
 #completed-list .exercicio-item { opacity: 0.5; cursor: default; }
 #completed-list .exercicio-item:hover { background-color: transparent; }
 
 .exercicio-item.finalizado .exercicio-progress-fill { transform: scaleY(1); }
 .exercicio-item.movendo { opacity: 0 !important; transform: translateY(10px); }
-/* Ícone removido dos itens de exercício para um look mais limpo */
-/* .exercicio-icon { font-size: 1.8rem; margin-left: 10px; color: var(--cor-texto-secundario); } */
-.detalhes-exercicio { flex-grow: 1; margin-left: 10px; /* Adiciona espaço onde estava o ícone */}
-/* Hierarquia Tipográfica: Nome do exercício mais pesado */
+
+/* Ícone Removido */
+.detalhes-exercicio { flex-grow: 1; margin-left: 10px; }
 .detalhes-exercicio h3 {
-    font-size: 1.25rem; /* Maior */
-    font-weight: 600; /* Semibold */
+    font-size: 1.25rem;
+    font-weight: 600;
     margin: 0 0 5px 0;
-    line-height: 1.4; /* Ajuste linha */
+    line-height: 1.4;
     color: var(--cor-texto-principal);
 }
-.detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; font-weight: 400; } /* Detalhes maiores */
+.detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; font-weight: 400; }
 .btn-info {
   background-color: transparent; color: var(--cor-texto-secundario); border: none;
-  border-radius: 50%; width: 40px; height: 40px; /* Botão maior */
+  border-radius: 50%; width: 40px; height: 40px;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all 0.2s; font-size: 1.4rem; /* Ícone maior */
+  transition: all 0.2s; font-size: 1.4rem;
   padding: 0; margin-left: auto;
 }
 .btn-info:hover { background-color: var(--hover-color-icon); color: var(--cor-texto-principal); }
 
-/* 4. FOOTER & RESET */
-footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
-#botao-resetar { /* Botão Secundário */
-  background-color: transparent; color: var(--cor-texto-secundario);
-  border: 1px solid var(--cor-borda); border-radius: 8px; padding: 12px 25px; /* Padding maior */
-  font-size: 1rem; /* Fonte maior */
-  font-weight: 500; cursor: pointer; transition: all 0.2s ease;
-  text-transform: uppercase; letter-spacing: 0.03em;
+/* 4. BOTTOM NAVIGATION */
+#bottom-day-selector {
+    position: fixed; /* Fixa no fundo */
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around; /* Espaça igualmente */
+    align-items: center;
+    background-color: var(--cor-superficie);
+    padding: 10px 15px env(safe-area-inset-bottom); /* Padding com segurança para iOS */
+    border-top: 1px solid var(--cor-borda);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 500; /* Garante que fique acima do conteúdo */
 }
-#botao-resetar:hover { color: var(--cor-texto-principal); border-color: var(--cor-texto-secundario); background-color: var(--hover-color); }
+
+.bottom-day-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--cor-texto-secundario);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem; /* Ligeiramente menor */
+    font-weight: 500; /* Médio */
+    padding: 8px 10px; /* Padding interno */
+    cursor: pointer;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    border-radius: 6px; /* Bordas levemente arredondadas */
+    text-align: center;
+}
+
+.bottom-day-btn:hover {
+    background-color: var(--hover-color);
+    color: var(--cor-texto-principal);
+}
+
+.bottom-day-btn.active {
+    color: var(--cor-primaria); /* Cor primária quando ativo */
+    font-weight: 600; /* Semibold */
+}
+
+/* Botão Reset na barra inferior */
+.btn-reset {
+    font-size: 0.85rem;
+    padding: 8px 15px;
+    color: var(--cor-texto-secundario);
+    border: 1px solid var(--cor-borda-muted);
+    border-radius: 6px;
+    background: transparent;
+}
+.btn-reset:hover {
+    color: var(--cor-perigo);
+    border-color: var(--cor-perigo);
+    background-color: rgba(220, 53, 69, 0.05);
+}
+
+
+/* Footer antigo removido, botão reset foi para a barra */
+footer { display: none; }
 
 /* 5. MODALS & OVERLAYS */
 .overlay, .modal-overlay {
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: var(--modal-overlay-bg); backdrop-filter: blur(5px); /* Mais desfoque */
+  background: var(--modal-overlay-bg); backdrop-filter: blur(5px);
   display: flex; justify-content: center; align-items: center;
   z-index: 1000; opacity: 1; transition: opacity 0.3s ease-in-out;
 }
 .modal, .completion-card {
-  background: var(--cor-superficie); padding: 28px; border-radius: 16px; /* Mais arredondado */
+  background: var(--cor-superficie); padding: 28px; border-radius: 16px;
   border: 1px solid var(--cor-borda); max-width: 500px; width: 95%; position: relative;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Sombra mais visível */
-  transform: scale(1); transition: transform 0.3s ease-in-out;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); transform: scale(1); transition: transform 0.3s ease-in-out;
 }
 .overlay.hidden { opacity: 0; pointer-events: none; }
 .overlay.hidden .modal,
@@ -230,9 +195,7 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 #modal-info-fechar-btn, #completion-close-btn {
   color: var(--cor-texto-secundario); background: none; border: none;
   cursor: pointer; font-weight: 600; transition: color 0.2s;
-  position: absolute; top: 18px; right: 18px; /* Ajuste posição */
-  font-size: 2rem; /* Maior */
-  line-height: 1; padding: 5px;
+  position: absolute; top: 18px; right: 18px; font-size: 2rem; line-height: 1; padding: 5px;
 }
 #modal-info-fechar-btn:hover { color: var(--cor-texto-principal); }
 
@@ -242,27 +205,34 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 .modal-info-conteudo { text-align: center; }
 #modal-info-titulo { font-size: 1.6rem; margin-bottom: 1.2rem; font-weight: 700; text-align: left; color: var(--cor-texto-principal); }
 #modal-info-gif { max-width: 100%; border-radius: 12px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); }
-/* Estilo para lista de instruções */
 .instructions-list {
-    font-size: 1.05rem; /* Fonte maior */
-    line-height: 1.8; /* Mais espaçado */
-    color: var(--cor-texto-secundario);
-    text-align: left;
-    font-weight: 400;
-    padding-left: 1.8em; /* Mais espaço para números */
-    margin: 0;
+    font-size: 1.05rem; line-height: 1.8; color: var(--cor-texto-secundario);
+    text-align: left; font-weight: 400; padding-left: 1.8em; margin: 0;
 }
 .instructions-list li { margin-bottom: 1em; }
-.instructions-list li::marker { font-weight: 600; color: var(--cor-texto-principal); } /* Números mais pesados */
+.instructions-list li::marker { font-weight: 600; color: var(--cor-texto-principal); }
 
 .modal-title { font-size: 1.3rem; margin-bottom: 1rem; color: var(--cor-texto-principal); font-weight: 600; text-align: left;}
 .modal-text { color: var(--cor-texto-secundario); margin-bottom: 1.5rem; font-size: 1.05rem; text-align: left; font-weight: 400;}
 .modal-buttons { display: flex; justify-content: flex-end; gap: 12px; }
-.modal-btn { padding: 12px 22px; border-radius: 8px; border: 1px solid var(--cor-borda); font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.03em; }
-#cancel-reset-btn { background-color: transparent; color: var(--cor-texto-secundario); }
-#cancel-reset-btn:hover { color: var(--cor-texto-principal); border-color: var(--cor-texto-secundario); background-color: var(--hover-color); }
-#confirm-reset-btn { background-color: var(--cor-perigo); color: #fff; border-color: var(--cor-perigo); }
-#confirm-reset-btn:hover { background-color: #C82333; border-color: #C82333; color: #fff; } /* Hover mais escuro */
+/* Estilo Botão Secundário */
+.btn-secondary {
+    background-color: transparent; color: var(--cor-texto-secundario);
+    border: 1px solid var(--cor-borda); border-radius: 8px; padding: 10px 20px;
+    font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
+    text-transform: uppercase; letter-spacing: 0.03em;
+}
+.btn-secondary:hover { color: var(--cor-texto-principal); border-color: var(--cor-texto-secundario); background-color: var(--hover-color); }
+/* Estilo Botão Primário */
+.btn-primary {
+    background-color: var(--cor-primaria); color: #fff;
+    border: 1px solid var(--cor-primaria); border-radius: 8px; padding: 10px 20px;
+    font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
+    text-transform: uppercase; letter-spacing: 0.03em;
+}
+.btn-primary:hover { background-color: #0B5ED7; border-color: #0A58CA;} /* Azul mais escuro no hover */
+.confirm-btn { background-color: var(--cor-perigo); border-color: var(--cor-perigo); color: #fff; }
+.confirm-btn:hover { background-color: #C82333; border-color: #C82333; color: #fff;}
 
 #completion-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.8rem; color: var(--cor-texto-principal); text-transform: uppercase; letter-spacing: 0.05em; }
 #completion-text { font-size: 1.6rem; font-weight: 500; line-height: 1.5; color: var(--cor-sucesso); margin-bottom: 0; }
