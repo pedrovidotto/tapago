@@ -1,6 +1,29 @@
 /* 1. ROOT & GLOBAL STYLES */
 :root {
-  /* TEMA CLARO (DEFAULT - PALETA NOVA) */
+  /* TEMA DARK (DEFAULT - PALETA NOVA) */
+  --cor-fundo: #121212; /* Preto Suave */
+  --cor-superficie: #1E1E1E; /* Cinza Escuro */
+  --cor-primaria: #EE8C46; /* Laranja */
+  --cor-sucesso: #30D158; /* Verde iOS Dark */
+  --cor-perigo: #FF453A; /* Vermelho iOS Dark */
+  --cor-texto-principal: #FFFFFF; /* Branco Puro */
+  --cor-texto-secundario: #8E8E93; /* Cinza Secundário iOS */
+  --cor-texto-terciario: #48484A; /* Cinza Terciário iOS */
+  --cor-borda: #3A3A3C; /* Borda iOS Dark */
+  --cor-borda-muted: rgba(99, 99, 102, 0.3);
+
+  --hover-color: rgba(238, 140, 70, 0.1); /* Laranja hover suave */
+  --hover-color-icon: rgba(255, 255, 255, 0.08);
+  --modal-overlay-bg: rgba(0, 0, 0, 0.75);
+  --completion-overlay-bg: rgba(0, 0, 0, 0.9);
+  --progresso-fill-bg: rgba(48, 209, 88, 0.2); /* Verde transparente */
+
+  /* RGB para transparências */
+  --cor-sucesso-rgb: 48, 209, 88;
+}
+
+body[data-theme="light"] {
+  /* TEMA CLARO (PALETA NOVA) */
   --cor-fundo: #F5F1E9; /* Bege */
   --cor-superficie: #FFFEFC; /* Off-white */
   --cor-primaria: #FF8C00; /* Laranja (Ativo/Destaque) */
@@ -12,31 +35,14 @@
   --cor-borda: #1976D2; /* Azul Escuro (Linhas/Bordas) */
   --cor-borda-muted: rgba(25, 118, 210, 0.3); /* Azul Escuro Transparente */
 
-  --hover-color: rgba(255, 140, 0, 0.08); /* Laranja hover suave */
-  --hover-color-icon: rgba(27, 94, 32, 0.08); /* Verde hover suave */
-  --modal-overlay-bg: rgba(27, 94, 32, 0.7); /* Fundo modal verde escuro semi-transparente */
+  --hover-color: rgba(255, 140, 0, 0.08);
+  --hover-color-icon: rgba(27, 94, 32, 0.08);
+  --modal-overlay-bg: rgba(27, 94, 32, 0.7);
   --completion-overlay-bg: rgba(27, 94, 32, 0.85);
-  --progresso-fill-bg: rgba(25, 135, 84, 0.15); /* Verde sucesso transparente */
-}
+  --progresso-fill-bg: rgba(25, 135, 84, 0.15);
 
-body[data-theme="dark"] {
-  /* TEMA ESCURO (DERIVADO) */
-  --cor-fundo: #2D2A27; /* Marrom escuro */
-  --cor-superficie: #3E3B39; /* Marrom superfície */
-  --cor-primaria: #FF8C00; /* Laranja (Mantido) */
-  --cor-sucesso: #2AAA8A; /* Verde Água (Contraste) */
-  --cor-perigo: #FA8072; /* Salmão (Contraste) */
-  --cor-texto-principal: #F5F1E9; /* Bege (Texto claro) */
-  --cor-texto-secundario: #BDB7AE; /* Bege acinzentado */
-  --cor-texto-terciario: #8B867E; /* Bege mais escuro */
-  --cor-borda: #4A5C6A; /* Azul acinzentado */
-  --cor-borda-muted: rgba(74, 92, 106, 0.4);
-
-  --hover-color: rgba(255, 140, 0, 0.15);
-  --hover-color-icon: rgba(245, 241, 233, 0.1);
-  --modal-overlay-bg: rgba(45, 42, 39, 0.8);
-  --completion-overlay-bg: rgba(45, 42, 39, 0.9);
-  --progresso-fill-bg: rgba(42, 170, 138, 0.25);
+  /* RGB para transparências */
+   --cor-sucesso-rgb: 25, 135, 84;
 }
 
 
@@ -63,12 +69,12 @@ header { margin-bottom: 1.5rem; }
 .header-top-row {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Espaça botão, logo, div vazia */
+  justify-content: space-between;
   margin-bottom: 1.5rem;
   height: 44px;
 }
 
-/* Botão Ícone Genérico (usado para tema e fechar modal) */
+/* Botão Ícone Genérico */
 .btn-icon {
     background: none; border: none;
     color: var(--cor-texto-secundario);
@@ -76,7 +82,7 @@ header { margin-bottom: 1.5rem; }
     display: flex; align-items: center; justify-content: center;
     border-radius: 50%;
     transition: color 0.2s ease, background-color 0.2s ease;
-    flex-shrink: 0; /* Impede que encolha */
+    flex-shrink: 0;
 }
 .btn-icon:hover {
     color: var(--cor-texto-principal);
@@ -85,12 +91,21 @@ header { margin-bottom: 1.5rem; }
 .btn-icon svg { display: block; width: 24px; height: 24px; }
 
 
-.logo-container { flex-grow: 1; text-align: center; } /* Permite centralizar o logo */
-#app-logo { max-height: 35px; width: auto; display: inline-block; /* Alinha verticalmente se necessário */ }
+.logo-container { flex-grow: 1; text-align: left; padding-left: 10px; } /* Alinha logo à esquerda */
+#app-logo { max-height: 35px; width: auto; display: inline-block; }
+/* Filtro para o logo no tema escuro */
+body[data-theme="dark"] #app-logo {
+   filter: brightness(0) invert(1); /* Tenta inverter para branco */
+}
+/* No tema claro, remove o filtro */
+body[data-theme="light"] #app-logo {
+   filter: none;
+}
+
 
 .header-divider-subtle {
     border: none; height: 1px;
-    background-color: var(--cor-borda-muted); /* Azul transparente */
+    background-color: var(--cor-borda-muted);
     margin: 0;
     transition: background-color 0.3s ease;
 }
@@ -113,13 +128,13 @@ header { margin-bottom: 1.5rem; }
     gap: 10px;
     margin: 1.5rem 0;
     flex-wrap: wrap;
-    justify-content: center; /* Centraliza os botões */
+    justify-content: center; /* Centraliza botões */
 }
 
 .inline-day-btn {
     background-color: transparent;
     color: var(--cor-texto-secundario);
-    border: 1px solid var(--cor-borda); /* Azul */
+    border: 1px solid var(--cor-borda);
     border-radius: 20px;
     padding: 6px 16px;
     font-size: 0.9rem;
@@ -130,15 +145,15 @@ header { margin-bottom: 1.5rem; }
 }
 
 .inline-day-btn:hover {
-    background-color: var(--hover-color); /* Laranja suave */
-    border-color: var(--cor-primaria); /* Laranja */
+    background-color: var(--hover-color);
+    border-color: var(--cor-primaria);
     color: var(--cor-primaria);
 }
 
 .inline-day-btn.active {
-    background-color: var(--cor-primaria); /* Laranja */
-    color: var(--cor-superficie); /* Texto branco/off-white */
-    border-color: var(--cor-primaria); /* Laranja */
+    background-color: var(--cor-primaria);
+    color: var(--cor-superficie);
+    border-color: var(--cor-primaria);
     font-weight: 600;
 }
 
@@ -146,23 +161,32 @@ header { margin-bottom: 1.5rem; }
 
 /* 3. WORKOUT CARD & AREA */
 #workout-card {
-    background-color: var(--cor-superficie); /* Off-white */
+    background-color: var(--cor-superficie);
     border-radius: 16px;
     padding: 1rem 1.5rem 1.5rem 1.5rem;
     box-shadow: 0 4px 15px rgba(0,0,0,0.07);
     margin-top: 1rem;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-    border: 1px solid var(--cor-borda); /* Azul */
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--cor-borda);
 }
+body[data-theme="light"] #workout-card {
+     box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+}
+body[data-theme="dark"] #workout-card {
+     box-shadow: none;
+     border-color: var(--cor-borda-muted); /* Borda mais suave no dark */
+}
+
 
 #cabecalho-treino { margin-bottom: 1.5rem; }
 
 .progress-container {
   width: 100%; height: 8px;
-  background-color: var(--cor-borda); /* Azul claro */
+  background-color: var(--cor-borda);
   border-radius: 4px; overflow: hidden;
+  transition: background-color 0.3s ease;
 }
-.progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s; } /* Verde */
+.progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s, background-color 0.3s ease; }
 
 #lista-exercicios, #completed-list { list-style: none; padding: 0; margin-top: 1.5rem; }
 
@@ -175,8 +199,7 @@ header { margin-bottom: 1.5rem; }
 
 
 .exercicio-item {
-  border-bottom: 1px solid var(--cor-borda-muted); /* Azul transparente */
-  padding: 20px 0;
+  border-bottom: 1px solid var(--cor-borda-muted); padding: 20px 0;
   display: flex; align-items: center; gap: 1rem;
   cursor: pointer; position: relative; overflow: hidden;
   transition: opacity 0.4s ease, transform 0.3s ease, background-color 0.2s ease;
@@ -190,8 +213,8 @@ header { margin-bottom: 1.5rem; }
 /* Indicador de Progresso (Background Fill) */
 .exercicio-progress-fill {
   position: absolute; left: 0; top: 0; bottom: 0; width: 0%; height: 100%;
-  background-color: var(--progresso-fill-bg); /* Verde transparente */
-  transition: width 0.4s ease-in-out;
+  background-color: var(--progresso-fill-bg);
+  transition: width 0.4s ease-in-out, background-color 0.3s ease;
   z-index: 1;
 }
 
@@ -200,17 +223,17 @@ header { margin-bottom: 1.5rem; }
     position: relative; z-index: 2; user-select: none;
     font-size: 1rem; font-weight: 500;
     color: var(--cor-texto-secundario);
-    background-color: var(--cor-fundo); /* Bege */
+    background-color: var(--cor-fundo);
     padding: 4px 10px; border-radius: 6px;
     min-width: 45px; text-align: center;
     margin-right: 0.5rem; flex-shrink: 0;
-    border: 1px solid var(--cor-borda); /* Azul */
+    border: 1px solid var(--cor-borda);
     transition: all 0.3s ease;
 }
 .exercicio-item.finalizado .set-counter {
     color: var(--cor-sucesso);
-    background-color: rgba(25, 135, 84, 0.08);
-    border-color: rgba(25, 135, 84, 0.3);
+    background-color: rgba(var(--cor-sucesso-rgb), 0.1); /* Usa RGB */
+    border-color: rgba(var(--cor-sucesso-rgb), 0.3);
 }
 
 .detalhes-exercicio, .btn-info { position: relative; z-index: 2; user-select: none; }
@@ -223,10 +246,10 @@ header { margin-bottom: 1.5rem; }
 .detalhes-exercicio { flex-grow: 1; }
 .detalhes-exercicio h3 {
     font-size: 1.25rem;
-    font-weight: 600; /* Semibold */
+    font-weight: 600;
     margin: 0 0 5px 0;
     line-height: 1.4;
-    color: var(--cor-texto-principal); /* Verde Escuro */
+    color: var(--cor-texto-principal);
     transition: color 0.3s ease;
 }
 .detalhes-exercicio p { margin: 0; color: var(--cor-texto-secundario); font-size: 1rem; font-weight: 400; transition: color 0.3s ease;}
@@ -244,8 +267,7 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 /* Botão Secundário Genérico */
 .btn-secondary {
     background-color: transparent; color: var(--cor-texto-secundario);
-    border: 1px solid var(--cor-borda); /* Azul */
-    border-radius: 8px; padding: 10px 20px;
+    border: 1px solid var(--cor-borda); border-radius: 8px; padding: 10px 20px;
     font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
     text-transform: uppercase; letter-spacing: 0.03em;
 }
@@ -260,10 +282,8 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
   z-index: 1000; opacity: 1; transition: opacity 0.3s ease-in-out;
 }
 .modal, .completion-card {
-  background: var(--cor-superficie); /* Off-white / Cinza superfície */
-  padding: 28px; border-radius: 16px;
-  border: 1px solid var(--cor-borda); /* Azul / Azul acinzentado */
-  max-width: 500px; width: 95%; position: relative;
+  background: var(--cor-superficie); padding: 28px; border-radius: 16px;
+  border: 1px solid var(--cor-borda); max-width: 500px; width: 95%; position: relative;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); transform: scale(1);
   transition: transform 0.3s ease-in-out, background-color 0.3s ease, border-color 0.3s ease;
 }
@@ -290,18 +310,23 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 .modal-buttons { display: flex; justify-content: flex-end; gap: 12px; }
 /* Botão Primário Genérico */
 .btn-primary {
-    background-color: var(--cor-primaria); /* Laranja */
-    color: var(--cor-superficie); /* Branco/Off-white */
+    background-color: var(--cor-primaria);
+    color: var(--cor-superficie); /* Cor da superfície como texto */
     border: 1px solid var(--cor-primaria); border-radius: 8px; padding: 10px 20px;
     font-size: 0.9rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;
     text-transform: uppercase; letter-spacing: 0.03em;
 }
-.btn-primary:hover { background-color: #E67E00; border-color: #CC7000;}
+/* Hover Laranja */
+body[data-theme="light"] .btn-primary:hover { background-color: #E67E00; border-color: #CC7000;}
+body[data-theme="dark"] .btn-primary:hover { background-color: #FFA500; border-color: #FF8C00;} /* Laranja mais claro no dark */
+
 /* Botões do modal de reset */
 .modal-btn { padding: 10px 20px; border-radius: 8px; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
 #cancel-reset-btn { /* Já herda do .btn-secondary */ }
 #confirm-reset-btn { /* Usa .btn-primary */ background-color: var(--cor-perigo); border-color: var(--cor-perigo); color: #fff; }
-#confirm-reset-btn:hover { background-color: #C82333; border-color: #C82333; color: #fff;} /* Vermelho mais escuro */
+/* Hover Vermelho */
+body[data-theme="light"] #confirm-reset-btn:hover { background-color: #C82333; border-color: #C82333; color: #fff;}
+body[data-theme="dark"] #confirm-reset-btn:hover { background-color: #FF5F57; border-color: #FF5F57; color: #000;}
 
 #completion-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.8rem; color: var(--cor-texto-principal); text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.3s ease; }
 #completion-text { font-size: 1.6rem; font-weight: 500; line-height: 1.5; color: var(--cor-sucesso); margin-bottom: 0; transition: color 0.3s ease;}
@@ -311,11 +336,13 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 
 /* Media Query para telas menores */
 @media (max-width: 480px) {
+    body { font-size: 16px; } /* Ajusta tamanho base menor */
     #workout-day-title { font-size: 3rem; }
-    .detalhes-exercicio h3 { font-size: 1.1rem; }
-    .detalhes-exercicio p { font-size: 0.9rem; }
+    .detalhes-exercicio h3 { font-size: 1.15rem; }
+    .detalhes-exercicio p { font-size: 0.95rem; }
     #day-selector-inline { gap: 8px; justify-content: center; }
     .inline-day-btn { padding: 5px 14px; font-size: 0.85rem; }
     #modal-info-titulo { font-size: 1.5rem; }
     .instructions-list { font-size: 1rem; }
+    .btn-info { width: 38px; height: 38px; font-size: 1.4rem;}
 }
