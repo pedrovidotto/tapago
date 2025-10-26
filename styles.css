@@ -69,11 +69,10 @@ body {
 header { margin-bottom: 1.5rem; }
 
 .header-top-row {
-  display: flex;
+  display: grid; /* MUDADO */
+  grid-template-columns: 1fr auto 1fr; /* MUDADO: Layout de 3 colunas */
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 1.5rem;
-  height: 44px;
 }
 
 /* Botão Ícone Genérico */
@@ -94,10 +93,22 @@ header { margin-bottom: 1.5rem; }
 }
 .btn-icon svg { display: block; width: 24px; height: 24px; }
 
-/* Posiciona botão tema à direita */
-#theme-toggle-btn { order: 3; }
+/* NOVO: Define a coluna do "fantasma" */
+.header-left-ghost {
+    grid-column: 1;
+}
 
-.logo-container { order: 1; text-align: left; }
+/* Posiciona botão tema à direita */
+#theme-toggle-btn { 
+    grid-column: 3; /* NOVO */
+    justify-self: end; /* NOVO: Alinha o botão à direita */
+}
+
+.logo-container { 
+    grid-column: 2; /* NOVO */
+    text-align: center; /* MUDADO: Centraliza o logo */
+}
+
 #app-logo { max-height: 35px; width: auto; display: inline-block; }
 
 /* Filtro para o logo */
@@ -213,13 +224,13 @@ body[data-theme="dark"] #workout-card {
 
 .exercicio-item:hover { background-color: var(--hover-color); }
 
-/* --- NOVO --- Feedback de Toque */
+/* Feedback de Toque */
 .exercicio-item:active {
   transform: scale(0.98);
   transition: transform 0.1s ease;
 }
 
-/* --- NOVO --- Estilos para Mensagem de Descanso */
+/* Estilos para Mensagem de Descanso */
 .rest-day-message {
   opacity: 1;
   cursor: default;
@@ -237,7 +248,6 @@ body[data-theme="dark"] #workout-card {
 .rest-day-message:active {
   transform: none;
 }
-/* --- FIM DAS NOVIDADES --- */
 
 
 /* Indicador de Progresso (Background Fill) */
@@ -260,7 +270,7 @@ body[data-theme="dark"] #workout-card {
     border: 1px solid var(--cor-borda);
     transition: all 0.3s ease;
 }
-/* --- ATUALIZADO --- Adiciona :hover ao contador para indicar clicabilidade */
+/* Adiciona :hover ao contador para indicar clicabilidade */
 .set-counter:hover {
     border-color: var(--cor-texto-secundario);
     background-color: var(--hover-color);
@@ -271,36 +281,51 @@ body[data-theme="dark"] #workout-card {
     background-color: rgba(var(--cor-sucesso-rgb), 0.1);
     border-color: rgba(var(--cor-sucesso-rgb), 0.3);
 }
-/* --- ATUALIZADO --- Remove o hover de finalizado */
+/* Remove o hover de finalizado */
 .exercicio-item.finalizado .set-counter:hover {
     background-color: rgba(var(--cor-sucesso-rgb), 0.1);
     border-color: rgba(var(--cor-sucesso-rgb), 0.3);
 }
 
 
-.detalhes-exercicio, .btn-info-inline { position: relative; z-index: 2; user-select: none; } /* Botão Info agora é inline */
+.detalhes-exercicio, .btn-info-inline { position: relative; z-index: 2; user-select: none; }
 .exercicio-item.finalizado { opacity: 0.6; cursor: default; }
 #completed-list .exercicio-item { opacity: 0.6; cursor: default; }
 #completed-list .exercicio-item:hover { background-color: transparent; }
 
 .exercicio-item.movendo { opacity: 0 !important; transform: translateY(10px); }
 
-.detalhes-exercicio { flex-grow: 1; display: flex; align-items: center; flex-wrap: wrap;}
+/* --- HIERARQUIA ATUALIZADA --- */
+.detalhes-exercicio { 
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; /* Empilha o h3 e o .exercicio-meta */
+    align-items: flex-start; /* Alinha à esquerda */
+    justify-content: center;
+}
 .detalhes-exercicio h3 {
     font-size: 1.25rem;
     font-weight: 600;
-    margin: 0 0.75rem 5px 0;
-    line-height: 1.4;
+    margin: 0; /* Remove margens */
+    line-height: 1.3; /* Altura de linha mais justa */
     color: var(--cor-texto-principal);
     transition: color 0.3s ease;
-    display: inline-block;
 }
+
+/* NOVO: Container para os metadados */
+.exercicio-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* Espaça os itens */
+    margin-top: 4px; /* Pequena distância do título */
+}
+
 .detalhes-exercicio p {
-    margin: 0; color: var(--cor-texto-secundario);
-    font-size: 1rem; font-weight: 400; transition: color 0.3s ease;
-    display: inline-block;
-    margin-bottom: 5px;
-    margin-right: 0.75rem;
+    margin: 0; /* Remove margens */
+    color: var(--cor-texto-secundario);
+    font-size: 1rem; 
+    font-weight: 400; 
+    transition: color 0.3s ease;
 }
 
 /* Botão Info Inline */
@@ -321,8 +346,7 @@ body[data-theme="dark"] #workout-card {
   font-weight: 500;
   padding: 0;
   flex-shrink: 0;
-  vertical-align: middle;
-  margin-bottom: 5px;
+  margin: 0; /* Remove margens */
 }
 .btn-info-inline:hover {
   background-color: var(--hover-color-icon);
@@ -376,12 +400,34 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 
 .modal-info-conteudo { text-align: center; }
 #modal-info-titulo { font-size: 1.7rem; margin-bottom: 1.2rem; font-weight: 700; text-align: left; color: var(--cor-texto-principal); transition: color 0.3s ease;}
+
+/* --- HIERARQUIA MODAL ATUALIZADA --- */
 #modal-info-gif { max-width: 100%; border-radius: 12px; margin: 1rem 0 1.5rem 0; border: 1px solid var(--cor-borda); transition: border-color 0.3s ease;}
+
+/* NOVO: Estilo do Subtítulo */
+.modal-subheader {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--cor-texto-principal);
+    text-align: left;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--cor-borda-muted);
+    padding-bottom: 0.5rem;
+}
+
 .instructions-list {
-    font-size: 1.05rem; line-height: 1.8; color: var(--cor-texto-secundario);
-    text-align: left; font-weight: 400; padding-left: 1.8em; margin: 0;
+    font-size: 1.05rem; 
+    line-height: 1.8; 
+    color: var(--cor-texto-secundario);
+    text-align: left; 
+    font-weight: 400; 
+    padding-left: 1.8em; 
+    margin: 1rem 0 0 0; /* Adiciona margin-top */
     transition: color 0.3s ease;
 }
+/* --- FIM DAS MUDANÇAS NO MODAL --- */
+
 .instructions-list li { margin-bottom: 1em; }
 .instructions-list li::marker { font-weight: 600; color: var(--cor-texto-principal); transition: color 0.3s ease;}
 
@@ -419,11 +465,15 @@ footer { text-align: center; margin-top: 3rem; padding-bottom: 2rem; }
 @media (max-width: 480px) {
     body { font-size: 16px; }
     #workout-day-title { font-size: 3rem; }
+    
+    /* --- HIERARQUIA ATUALIZADA (Mobile) --- */
     .detalhes-exercicio h3 { font-size: 1.15rem; }
     .detalhes-exercicio p { font-size: 0.95rem; }
+    .btn-info-inline { width: 26px; height: 26px; font-size: 0.75rem;}
+    /* --- Fim --- */
+
     #day-selector-inline { gap: 8px; justify-content: center; }
     .inline-day-btn { padding: 5px 14px; font-size: 0.85rem; }
     #modal-info-titulo { font-size: 1.5rem; }
     .instructions-list { font-size: 1rem; }
-    .btn-info-inline { width: 26px; height: 26px; font-size: 0.75rem;}
 }
