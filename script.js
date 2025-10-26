@@ -1,9 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ... (frasesMotivacionais e mensagensDeConclusao permanecem as mesmas)
-    const frasesMotivacionais = [
-        "A jornada de mil quilômetros começa com um único passo. Você já está no caminho.", "Não se compare com os outros. Compare-se com a pessoa que você era ontem.", "A consistência transforma o esforço em resultado.", "Acredite no seu potencial. Você é mais forte do que imagina.", "Cada gota de suor é um degrau a mais na escada do seu objetivo.", "Feito é melhor que perfeito. Apenas comece.", "A dor que você sente hoje é a força que você sentirá amanhã.", "Sua mente desistirá cem vezes antes do seu corpo.", "A motivação te faz começar. O hábito te faz continuar.", "Um pequeno progresso a cada dia resulta em grandes resultados.", "O corpo alcança o que a mente acredita.", "Não diminua o objetivo. Aumente o esforço.", "Você não encontrará a força de vontade, você precisa criá-la.", "Se você quer algo que nunca teve, precisa fazer algo que nunca fez.", "O segredo do sucesso é a constância no propósito."
-    ];
+    // Frases motivacionais removidas
+    // const frasesMotivacionais = [...];
+
     const mensagensDeConclusao = [
         "Mandou bem hoje! O descanso é parte do processo. Volte com tudo no próximo treino!",
         "Treino concluído com sucesso! Cada dia é um tijolo na construção do seu objetivo. Nos vemos no próximo!",
@@ -12,9 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Missão cumprida! Sinta orgulho do seu progresso. Estamos te esperando para o próximo desafio!"
     ];
 
-
-    // --- DADOS DO TREINO (PPLUL com GIFs locais) ---
-    const dadosTreino = [
+    const dadosTreino = [ // Mantém a rotina PPLUL
         {
             dia: "Push", iconEmoji: "💪", exercicios: [
                 { nome: "Supino na Máquina", series: 3, reps: "10-12 reps", gifUrl: "gifs/supino-maquina.gif", instrucoes: "1. Posição: Sente-se com as costas bem apoiadas...\n2. Execução: Empurre os pegadores para a frente...\n3. Dica: Mantenha os ombros para trás." },
@@ -59,7 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const elementos = {
-        dayCardsContainer: document.getElementById('day-cards-container'),
+        seletorDias: document.getElementById('seletor-dias'),
+        headerTitle: document.getElementById('header-title'),
+        listaExercicios: document.getElementById('lista-exercicios'),
+        completedList: document.getElementById('completed-list'),
+        completedSection: document.getElementById('completed-section'),
+        progressBar: document.getElementById('progress-bar'),
+        // quoteText: document.getElementById('quote-text'), // Removido
         botaoResetar: document.getElementById('botao-resetar'),
         modal: {
             overlay: document.getElementById('modal-info-overlay'),
@@ -82,14 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     let progresso = {};
-    let diaAtivoIndex = 0; // Mantém o controle do dia atualmente expandido
+    let diaAtivoIndex = 0;
 
-    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaCartoesFinal')) || {}; };
-    const salvarProgresso = () => { localStorage.setItem('minhaRotinaCartoesFinal', JSON.stringify(progresso)); };
+    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaMinimalInterativaFinalV2')) || {}; };
+    const salvarProgresso = () => { localStorage.setItem('minhaRotinaMinimalInterativaFinalV2', JSON.stringify(progresso)); };
 
     const verificarConclusaoSemanal = () => {
-        // Verifica se é o último dia E se todos os exercícios dele estão completos
-        if (diaAtivoIndex !== dadosTreino.length - 1) return false; 
+        if (diaAtivoIndex !== dadosTreino.length - 1) return false;
         const ultimoDiaExercicios = dadosTreino[diaAtivoIndex].exercicios;
         return ultimoDiaExercicios.every((ex, exIndex) => {
             const id = `dia${diaAtivoIndex}-ex${exIndex}`;
@@ -97,33 +99,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const atualizarProgressoGeral = (index) => {
-        const diaData = dadosTreino[index];
-        const cardContent = document.querySelector(`.day-card[data-index="${index}"] .day-card-content`);
-        if (!diaData.exercicios || !cardContent) return;
+    const atualizarProgressoGeral = () => {
+        const exerciciosDoDia = dadosTreino[diaAtivoIndex].exercicios;
+        if (!exerciciosDoDia) return;
 
-        const totalExercicios = diaData.exercicios.length;
-        let concluidos = diaData.exercicios.filter((ex, i) => (progresso[`dia${index}-ex${i}`] || 0) >= ex.series).length;
-        const porcentagem = totalExercicios > 0 ? (concluidos / totalExercicios) * 100 : 0;
-        
-        const progressBar = cardContent.querySelector('.progress-bar');
-        if(progressBar) progressBar.style.width = `${porcentagem}%`;
+        let concluidos = exerciciosDoDia.filter((ex, i) => (progresso[`dia${diaAtivoIndex}-ex${i}`] || 0) >= ex.series).length;
+        const porcentagem = exerciciosDoDia.length > 0 ? (concluidos / exerciciosDoDia.length) * 100 : 0;
+        elementos.progressBar.style.width = `${porcentagem}%`;
 
-        // Verifica se a seção de concluídos deve ser exibida DENTRO DO CARD ATUAL
-        const listaConcluidos = cardContent.querySelector('#completed-list');
-        const completedSection = cardContent.querySelector('#completed-section');
-        if (completedSection && listaConcluidos) {
-             completedSection.classList.toggle('hidden', listaConcluidos.children.length === 0);
-        }
+        const listaConcluidos = elementos.completedList;
+        elementos.completedSection.classList.toggle('hidden', listaConcluidos.children.length === 0);
 
-
-        // Lógica de conclusão e confetes
         if (porcentagem === 100 && elementos.completion.overlay.classList.contains('hidden')) {
             setTimeout(() => {
-                const aindaConcluidos = dadosTreino[index].exercicios.every((ex, i) => (progresso[`dia${index}-ex${i}`] || 0) >= ex.series);
+                const aindaConcluidos = dadosTreino[diaAtivoIndex].exercicios.every((ex, i) => (progresso[`dia${diaAtivoIndex}-ex${i}`] || 0) >= ex.series);
                 if (!aindaConcluidos) return;
 
-                if (verificarConclusaoSemanal()) { // USA O diaAtivoIndex GLOBAL
+                if (verificarConclusaoSemanal()) {
                     elementos.completion.title.textContent = "Semana Completa!";
                     elementos.completion.text.textContent = "PARABÉNS! Você completou todos os treinos! O ciclo reinicia em 5 seg.";
                     elementos.completion.overlay.classList.remove('hidden');
@@ -144,145 +136,81 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Atualiza a barra lateral do item de exercício
-    const atualizarVisualCardExercicio = (card, id, ex) => {
+    // FUNÇÃO ATUALIZADA para usar width no fill do background
+    const atualizarVisualCard = (card, id, ex) => {
         const seriesFeitas = progresso[id] || 0;
-        const porcentagem = seriesFeitas / ex.series; // 0 a 1
-        const fillElement = card.querySelector('.exercicio-progress-fill');
-        if (fillElement) fillElement.style.transform = `scaleY(${porcentagem})`;
+        const porcentagem = (seriesFeitas / ex.series) * 100; // Porcentagem de 0 a 100
+        card.querySelector('.exercicio-progress-fill').style.width = `${porcentagem}%`; // Usa width
         card.classList.toggle('finalizado', seriesFeitas >= ex.series);
     };
 
-    // Move o item para a lista correta DENTRO DO CARD ATUAL
-    const moverCardExercicioParaListaCorreta = (card, id, ex) => {
-        const seriesFeitas = progresso[id] || 0;
-        const cardContent = card.closest('.day-card-content');
-        if (!cardContent) return;
-
-        let listaDestino = seriesFeitas >= ex.series
-            ? cardContent.querySelector('#completed-list')
-            : cardContent.querySelector('#lista-exercicios');
-
-        // Garante que a seção de concluídos e a lista existam se necessário
-        let completedSection = cardContent.querySelector('#completed-section');
-        if (seriesFeitas >= ex.series) {
-            if (!completedSection) {
-                completedSection = document.createElement('div');
-                completedSection.id = 'completed-section';
-                completedSection.innerHTML = `<h3 id="completed-title" class="category-title">Concluídos</h3><ul id="completed-list"></ul>`;
-                cardContent.appendChild(completedSection);
-            }
-             if (!completedSection.querySelector('#completed-list')) { // Caso a UL não exista por algum motivo
-                 const ul = document.createElement('ul');
-                 ul.id = 'completed-list';
-                 completedSection.appendChild(ul);
-             }
-            listaDestino = completedSection.querySelector('#completed-list'); // Atualiza a referência
-            completedSection.classList.remove('hidden'); // Garante que a seção esteja visível
-        } else {
-             // Se movendo de volta para a lista principal, garante que ela exista
-             if (!listaDestino) {
-                 listaDestino = document.createElement('ul');
-                 listaDestino.id = 'lista-exercicios';
-                 // Insere antes da seção de concluídos, se existir, senão no início
-                 if (completedSection) {
-                     cardContent.insertBefore(listaDestino, completedSection);
-                 } else {
-                     cardContent.prepend(listaDestino); // Adiciona no início se não houver concluídos
-                 }
-             }
-        }
-        
-        if (!listaDestino) return; // Segurança extra
-
+    const moverCardParaListaCorreta = (card, listaDestino) => {
         card.classList.add('movendo');
         setTimeout(() => {
-            listaDestino.appendChild(card); // Move para o final da lista correta
+            listaDestino.appendChild(card);
             card.classList.remove('movendo');
-            // Atualiza visibilidade da seção "Concluídos" APÓS mover
-             if (completedSection) {
-                 const listaConcluidosAtual = completedSection.querySelector('#completed-list');
-                 completedSection.classList.toggle('hidden', !listaConcluidosAtual || listaConcluidosAtual.children.length === 0);
-             }
-            atualizarProgressoGeral(diaAtivoIndex);
+            atualizarProgressoGeral(); 
         }, 300);
     };
 
-    // Evento de clique no item de exercício
-    const handleClickExercicio = (e) => {
+    const handleClickCard = (e) => {
         const card = e.currentTarget;
         const id = card.dataset.id;
         const exIndex = parseInt(card.dataset.exIndex);
-        const dayIndex = parseInt(card.dataset.dayIndex);
-        const ex = dadosTreino[dayIndex].exercicios[exIndex];
+        const ex = dadosTreino[diaAtivoIndex].exercicios[exIndex];
 
         if (card.classList.contains('finalizado')) return;
         let seriesFeitas = progresso[id] || 0;
         seriesFeitas++;
         progresso[id] = seriesFeitas;
-        atualizarVisualCardExercicio(card, id, ex);
+        atualizarVisualCard(card, id, ex);
         salvarProgresso();
         
         if (seriesFeitas >= ex.series) {
-            moverCardExercicioParaListaCorreta(card, id, ex);
-            atualizarProgressoGeral(dayIndex);
+            moverCardParaListaCorreta(card, elementos.completedList); 
+            atualizarProgressoGeral(); 
         }
     };
 
-    // Evento de clique direito/long press no item de exercício
-    const handleRightClickExercicio = (e) => {
+    const handleRightClickCard = (e) => {
         e.preventDefault();
         const card = e.currentTarget;
         const id = card.dataset.id;
         const exIndex = parseInt(card.dataset.exIndex);
-        const dayIndex = parseInt(card.dataset.dayIndex);
-        const ex = dadosTreino[dayIndex].exercicios[exIndex];
+        const ex = dadosTreino[diaAtivoIndex].exercicios[exIndex];
 
         let seriesFeitas = progresso[id] || 0;
         if (seriesFeitas > 0) {
             const estavaFinalizado = card.classList.contains('finalizado');
             seriesFeitas--;
             progresso[id] = seriesFeitas;
-            atualizarVisualCardExercicio(card, id, ex);
+            atualizarVisualCard(card, id, ex);
             salvarProgresso();
             
             if (estavaFinalizado) {
-                 moverCardExercicioParaListaCorreta(card, id, ex);
+                 moverCardParaListaCorreta(card, elementos.listaExercicios); 
             }
         }
-        atualizarProgressoGeral(dayIndex);
+        atualizarProgressoGeral();
     };
 
-    // Renderiza o conteúdo INTERNO de um cartão de dia
-    const renderizarExercicios = (dayIndex, containerExercicios) => {
-        const diaData = dadosTreino[dayIndex];
-        containerExercicios.innerHTML = ''; // Limpa conteúdo anterior
+    const renderizarTreino = (index) => {
+        diaAtivoIndex = index;
+        const diaData = dadosTreino[index];
+        elementos.headerTitle.textContent = `${diaData.dia}`;
+        elementos.listaExercicios.innerHTML = '';
+        elementos.completedList.innerHTML = '';
+        elementos.completion.overlay.classList.add('hidden');
 
         if (!diaData.exercicios) return;
 
-        // Adiciona a barra de progresso e as listas
-        containerExercicios.innerHTML = `
-            <div class="progress-container">
-                <div class="progress-bar" style="width: 0%;"></div> 
-            </div>
-            <ul id="lista-exercicios"></ul>
-            <div id="completed-section" class="hidden">
-               <h3 id="completed-title" class="category-title">Concluídos</h3>
-               <ul id="completed-list"></ul>
-            </div>
-        `;
-        
-        const listaExercicios = containerExercicios.querySelector('#lista-exercicios');
-        const completedList = containerExercicios.querySelector('#completed-list');
-
         diaData.exercicios.forEach((ex, exIndex) => {
-            const id = `dia${dayIndex}-ex${exIndex}`;
+            const id = `dia${index}-ex${exIndex}`;
             const seriesFeitas = progresso[id] || 0;
             const li = document.createElement('li');
             li.className = 'exercicio-item';
             li.dataset.id = id;
             li.dataset.exIndex = exIndex;
-            li.dataset.dayIndex = dayIndex;
             
             li.innerHTML = `
                 <div class="exercicio-progress-fill"></div>
@@ -294,83 +222,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="btn-info">i</button>
             `;
             
-            atualizarVisualCardExercicio(li, id, ex);
-            li.addEventListener('click', handleClickExercicio);
-            li.addEventListener('contextmenu', handleRightClickExercicio);
+            atualizarVisualCard(li, id, ex);
+            li.addEventListener('click', handleClickCard);
+            li.addEventListener('contextmenu', handleRightClickCard);
             li.querySelector('.btn-info').addEventListener('click', (e) => {
                 e.stopPropagation();
                 elementos.modal.titulo.textContent = ex.nome;
-                elementos.modal.gif.src = ex.gifUrl;
+                elementos.modal.gif.src = ex.gifUrl; // Usa o caminho local
                 elementos.modal.instrucoes.textContent = ex.instrucoes;
                 elementos.modal.overlay.classList.remove('hidden');
             });
 
-            // Decide em qual lista colocar inicialmente
             if (li.classList.contains('finalizado')) {
-                completedList.appendChild(li);
+                elementos.completedList.appendChild(li);
             } else {
-                listaExercicios.appendChild(li);
+                elementos.listaExercicios.appendChild(li);
             }
         });
-        atualizarProgressoGeral(dayIndex); // Atualiza barra geral e visibilidade da seção "Concluídos"
-    };
-
-    // Controla a expansão/contração dos cartões de dia
-    const toggleDayCard = (index) => {
-        const allCards = document.querySelectorAll('.day-card');
-        allCards.forEach((card, i) => {
-            const content = card.querySelector('.day-card-content');
-            if (i === index) {
-                if (card.classList.contains('active')) {
-                    // Se já está ativo, fecha (opcional, pode remover se quiser que sempre fique um aberto)
-                    // card.classList.remove('active');
-                    // diaAtivoIndex = -1; // Nenhum dia ativo
-                } else {
-                    card.classList.add('active');
-                    diaAtivoIndex = index;
-                    if (!content.dataset.rendered) { // Renderiza apenas uma vez
-                        renderizarExercicios(index, content);
-                        content.dataset.rendered = 'true';
-                    }
-                }
-            } else {
-                card.classList.remove('active');
-                // Opcional: Limpar conteúdo ao fechar para economizar memória?
-                // content.innerHTML = '';
-                // delete content.dataset.rendered;
-            }
-        });
+        atualizarProgressoGeral(); 
     };
     
-    // Função de inicialização
     const init = () => {
         carregarProgresso();
-        
-        // Cria os cartões dos dias
-        dadosTreino.forEach((dia, index) => {
-            const card = document.createElement('div');
-            card.className = 'day-card';
-            card.dataset.index = index;
-            // Adiciona SVG de seta (chevron)
-            card.innerHTML = `
-                <div class="day-card-header">
-                    <h3>${dia.dia}</h3>
-                    <svg class="day-card-toggle-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                       <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
-                </div>
-                <div class="day-card-content">
-                    <!-- Conteúdo será renderizado aqui -->
-                </div>
-            `;
-            elementos.dayCardsContainer.appendChild(card);
+        // Quote text removido
 
-            card.querySelector('.day-card-header').addEventListener('click', () => {
-                toggleDayCard(index);
+        dadosTreino.forEach((dia, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'btn-dia';
+            btn.textContent = dia.dia.substring(0, 3); 
+            btn.title = dia.dia;
+            btn.dataset.index = index;
+            elementos.seletorDias.appendChild(btn);
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.btn-dia').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderizarTreino(index);
             });
         });
 
-        // Event listeners dos modais e reset
         elementos.modal.fecharBtn.addEventListener('click', () => elementos.modal.overlay.classList.add('hidden'));
         elementos.completion.closeBtn.addEventListener('click', () => elementos.completion.overlay.classList.add('hidden'));
         
@@ -386,10 +275,9 @@ document.addEventListener('DOMContentLoaded', () => {
             location.reload();
         });
         
-        // Abre o cartão do dia atual
         let hoje = new Date().getDay() - 1;
         if(hoje < 0 || hoje > 4) hoje = 0;
-        toggleDayCard(hoje); // Abre o cartão correto
+        document.querySelectorAll('.btn-dia')[hoje].click();
     };
 
     init();
