@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 300);
     };
 
-    // --- LÓGICA DE CLIQUE ATUALIZADA ---
+    // LÓGICA DE CLIQUE (Adicionar/Remover)
     const handleClickExercicio = (e) => {
         const card = e.currentTarget;
         const id = card.dataset.id;
@@ -198,8 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
         salvarProgresso();
         atualizarProgressoGeral();
     };
-    // --- FIM DA LÓGICA DE CLIQUE ATUALIZADA ---
-
 
     const abrirModalInfo = (ex) => {
         elementos.modal.titulo.textContent = ex.nome;
@@ -264,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
             li.dataset.id = id;
             li.dataset.exIndex = exIndex;
 
-            // --- NOVO innerHTML com melhor hierarquia ---
+            // --- innerHTML ATUALIZADO com botão (i) no final ---
             li.innerHTML = `
                 <div class="exercicio-progress-fill"></div>
                 <div class="set-counter">${seriesFeitas}/${ex.series}</div>
@@ -272,15 +270,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3>${ex.nome}</h3>
                     <div class="exercicio-meta">
                         <p>${ex.reps}</p>
-                        <button class="btn-info-inline">i</button>
                     </div>
                 </div>
+                <button class="btn-info-inline">i</button>
             `;
             // --- Fim da alteração ---
 
             atualizarVisualCardExercicio(li, id, ex);
             
-            // Apenas um listener de clique
             li.addEventListener('click', handleClickExercicio);
 
             li.querySelector('.btn-info-inline').addEventListener('click', (e) => {
@@ -327,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
         elementos.reset.cancelBtn.addEventListener('click', () => {
             elementos.reset.overlay.classList.add('hidden');
         });
-        // Listener para o botão X do modal de reset
+        
          if(elementos.reset.fecharBtn) {
             elementos.reset.fecharBtn.addEventListener('click', () => elementos.reset.overlay.classList.add('hidden'));
          }
@@ -338,7 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
             location.reload();
         });
         
-        // --- LÓGICA DE INICIALIZAÇÃO ATUALIZADA ---
+        // Lógica de dia de descanso
         let hoje = new Date().getDay() - 1; // 0=Seg, 1=Ter, ..., 5=Sab, 6=Dom
         
         if (hoje === 5 || hoje === 6) { // Se for Sábado ou Domingo
