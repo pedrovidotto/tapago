@@ -1,39 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const frasesMotivacionais = [
-        "A jornada de mil quilômetros começa com um único passo.", "Consistência é a chave.", "Acredite no seu potencial.", "Cada gota de suor conta.", "Feito é melhor que perfeito.", "A dor de hoje é a força de amanhã.", "Sua mente desiste antes do corpo.", "Hábito > Motivação.", "Pequenos progressos = Grandes resultados.", "O corpo alcança o que a mente acredita.", "Aumente o esforço, não diminua a meta.", "Crie sua força de vontade.", "Faça o que nunca fez.", "Constância no propósito."
-    ];
+    // Frases motivacionais removidas
+    // const frasesMotivacionais = [...];
+
     const mensagensDeConclusao = [
         "Mandou bem! Descanse, recupere e volte com tudo!", "Treino concluído! Vitória do dia. Nos vemos no próximo!", "Parabéns! Consistência é tudo. Até a próxima!", "Excelente! O esforço de hoje vale a pena. Volte amanhã!", "Missão cumprida! Orgulhe-se. Te esperamos no próximo!"
     ];
 
-    const dadosTreino = [ // Mantém a rotina PPLUL
-        { dia: "Push", nomeCompleto: "Empurrar", iconEmoji: "", exercicios: [
+    // Adiciona nomeCompleto para os botões inferiores
+    const dadosTreino = [ 
+        { dia: "Push", nomeCompleto: "Empurrar", exercicios: [
                 { nome: "Supino na Máquina", series: 3, reps: "10-12 reps", gifUrl: "gifs/supino-maquina.gif", instrucoes: ["Sente-se com as costas bem apoiadas...", "Empurre os pegadores para a frente...", "Mantenha os ombros para trás."] },
                 { nome: "Desenvolvimento na Máquina", series: 3, reps: "10-12 reps", gifUrl: "gifs/desenvolvimento-maquina.gif", instrucoes: ["Sente-se com as costas apoiadas...", "Empurre para cima...", "Mantenha o abdômen contraído."] },
                 { nome: "Elevação Lateral com Halteres", series: 3, reps: "12-15 reps", gifUrl: "gifs/elevacao-lateral.gif", instrucoes: ["Em pé, com os halteres ao lado...", "Levante os braços para os lados...", "Evite usar o impulso."] },
                 { nome: "Tríceps na Polia (Barra)", series: 4, reps: "12-15 reps", gifUrl: "gifs/triceps-polia.gif", instrucoes: ["Fique de pé em frente à polia...", "Empurre a barra para baixo...", "Apenas o antebraço se move."] }
             ]},
-        { dia: "Pull", nomeCompleto: "Puxar", iconEmoji: "", exercicios: [
+        { dia: "Pull", nomeCompleto: "Puxar", exercicios: [
                 { nome: "Puxada Frontal (Pulldown)", series: 3, reps: "10-12 reps", gifUrl: "gifs/puxada-frontal.gif", instrucoes: ["Sente-se e ajuste o apoio...", "Puxe a barra em direção ao peito...", "Puxe com os cotovelos."] },
                 { nome: "Remada na Máquina", series: 3, reps: "10-12 reps", gifUrl: "gifs/remada-maquina.gif", instrucoes: ["Sente-se com o peito apoiado...", "Puxe os pegadores em direção ao abdômen...", "Junte as escápulas."] },
                 { nome: "Crucifixo Invertido na Máquina", series: 3, reps: "15 reps", gifUrl: "gifs/crucifixo-invertido-maquina.gif", instrucoes: ["Sente-se virado para a máquina...", "Abra os braços em um grande arco...", "Movimento controlado."] },
                 { nome: "Rosca Direta com Halteres", series: 4, reps: "10-12 reps", gifUrl: "gifs/rosca-direta.gif", instrucoes: ["Em pé, com halteres ao lado...", "Levante um halter de cada vez...", "Não balance o corpo."] }
             ]},
-        { dia: "Legs", nomeCompleto: "Pernas", iconEmoji: "", exercicios: [
+        { dia: "Legs", nomeCompleto: "Pernas", exercicios: [
                 { nome: "Leg Press", series: 3, reps: "10-12 reps", gifUrl: "gifs/leg-press.gif", instrucoes: ["Sente-se com costas e quadril apoiados...", "Desça o peso de forma controlada...", "A força deve vir dos calcanhares."] },
                 { nome: "Cadeira Extensora", series: 3, reps: "12-15 reps", gifUrl: "gifs/cadeira-extensora.gif", instrucoes: ["Sente-se com as costas apoiadas...", "Estenda as pernas e segure a contração...", "A qualidade da contração é chave."] },
                 { nome: "Cadeira Flexora", series: 3, reps: "12-15 reps", gifUrl: "gifs/cadeira-flexora.gif", instrucoes: ["Ajuste o apoio acima dos tornozelos...", "Puxe os calcanhares em direção aos glúteos...", "Faça a volta de forma lenta."] },
                 { nome: "Elevação Pélvica", series: 3, reps: "15 reps", gifUrl: "gifs/elevacao-pelvica.gif", instrucoes: ["Costas apoiadas em um banco...", "Eleve o quadril e contraia os glúteos...", "Mantenha o queixo para baixo."] },
                 { nome: "Panturrilha em Pé", series: 4, reps: "15-20 reps", gifUrl: "gifs/panturrilha-pe.gif", instrucoes: ["Em um degrau ou máquina...", "Alongue o máximo na descida e suba...", "Amplitude é a chave."] }
             ]},
-        { dia: "Upper", nomeCompleto: "Superior", iconEmoji: "", exercicios: [
+        { dia: "Upper", nomeCompleto: "Superior", exercicios: [
                 { nome: "Remada Curvada com Halteres", series: 3, reps: "10-12 reps", gifUrl: "gifs/remada-curvada.gif", instrucoes: ["Incline o tronco com as costas retas...", "Puxe os halteres em direção ao quadril...", "Imagine guardar os halteres nos bolsos."] },
                 { nome: "Supino Inclinado com Halteres", series: 3, reps: "10-12 reps", gifUrl: "gifs/supino-inclinado.gif", instrucoes: ["Deite-se em um banco inclinado...", "Empurre os pesos para cima...", "Não bata um halter no outro."] },
                 { nome: "Elevação Frontal com Halteres", series: 3, reps: "12-15 reps", gifUrl: "gifs/elevacao-frontal.gif", instrucoes: ["Em pé, com halteres à frente...", "Eleve um halter de cada vez...", "Evite balançar o corpo."] },
                 { nome: "Rosca Martelo", series: 4, reps: "10-12 reps", gifUrl: "gifs/rosca-martelo.gif", instrucoes: ["Segure os halteres como martelos...", "Levante-os sem girar os punhos...", "Mantenha os cotovelos parados."] }
             ]},
-        { dia: "Lower", nomeCompleto: "Inferior", iconEmoji: "", exercicios: [
+        { dia: "Lower", nomeCompleto: "Inferior", exercicios: [
                 { nome: "Agachamento Goblet", series: 3, reps: "10-12 reps", gifUrl: "gifs/agachamento-goblet.gif", instrucoes: ["Segure um halter junto ao peito...", "Agache como se fosse sentar...", "Não sacrifique a boa forma pela profundidade."] },
                 { nome: "Afundo (Lunge)", series: 3, reps: "12-15 reps por perna", gifUrl: "gifs/afundo.gif", instrucoes: ["Em pé, com halteres (opcional)...", "Dê um passo à frente e flexione...", "Mantenha o tronco reto."] },
                 { nome: "Stiff com Halteres", series: 3, reps: "15 reps", gifUrl: "gifs/stiff-halteres.gif", instrucoes: ["Em pé, com halteres à frente...", "Desça o tronco com as costas retas...", "Vá até seu limite de flexibilidade."] },
@@ -42,28 +43,27 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const elementos = {
-        // Seletor de dias agora é a barra inferior
         bottomDaySelector: document.getElementById('bottom-day-selector'),
-        workoutDayTitle: document.getElementById('workout-day-title'), // Título grande
+        workoutDayTitle: document.getElementById('workout-day-title'), 
         listaExercicios: document.getElementById('lista-exercicios'),
         completedList: document.getElementById('completed-list'),
         completedSection: document.getElementById('completed-section'),
         progressBar: document.getElementById('progress-bar'),
         botaoResetar: document.getElementById('botao-resetar'),
-        modal: { /* ... mantido ... */ 
+        modal: { 
             overlay: document.getElementById('modal-info-overlay'),
             fecharBtn: document.getElementById('modal-info-fechar-btn'),
             titulo: document.getElementById('modal-info-titulo'),
             gif: document.getElementById('modal-info-gif'),
             instrucoes: document.getElementById('modal-info-instrucoes') 
         },
-        completion: { /* ... mantido ... */ 
+        completion: { 
             overlay: document.getElementById('completion-overlay'),
             title: document.getElementById('completion-title'),
             text: document.getElementById('completion-text'),
             closeBtn: document.getElementById('completion-close-btn')
         },
-        reset: { /* ... mantido ... */ 
+        reset: { 
             overlay: document.getElementById('reset-overlay'),
             confirmBtn: document.getElementById('confirm-reset-btn'),
             cancelBtn: document.getElementById('cancel-reset-btn')
@@ -71,10 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     
     let progresso = {};
-    let diaAtivoIndex = 0; // Continua rastreando o dia VISÍVEL
+    let diaAtivoIndex = 0; 
 
-    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaCleanV1')) || {}; };
-    const salvarProgresso = () => { localStorage.setItem('minhaRotinaCleanV1', JSON.stringify(progresso)); };
+    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaCleanV2')) || {}; };
+    const salvarProgresso = () => { localStorage.setItem('minhaRotinaCleanV2', JSON.stringify(progresso)); };
 
     const verificarConclusaoSemanal = () => {
         if (diaAtivoIndex !== dadosTreino.length - 1) return false; 
@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', () => {
         elementos.progressBar.style.width = `${porcentagem}%`;
 
         const listaConcluidos = elementos.completedList;
+        // Verifica se completedList existe antes de acessar children
         elementos.completedSection.classList.toggle('hidden', !listaConcluidos || listaConcluidos.children.length === 0);
-
 
         if (porcentagem === 100 && elementos.completion.overlay.classList.contains('hidden')) {
             setTimeout(() => {
@@ -138,7 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const moverCardExercicioParaListaCorreta = (card, listaDestino) => {
         card.classList.add('movendo');
         setTimeout(() => {
-            listaDestino.appendChild(card); 
+            // Garante que a lista de destino exista antes de adicionar
+            if (listaDestino) {
+                listaDestino.appendChild(card);
+            }
             card.classList.remove('movendo');
             atualizarProgressoGeral(); 
         }, 300);
@@ -148,7 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = e.currentTarget;
         const id = card.dataset.id;
         const exIndex = parseInt(card.dataset.exIndex);
-        // diaAtivoIndex já está correto globalmente
         const ex = dadosTreino[diaAtivoIndex].exercicios[exIndex];
 
         if (card.classList.contains('finalizado')) return;
@@ -210,7 +212,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         elementos.workoutDayTitle.textContent = diaData.nomeCompleto || diaData.dia; // Atualiza o título grande
         elementos.listaExercicios.innerHTML = ''; // Limpa lista de ativos
-        elementos.completedList.innerHTML = ''; // Limpa lista de concluídos
+        
+        // Garante que completedList existe antes de limpar
+        if (elementos.completedList) {
+            elementos.completedList.innerHTML = ''; // Limpa lista de concluídos
+        }
         elementos.completion.overlay.classList.add('hidden'); // Esconde pop-up de conclusão
 
         // Atualiza botões inferiores
@@ -219,18 +225,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (!diaData.exercicios) {
-             elementos.completedSection.classList.add('hidden'); // Esconde seção de concluídos se não há exercícios
-             return; // Sai se for dia de descanso (sem exercícios)
+             // Garante que completedSection existe antes de esconder
+             if (elementos.completedSection) {
+                 elementos.completedSection.classList.add('hidden');
+             }
+             return; 
         }
 
         diaData.exercicios.forEach((ex, exIndex) => {
             const id = `dia${index}-ex${exIndex}`;
-            const seriesFeitas = progresso[id] || 0;
+            // seriesFeitas não é necessário aqui, será pego do progresso
             const li = document.createElement('li');
             li.className = 'exercicio-item';
             li.dataset.id = id;
             li.dataset.exIndex = exIndex;
-            // dataset.dayIndex não é mais necessário aqui pois usamos diaAtivoIndex
             
             // Ícone Emoji removido do item
             li.innerHTML = `
@@ -242,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="btn-info">i</button>
             `;
             
-            atualizarVisualCardExercicio(li, id, ex);
+            atualizarVisualCardExercicio(li, id, ex); // Atualiza visual com base no progresso
             li.addEventListener('click', handleClickExercicio);
             li.addEventListener('contextmenu', handleRightClickExercicio);
             
@@ -251,11 +259,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 abrirModalInfo(ex);
             });
 
-            if (li.classList.contains('finalizado')) {
-                elementos.completedList.appendChild(li);
-            } else {
-                elementos.listaExercicios.appendChild(li);
-            }
+            // Decide em qual lista colocar inicialmente
+             if (li.classList.contains('finalizado')) {
+                 // Garante que completedList existe antes de adicionar
+                 if (elementos.completedList) {
+                     elementos.completedList.appendChild(li);
+                 }
+             } else {
+                 elementos.listaExercicios.appendChild(li);
+             }
         });
         atualizarProgressoGeral(); // Atualiza barra e visibilidade da seção "Concluídos"
     };
@@ -268,14 +280,13 @@ document.addEventListener('DOMContentLoaded', () => {
         dadosTreino.forEach((dia, index) => {
             const btn = document.createElement('button');
             btn.className = 'bottom-day-btn';
-             // Usa nome completo traduzido
-            btn.textContent = dia.nomeCompleto || dia.dia;
+            btn.textContent = dia.nomeCompleto || dia.dia; // Usa nome completo traduzido
             btn.dataset.index = index;
             // Insere antes do botão de reset
             elementos.bottomDaySelector.insertBefore(btn, elementos.botaoResetar);
             
             btn.addEventListener('click', () => {
-                renderizarTreino(index); // Apenas renderiza, não precisa mais da classe 'active' aqui
+                renderizarTreino(index); 
             });
         });
 
