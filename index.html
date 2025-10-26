@@ -11,40 +11,40 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <div class="container">
   <header>
-    <h1><img src="go_logo.png" alt="Go Fitness Logo" id="app-logo"></h1>
-    <h2 id="header-title"></h2>
-    <div id="quote-card">
-      <p id="quote-text"></p>
-    </div>
+    <div class="header-top-row">
+        <h1><img src="go_logo.png" alt="Go Fitness Logo" id="app-logo"></h1>
+        <h2 id="header-title"></h2> </div>
     <nav id="seletor-dias"></nav>
-  </header>
+    <hr class="header-divider"> </header>
 
   <main id="container-treino">
     <div id="cabecalho-treino">
-        <h2>Exercícios de Hoje</h2>
-      <div class="progress-container">
-        <div id="progress-bar" class="progress-bar"></div>
-      </div>
+        <h2>Exercícios</h2> <div class="progress-container">
+        <div id="progress-bar" class="progress-bar"></div> </div>
     </div>
     <ul id="lista-exercicios"></ul>
+    <div id="completed-section" class="hidden">
+       <h3 id="completed-title" class="category-title">Concluídos</h3>
+       <ul id="completed-list"></ul>
+    </div>
   </main>
 
   <footer>
-    <button id="botao-resetar">Resetar Progresso</button>
+    <button id="botao-resetar" class="btn-secondary">Resetar Progresso</button>
   </footer>
 </div>
 
-<!-- Modal de Informações com GIF -->
 <div id="modal-info-overlay" class="modal-overlay hidden">
   <div class="modal">
-    <button id="modal-info-fechar-btn">&times;</button>
+    <button id="modal-info-fechar-btn" class="btn-icon">&times;</button>
     <h2 id="modal-info-titulo"></h2>
+    <hr class="divider">
     <div class="modal-info-conteudo">
         <img id="modal-info-gif" src="" alt="Demonstração do exercício" />
         <p id="modal-info-instrucoes"></p>
@@ -52,13 +52,25 @@
   </div>
 </div>
 
-<!-- Card de Conclusão -->
 <div id="completion-overlay" class="overlay hidden">
     <div class="completion-card">
+        <h3 id="completion-title">Ótimo Trabalho!</h3>
         <p id="completion-text"></p>
-        <button id="completion-close-btn">Continuar</button>
+        <button id="completion-close-btn" class="btn-secondary">Continuar</button>
     </div>
 </div>
+
+<div id="reset-overlay" class="overlay hidden">
+    <div class="modal" role="dialog">
+        <h2 class="modal-title">Confirmar Ação</h2>
+        <hr class="divider">
+        <p class="modal-text">Tem a certeza de que quer apagar todo o progresso da semana? Esta ação não pode ser desfeita.</p>
+        <div class="modal-buttons">
+            <button id="cancel-reset-btn" class="btn-secondary">Cancelar</button>
+            <button id="confirm-reset-btn" class="btn-primary confirm-btn">Sim, apagar</button> </div>
+    </div>
+</div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 <script src="script.js"></script>
