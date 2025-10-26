@@ -213,6 +213,33 @@ body[data-theme="dark"] #workout-card {
 
 .exercicio-item:hover { background-color: var(--hover-color); }
 
+/* --- NOVO --- Feedback de Toque */
+.exercicio-item:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* --- NOVO --- Estilos para Mensagem de Descanso */
+.rest-day-message {
+  opacity: 1;
+  cursor: default;
+  text-align: center;
+  display: block;
+  padding: 40px 10px;
+  font-size: 1.1rem;
+  color: var(--cor-texto-secundario);
+  border-bottom: none !important;
+}
+.rest-day-message:hover {
+  background-color: transparent !important;
+}
+/* Remove o :active para o item de descanso */
+.rest-day-message:active {
+  transform: none;
+}
+/* --- FIM DAS NOVIDADES --- */
+
+
 /* Indicador de Progresso (Background Fill) */
 .exercicio-progress-fill {
   position: absolute; left: 0; top: 0; bottom: 0; width: 0%; height: 100%;
@@ -233,8 +260,19 @@ body[data-theme="dark"] #workout-card {
     border: 1px solid var(--cor-borda);
     transition: all 0.3s ease;
 }
+/* --- ATUALIZADO --- Adiciona :hover ao contador para indicar clicabilidade */
+.set-counter:hover {
+    border-color: var(--cor-texto-secundario);
+    background-color: var(--hover-color);
+}
+
 .exercicio-item.finalizado .set-counter {
     color: var(--cor-sucesso); /* Cinza Médio */
+    background-color: rgba(var(--cor-sucesso-rgb), 0.1);
+    border-color: rgba(var(--cor-sucesso-rgb), 0.3);
+}
+/* --- ATUALIZADO --- Remove o hover de finalizado */
+.exercicio-item.finalizado .set-counter:hover {
     background-color: rgba(var(--cor-sucesso-rgb), 0.1);
     border-color: rgba(var(--cor-sucesso-rgb), 0.3);
 }
