@@ -14,24 +14,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<!-- Tema padrão agora é dark -->
+<!-- Tema padrão dark -->
 <body data-theme="dark">
 <div class="container">
   <header>
     <div class="header-top-row">
-        <!-- Botão de Tema à Esquerda -->
+        <!-- Logo à Esquerda -->
+        <div class="logo-container">
+            <img src="go_logo.png" alt="Go Fitness Logo" id="app-logo">
+        </div>
+         <!-- Botão de Tema à Direita -->
         <button id="theme-toggle-btn" class="btn-icon theme-toggle" aria-label="Alternar tema">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 1.75V22.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M12 22.25C17.799 22.25 22.25 17.799 22.25 12C22.25 6.20101 17.799 1.75 12 1.75V22.25Z" fill="currentColor"/>
             </svg>
         </button>
-        <!-- Logo -->
-        <div class="logo-container">
-            <img src="go_logo.png" alt="Go Fitness Logo" id="app-logo">
-        </div>
-        <!-- Espaço vazio para empurrar o logo -->
-        <div style="width: 40px; flex-shrink: 0;"></div>
     </div>
     <hr class="header-divider-subtle">
     <h1 id="workout-day-title">Carregando...</h1>
@@ -63,7 +61,8 @@
 <!-- Modal Info -->
 <div id="modal-info-overlay" class="modal-overlay hidden">
   <div class="modal">
-    <button id="modal-info-fechar-btn" class="btn-icon">&times;</button>
+    <!-- Botão Fechar Maior e à Direita -->
+    <button id="modal-info-fechar-btn" class="btn-icon modal-close-btn">&times;</button>
     <h2 id="modal-info-titulo"></h2>
     <hr class="divider">
     <div class="modal-info-conteudo">
@@ -85,6 +84,8 @@
 <!-- Modal Reset -->
 <div id="reset-overlay" class="overlay hidden">
     <div class="modal" role="dialog">
+         <!-- Botão Fechar Maior e à Direita -->
+        <button id="reset-modal-close-btn" class="btn-icon modal-close-btn">&times;</button>
         <h2 class="modal-title">Confirmar Ação</h2>
         <hr class="divider">
         <p class="modal-text">Tem a certeza de que quer apagar todo o progresso da semana? Esta ação não pode ser desfeita.</p>
