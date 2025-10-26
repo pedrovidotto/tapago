@@ -17,27 +17,17 @@
 <body>
 <div class="container">
   <header>
-    <div class="header-top-row">
-        <h1><img src="go_logo.png" alt="Go Fitness Logo" id="app-logo"></h1>
-        <h2 id="header-title"></h2> <!-- Título do dia virá aqui -->
+    <h1><img src="go_logo.png" alt="Go Fitness Logo" id="app-logo"></h1>
+    <!-- Seção HOJE adicionada -->
+    <div class="today-workout-display">
+        <span class="today-label">Hoje:</span>
+        <span id="today-workout-name">Carregando...</span>
     </div>
-    <!-- Card de citação removido para minimalismo -->
-    <nav id="seletor-dias"></nav>
-    <hr class="header-divider"> <!-- Divisor como no exemplo Bro Split -->
+    <hr class="header-divider">
   </header>
 
-  <main id="container-treino">
-    <div id="cabecalho-treino">
-        <h2>Exercícios</h2> <!-- Título genérico -->
-      <div class="progress-container">
-        <div id="progress-bar" class="progress-bar"></div> <!-- Barra de progresso GERAL do dia -->
-      </div>
-    </div>
-    <ul id="lista-exercicios"></ul>
-    <div id="completed-section" class="hidden">
-       <h3 id="completed-title" class="category-title">Concluídos</h3>
-       <ul id="completed-list"></ul>
-    </div>
+  <main id="day-cards-container">
+    <!-- Os cartões dos dias serão gerados aqui pelo JavaScript -->
   </main>
 
   <footer>
@@ -53,7 +43,8 @@
     <hr class="divider">
     <div class="modal-info-conteudo">
         <img id="modal-info-gif" src="" alt="Demonstração do exercício" />
-        <p id="modal-info-instrucoes"></p>
+        <!-- Instruções agora como lista ordenada -->
+        <ol id="modal-info-instrucoes" class="instructions-list"></ol>
     </div>
   </div>
 </div>
@@ -75,7 +66,7 @@
         <p class="modal-text">Tem a certeza de que quer apagar todo o progresso da semana? Esta ação não pode ser desfeita.</p>
         <div class="modal-buttons">
             <button id="cancel-reset-btn" class="btn-secondary">Cancelar</button>
-            <button id="confirm-reset-btn" class="btn-primary confirm-btn">Sim, apagar</button> <!-- Usa classe btn-primary -->
+            <button id="confirm-reset-btn" class="btn-primary confirm-btn">Sim, apagar</button>
         </div>
     </div>
 </div>
