@@ -1,13 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Frases motivacionais removidas
-    // const frasesMotivacionais = [...];
-
     const mensagensDeConclusao = [
         "Mandou bem! Descanse, recupere e volte com tudo!", "Treino concluído! Vitória do dia. Nos vemos no próximo!", "Parabéns! Consistência é tudo. Até a próxima!", "Excelente! O esforço de hoje vale a pena. Volte amanhã!", "Missão cumprida! Orgulhe-se. Te esperamos!"
     ];
 
-    // Adiciona nomeCompleto para os botões e atualiza instruções
+    // Adiciona nomeCompleto e atualiza instruções
     const dadosTreino = [ 
         { dia: "Push", nomeCompleto: "Empurrar", exercicios: [
                 { nome: "Supino na Máquina", series: 3, reps: "10-12 reps", gifUrl: "gifs/supino-maquina.gif", instrucoes: ["Sente-se com as costas bem apoiadas e ajuste o banco para que os pegadores fiquem na altura do meio do seu peito.", "Empurre os pegadores para a frente de forma controlada, sem travar os cotovelos. Retorne lentamente, sentindo o peitoral alongar.", "Mantenha os ombros para trás durante todo o movimento."] },
@@ -84,12 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.dataset.theme = theme;
         localStorage.setItem('theme', theme);
         currentTheme = theme;
-        // Atualiza ícone do botão (opcional, pode remover se não quiser ícone)
-        // O SVG atual não muda visualmente, mas poderia ser substituído por SVGs diferentes
     };
 
-    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaCleanV6')) || {}; };
-    const salvarProgresso = () => { localStorage.setItem('minhaRotinaCleanV6', JSON.stringify(progresso)); };
+    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaPaletaNova')) || {}; };
+    const salvarProgresso = () => { localStorage.setItem('minhaRotinaPaletaNova', JSON.stringify(progresso)); };
 
     const verificarConclusaoSemanal = () => {
         if (diaAtivoIndex !== dadosTreino.length - 1) return false;
@@ -114,12 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
             elementos.completedSection.classList.toggle('hidden', !listaConcluidos || listaConcluidos.children.length === 0);
         }
 
+
         if (porcentagem === 100 && elementos.completion.overlay.classList.contains('hidden')) {
             setTimeout(() => {
-                // Revalida no momento de mostrar
                  const aindaConcluidosHoje = dadosTreino[diaAtivoIndex].exercicios.every((ex, i) => (progresso[`dia${diaAtivoIndex}-ex${i}`] || 0) >= ex.series);
                  if (!aindaConcluidosHoje) return;
-
 
                 if (verificarConclusaoSemanal()) {
                     elementos.completion.title.textContent = "Semana Completa!";
@@ -203,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
             atualizarVisualCardExercicio(card, id, ex);
             salvarProgresso();
 
-            if (estavaFinalizado && elementos.listaExercicios) { // Verifica se listaExercicios existe
+            if (estavaFinalizado && elementos.listaExercicios) { 
                  moverCardExercicioParaListaCorreta(card, elementos.listaExercicios);
             }
         }
@@ -244,7 +238,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!diaData.exercicios) {
              if (elementos.completedSection) elementos.completedSection.classList.add('hidden');
-             // Limpa a barra de progresso em dias de descanso
              elementos.progressBar.style.width = '0%';
              return;
         }
@@ -268,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="btn-info">i</button>
             `;
 
-            atualizarVisualCardExercicio(li, id, ex); // Atualiza visual inicial (fill e contador)
+            atualizarVisualCardExercicio(li, id, ex); // Atualiza visual inicial
             li.addEventListener('click', handleClickExercicio);
             li.addEventListener('contextmenu', handleRightClickExercicio);
 
@@ -277,7 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 abrirModalInfo(ex);
             });
 
-            // Decide em qual lista colocar inicialmente
              if (li.classList.contains('finalizado')) {
                  if (elementos.completedList) elementos.completedList.appendChild(li);
              } else {
