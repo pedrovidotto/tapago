@@ -14,24 +14,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<!-- O tema padrão (light) é aplicado diretamente aqui, o JS alterna -->
-<body data-theme="light">
+<body> <!-- Remove data-theme attribute -->
 <div class="container">
   <header>
     <div class="header-top-row">
-        <!-- Botão de Tema -->
-        <button id="theme-toggle-btn" class="btn-icon theme-toggle" aria-label="Alternar tema">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 1.75V22.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 22.25C17.799 22.25 22.25 17.799 22.25 12C22.25 6.20101 17.799 1.75 12 1.75V22.25Z" fill="currentColor"/>
-            </svg>
-        </button>
-        <!-- Logo -->
+        <!-- Botão de tema removido -->
+        <div style="width: 40px;"></div> <!-- Espaço vazio para manter alinhamento -->
         <div class="logo-container">
             <img src="go_logo.png" alt="Go Fitness Logo" id="app-logo">
         </div>
-        <!-- Espaço vazio para alinhar o logo (pode ser removido se preferir) -->
-        <div style="width: 40px;"></div> 
+        <div style="width: 40px;"></div> <!-- Espaço vazio para centralizar logo -->
     </div>
     <hr class="header-divider-subtle">
     <h1 id="workout-day-title">Carregando...</h1>
