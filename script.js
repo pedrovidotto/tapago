@@ -49,9 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
         completedSection: document.getElementById('completed-section'),
         progressBar: document.getElementById('progress-bar'),
         botaoResetar: document.getElementById('botao-resetar'),
-        modal: { /* ... */ },
-        completion: { /* ... */ },
-        reset: { /* ... */ }
+        modal: {},
+        completion: {},
+        reset: {}
     };
 
      elementos.modal.overlay = document.getElementById('modal-info-overlay');
@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
      elementos.reset.overlay = document.getElementById('reset-overlay');
      elementos.reset.confirmBtn = document.getElementById('confirm-reset-btn');
      elementos.reset.cancelBtn = document.getElementById('cancel-reset-btn');
+     // Adiciona o botão de fechar do modal de reset
+     elementos.reset.fecharBtn = document.getElementById('reset-modal-close-btn');
 
     let progresso = {};
     let diaAtivoIndex = 0;
@@ -79,8 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTheme = theme;
     };
 
-    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaPaletaNovaV4')) || {}; };
-    const salvarProgresso = () => { localStorage.setItem('minhaRotinaPaletaNovaV4', JSON.stringify(progresso)); };
+    const carregarProgresso = () => { progresso = JSON.parse(localStorage.getItem('minhaRotinaPaletaNovaV5')) || {}; };
+    const salvarProgresso = () => { localStorage.setItem('minhaRotinaPaletaNovaV5', JSON.stringify(progresso)); };
 
     const verificarConclusaoSemanal = () => {
         if (diaAtivoIndex !== dadosTreino.length - 1) return false;
@@ -156,6 +158,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const handleClickExercicio = (e) => {
+        // Ignora clique no botão de informação
+        if (e.target.closest('.btn-info-inline')) return;
+
         const card = e.currentTarget;
         const id = card.dataset.id;
         const exIndex = parseInt(card.dataset.exIndex);
@@ -247,16 +252,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="detalhes-exercicio">
                     <h3>${ex.nome}</h3>
                     <p>${ex.reps}</p>
+                    <button class="btn-info-inline">i</button> <!-- Botão Info Inline -->
                 </div>
-                <button class="btn-info">i</button>
+                <!-- Botão info antigo removido -->
             `;
 
             atualizarVisualCardExercicio(li, id, ex);
             li.addEventListener('click', handleClickExercicio);
             li.addEventListener('contextmenu', handleRightClickExercicio);
 
-            li.querySelector('.btn-info').addEventListener('click', (e) => {
-                e.stopPropagation();
+            li.querySelector('.btn-info-inline').addEventListener('click', (e) => {
+                e.stopPropagation(); // Impede o clique no card
                 abrirModalInfo(ex);
             });
 
@@ -299,6 +305,10 @@ document.addEventListener('DOMContentLoaded', () => {
         elementos.reset.cancelBtn.addEventListener('click', () => {
             elementos.reset.overlay.classList.add('hidden');
         });
+        // Adiciona listener para o botão de fechar do modal de reset
+        if(elementos.reset.fecharBtn) {
+            elementos.reset.fecharBtn.addEventListener('click', () => elementos.reset.overlay.classList.add('hidden'));
+        }
         elementos.reset.confirmBtn.addEventListener('click', () => {
             progresso = {};
             salvarProgresso();
