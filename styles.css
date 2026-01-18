@@ -119,10 +119,6 @@ button { font-family: inherit; border: none; cursor: pointer; }
     background-color: var(--accent-orange);
     color: var(--text-main);
 }
-/* Se o dia estiver completo E ativo, mantemos o branco para indicar seleção? 
-   Ou laranja? O usuário pediu "orange so it's clear it's completed".
-   Vamos deixar Laranja se não estiver ativo. Se estiver ativo, branco. 
-   O CSS acima já faz isso porque .active vem depois e tem !important */
 
 /* --- EXERCISE CARDS --- */
 .section-header {
