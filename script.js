@@ -4,9 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
         "Mandou muito bem!", "Vitória do dia!", "Consistência é tudo.", "Excelente esforço!", "Missão cumprida!"
     ];
 
+    // --- DADOS DE TREINO (6 DIAS: Seg a Sáb) ---
     const dadosTreino = [ 
         { 
-            dia: "Push", nomeCompleto: "Empurrar", exercicios: [
+            dia: "Seg", nomeCompleto: "Segunda - Empurrar", exercicios: [
                 { nome: "Supino na Máquina", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Lying-Chest-Press-Machine.gif", instrucoes: ["Ajuste o banco", "Empurre para frente", "Volte devagar"] },
                 { nome: "Desenvolvimento Máquina", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Shoulder-Press.gif", instrucoes: ["Pegada na altura do ombro", "Empurre para cima", "Controle a descida"] },
                 { nome: "Elevação Lateral", series: 3, reps: "12-15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif", instrucoes: ["Eleve até o ombro", "Sem impulso", "Desça devagar"] },
@@ -14,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         { 
-            dia: "Pull", nomeCompleto: "Puxar", exercicios: [
+            dia: "Ter", nomeCompleto: "Terça - Puxar", exercicios: [
                 { nome: "Puxada Frontal", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/05/Front-Pulldown.gif", instrucoes: ["Puxe até o peito", "Incline levemente", "Alongue na volta"] },
                 { nome: "Remada Máquina", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/06/close-grip-cable-row.gif", instrucoes: ["Costas retas", "Puxe no abdômen", "Aperte as costas"] },
                 { nome: "Crucifixo Invertido", series: 3, reps: "15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Delt-Machine-Flys.gif", instrucoes: ["Abra os braços", "Foco no posterior", "Não balance"] },
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         { 
-            dia: "Legs", nomeCompleto: "Pernas", exercicios: [
+            dia: "Qua", nomeCompleto: "Quarta - Pernas", exercicios: [
                 { nome: "Leg Press", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Lever-Horizontal-Leg-Press.gif", instrucoes: ["Pés largura ombro", "Desça 90 graus", "Empurre calcanhar"] },
                 { nome: "Cadeira Extensora", series: 3, reps: "12-15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif", instrucoes: ["Estenda tudo", "Segure 1s", "Desça devagar"] },
                 { nome: "Cadeira Flexora", series: 3, reps: "12-15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Seated-Leg-Curl.gif", instrucoes: ["Puxe calcanhar", "Controle a volta", "Costas apoiadas"] },
@@ -31,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         { 
-            dia: "Upper", nomeCompleto: "Superior", exercicios: [
+            dia: "Qui", nomeCompleto: "Quinta - Superior", exercicios: [
                 { nome: "Remada Curvada", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/10/Dumbbell-Bent-Over-Reverse-Row.gif", instrucoes: ["Tronco inclinado", "Coluna reta", "Puxe no quadril"] },
                 { nome: "Supino Inclinado", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif", instrucoes: ["Banco 30 graus", "Empurre pra cima", "Desça até ombro"] },
                 { nome: "Elevação Frontal", series: 3, reps: "12-15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Alternating-Dumbbell-Front-Raise.gif", instrucoes: ["Até altura ombro", "Abdômen firme", "Sem balanço"] },
@@ -40,11 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
             ]
         },
         { 
-            dia: "Lower", nomeCompleto: "Inferior", exercicios: [
+            dia: "Sex", nomeCompleto: "Sexta - Inferior", exercicios: [
                 { nome: "Agachamento Goblet", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2023/01/Dumbbell-Goblet-Squat.gif", instrucoes: ["Peso no peito", "Agache fundo", "Peito aberto"] },
                 { nome: "Afundo (Lunge)", series: 3, reps: "12 reps/perna", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/05/Dumbbell-Rear-Lunge.gif", instrucoes: ["Passo pra trás", "Joelho chão", "Troca perna"] },
                 { nome: "Stiff", series: 3, reps: "15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Straight-Leg-Deadlift.gif", instrucoes: ["Perna semi-reta", "Quadril pra trás", "Coluna reta"] },
                 { nome: "Panturrilha Sentado", series: 4, reps: "15-20 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2022/02/Seated-Calf-Press-on-Leg-Press-Machine.gif", instrucoes: ["Sente máquina", "Amplitude total", "Controle"] }
+            ] 
+        },
+        { 
+            dia: "Sáb", nomeCompleto: "Sábado - Cardio/Core", exercicios: [
+                { nome: "Agachamento Livre (Cardio)", series: 3, reps: "20 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2023/01/Dumbbell-Goblet-Squat.gif", instrucoes: ["Sem peso, ritmo constante", "Aqueça o corpo", "Mantenha postura"] },
+                { nome: "Alongamento Stiff", series: 3, reps: "30 seg", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Straight-Leg-Deadlift.gif", instrucoes: ["Use peso leve ou sem peso", "Foque na flexibilidade", "Relaxe a lombar"] }
             ] 
         }
     ];
@@ -83,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let progresso = {};
     let diaAtivo = 0;
+    let semanaCompletaFlag = false; // Flag para controlar o modal de semana
 
     const carregarDados = () => {
         try {
@@ -94,13 +102,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const salvarDados = () => {
         localStorage.setItem('goFitnessProgresso', JSON.stringify(progresso));
-        atualizarStatusDias(); // Atualiza a cor dos botões ao salvar
+        atualizarStatusDias(); 
     };
 
-    // NOVA FUNÇÃO: Verifica se todos os exercícios de um dia foram feitos
     const atualizarStatusDias = () => {
         const botoes = document.querySelectorAll('.inline-day-btn');
-        
+        let diasCompletosCount = 0;
+
         dadosTreino.forEach((dadosDia, indexDia) => {
             const exercicios = dadosDia.exercicios;
             let diaCompleto = true;
@@ -117,11 +125,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (botoes[indexDia]) {
                 if (diaCompleto) {
                     botoes[indexDia].classList.add('completed');
+                    diasCompletosCount++;
                 } else {
                     botoes[indexDia].classList.remove('completed');
                 }
             }
         });
+
+        return diasCompletosCount === dadosTreino.length;
     };
 
     const atualizarDashboard = () => {
@@ -142,9 +153,24 @@ document.addEventListener('DOMContentLoaded', () => {
         el.progressPercent.textContent = porcentagem;
         el.progressBar.style.width = `${porcentagem}%`;
 
-        if (porcentagem >= 100 && !el.modals.complete.overlay.classList.contains('shown-today')) {
-            mostrarConclusao();
-            el.modals.complete.overlay.classList.add('shown-today');
+        // LÓGICA DE CONCLUSÃO
+        if (porcentagem >= 100) {
+            // Verifica se é a conclusão do dia atual (evita spam ao recarregar)
+            const diaJaConcluidoStorage = localStorage.getItem(`diaConcluido_${diaAtivo}`);
+            
+            if (!diaJaConcluidoStorage) {
+                mostrarConclusaoDia();
+                localStorage.setItem(`diaConcluido_${diaAtivo}`, 'true');
+            }
+
+            // Verifica se a SEMANA TODA foi concluída
+            const semanaCompleta = atualizarStatusDias();
+            if (semanaCompleta && !semanaCompletaFlag) {
+                semanaCompletaFlag = true;
+                setTimeout(() => {
+                    mostrarConclusaoSemana();
+                }, 1000); // Espera um pouco após o modal do dia
+            }
         }
     };
 
@@ -191,7 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
         el.currentDayLabel.textContent = dados.nomeCompleto; 
         
         document.querySelectorAll('.inline-day-btn').forEach((btn, idx) => {
-            // Remove active de todos
             btn.classList.toggle('active', idx === index);
         });
 
@@ -217,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         el.completedSection.classList.toggle('hidden', !temCompletos);
         atualizarDashboard();
-        atualizarStatusDias(); // Garante que a cor esteja correta ao renderizar
+        atualizarStatusDias(); 
     };
 
     const alterarSeries = (id, delta, max) => {
@@ -226,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (atual !== novo) {
             progresso[id] = novo;
-            salvarDados(); // Salva e atualiza cores dos botões
+            salvarDados();
             renderizarDia(diaAtivo);
         }
     };
@@ -239,28 +264,54 @@ document.addEventListener('DOMContentLoaded', () => {
         el.modals.info.overlay.classList.remove('hidden');
     };
 
-    const mostrarConclusao = () => {
+    const mostrarConclusaoDia = () => {
+        el.modals.complete.title.textContent = "Dia Completo!";
         el.modals.complete.text.textContent = mensagensDeConclusao[Math.floor(Math.random() * mensagensDeConclusao.length)];
+        
+        // Configura botão para apenas fechar
+        el.modals.complete.close.textContent = "Continuar";
+        el.modals.complete.close.onclick = () => fecharModal(el.modals.complete.overlay);
+
         el.modals.complete.overlay.classList.remove('hidden');
-        if (typeof confetti === 'function') confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+        if (typeof confetti === 'function') confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    };
+
+    const mostrarConclusaoSemana = () => {
+        el.modals.complete.title.textContent = "Semana Finalizada!";
+        el.modals.complete.text.textContent = "Parabéns! Você completou todos os treinos da semana. O progresso será reiniciado para a próxima semana.";
+        
+        // Configura botão para resetar
+        el.modals.complete.close.textContent = "Iniciar Nova Semana";
+        el.modals.complete.close.onclick = () => {
+            resetarSemana();
+        };
+
+        el.modals.complete.overlay.classList.remove('hidden');
+        if (typeof confetti === 'function') confetti({ particleCount: 300, spread: 100, origin: { y: 0.6 } });
     };
 
     const fecharModal = (overlay) => {
         overlay.classList.add('hidden');
     };
 
-    // Events
-    el.modals.info.close.addEventListener('click', () => fecharModal(el.modals.info.overlay));
-    el.modals.complete.close.addEventListener('click', () => fecharModal(el.modals.complete.overlay));
-    
-    // Reset Logic
-    el.resetBtn.addEventListener('click', () => el.modals.reset.overlay.classList.remove('hidden'));
-    el.modals.reset.cancel.addEventListener('click', () => fecharModal(el.modals.reset.overlay));
-    el.modals.reset.confirm.addEventListener('click', () => {
+    const resetarSemana = () => {
         progresso = {};
+        // Limpa também as flags de "Dia Concluído"
+        Object.keys(localStorage).forEach(key => {
+            if (key.startsWith('diaConcluido_')) localStorage.removeItem(key);
+        });
         salvarDados();
         location.reload();
-    });
+    }
+
+    // Events
+    el.modals.info.close.addEventListener('click', () => fecharModal(el.modals.info.overlay));
+    // O evento de click do complete.close é definido dinamicamente (Dia vs Semana)
+    
+    // Reset Logic (Manual)
+    el.resetBtn.addEventListener('click', () => el.modals.reset.overlay.classList.remove('hidden'));
+    el.modals.reset.cancel.addEventListener('click', () => fecharModal(el.modals.reset.overlay));
+    el.modals.reset.confirm.addEventListener('click', resetarSemana);
 
     const init = () => {
         carregarDados();
@@ -275,10 +326,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const hoje = new Date().getDay(); 
         let diaInicial = hoje - 1; 
-        if (diaInicial < 0 || diaInicial > 4) diaInicial = 0; 
+        if (diaInicial < 0 || diaInicial > 5) diaInicial = 0; // Ajuste para 0-5
         
         renderizarDia(diaInicial);
-        atualizarStatusDias(); // Roda a verificação de cores na inicialização
+        atualizarStatusDias(); 
     };
 
     init();
