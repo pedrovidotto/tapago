@@ -1,13 +1,13 @@
 /* 1. ROOT & GLOBAL STYLES */
 :root {
-  /* TEMA CLARO (Acessibilidade Melhorada) */
+  /* TEMA CLARO */
   --cor-fundo: #F5F5F7; 
   --cor-superficie: #FFFFFF; 
   --cor-primaria: #000000; 
-  --cor-sucesso: #15803d; /* Verde mais escuro para contraste */
-  --cor-perigo: #b91c1c;  /* Vermelho mais escuro */
-  --cor-texto-principal: #111827; /* Preto quase absoluto */
-  --cor-texto-secundario: #4b5563; /* Cinza escuro (era muito claro) */
+  --cor-sucesso: #15803d; 
+  --cor-perigo: #b91c1c; 
+  --cor-texto-principal: #111827; 
+  --cor-texto-secundario: #4b5563; 
   --cor-texto-terciario: #6b7280; 
   --cor-borda: #d1d5db; 
   --cor-borda-muted: rgba(0, 0, 0, 0.1); 
@@ -16,8 +16,8 @@
   --modal-overlay-bg: rgba(0, 0, 0, 0.6);
   --shadow-card: 0 2px 8px rgba(0,0,0,0.08);
   
-  --progresso-fill-bg: #dcfce7; /* Fundo verde bem claro */
-  --tamanho-botao-toque: 48px; /* Mínimo 44px para acessibilidade */
+  --progresso-fill-bg: #dcfce7; 
+  --tamanho-botao-toque: 48px; 
 }
 
 body[data-theme="dark"] {
@@ -28,7 +28,7 @@ body[data-theme="dark"] {
   --cor-sucesso: #4ade80; 
   --cor-perigo: #f87171;  
   --cor-texto-principal: #f9fafb; 
-  --cor-texto-secundario: #d1d5db; /* Cinza claro */
+  --cor-texto-secundario: #d1d5db; 
   --cor-texto-terciario: #9ca3af; 
   --cor-borda: #374151; 
   --cor-borda-muted: rgba(255, 255, 255, 0.15);
@@ -45,7 +45,7 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: var(--cor-fundo);
   color: var(--cor-texto-principal);
-  font-size: 19px; /* Aumentado para 50+ */
+  font-size: 19px; 
   line-height: 1.6;
   padding-bottom: 2rem;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -68,7 +68,6 @@ header { margin-bottom: 1rem; }
     font-size: 1.8rem; font-weight: 400;
 }
 
-/* Botão Tema Grande */
 .btn-icon {
     background: transparent; border: 2px solid transparent;
     color: var(--cor-texto-principal);
@@ -81,18 +80,16 @@ header { margin-bottom: 1rem; }
 .btn-icon:hover { background-color: var(--hover-color); }
 .btn-icon:focus-visible { outline: 2px solid var(--cor-primaria); }
 
-/* Título do Dia */
 #workout-day-title {
     font-size: 2.8rem; font-weight: 700; 
     margin: 0.5rem 0 1.5rem 0;
     line-height: 1.1; letter-spacing: -0.02em;
 }
 
-/* Seletor de Dias */
 #day-selector-inline {
     display: flex; gap: 8px; overflow-x: auto; 
     padding-bottom: 10px; -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
+    scrollbar-width: none; 
 }
 #day-selector-inline::-webkit-scrollbar { display: none; }
 
@@ -101,7 +98,7 @@ header { margin-bottom: 1rem; }
     color: var(--cor-texto-secundario);
     border: 1px solid var(--cor-borda);
     border-radius: 30px;
-    padding: 10px 20px; /* Mais área de toque */
+    padding: 10px 20px; 
     font-size: 1rem; font-weight: 500;
     cursor: pointer; white-space: nowrap;
     transition: all 0.2s ease;
@@ -126,13 +123,12 @@ header { margin-bottom: 1rem; }
     font-size: 0.9rem; color: var(--cor-texto-terciario); margin-bottom: 5px;
 }
 .progress-container {
-  width: 100%; height: 12px; /* Barra mais grossa */
+  width: 100%; height: 12px;
   background-color: var(--cor-borda);
   border-radius: 6px; overflow: hidden;
 }
 .progress-bar { width: 0%; height: 100%; background-color: var(--cor-sucesso); transition: width 0.5s ease; } 
 
-/* LISTA DE EXERCÍCIOS */
 #lista-exercicios, #completed-list { list-style: none; margin-top: 1rem; }
 
 .category-title {
@@ -140,7 +136,6 @@ header { margin-bottom: 1rem; }
   color: var(--cor-texto-secundario); font-size: 1rem; padding-bottom: 0.5rem;
 }
 
-/* ITEM DE EXERCÍCIO REDESENHADO */
 .exercicio-item {
   padding: 24px 0;
   border-bottom: 1px solid var(--cor-borda);
@@ -163,9 +158,8 @@ header { margin-bottom: 1rem; }
     padding: 6px; border-radius: 12px;
 }
 
-/* Botões de Controle (+ / -) */
 .btn-control {
-    width: 44px; height: 44px; /* Grande para toque fácil */
+    width: 44px; height: 44px;
     border-radius: 10px; border: 1px solid var(--cor-borda);
     background-color: var(--cor-superficie);
     color: var(--cor-texto-principal);
@@ -183,7 +177,6 @@ header { margin-bottom: 1rem; }
     min-width: 60px; text-align: center;
 }
 
-/* Botão Info (i) */
 .btn-info-inline {
     width: 44px; height: 44px;
     border-radius: 50%; border: 2px solid var(--cor-borda);
@@ -192,24 +185,35 @@ header { margin-bottom: 1rem; }
     margin-left: 10px; cursor: pointer;
 }
 
-/* ESTADO CONCLUÍDO */
 .exercicio-item.finalizado { opacity: 0.6; }
 .exercicio-item.finalizado .set-counter { color: var(--cor-sucesso); }
 
-/* 4. MODALS */
-.overlay {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: var(--modal-overlay-bg); backdrop-filter: blur(3px);
-  z-index: 2000; display: flex; align-items: center; justify-content: center;
+/* 4. MODALS (CORRIGIDO) */
+/* Agora inclui .modal-overlay explicitamente */
+.overlay, .modal-overlay {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  background: var(--modal-overlay-bg); 
+  backdrop-filter: blur(3px);
+  z-index: 9999; /* Garante que fique no topo */
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
 }
+
 .modal, .completion-card {
   background: var(--cor-superficie); width: 90%; max-width: 500px;
   border-radius: 20px; padding: 24px;
   box-shadow: 0 10px 40px rgba(0,0,0,0.3);
   max-height: 90vh; overflow-y: auto;
+  position: relative; /* Para o botão de fechar absoluto */
 }
+
 .modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
-.modal-close-btn { font-size: 2rem; }
+.modal-close-btn { font-size: 2rem; border: none; }
 
 .gif-container { 
     width: 100%; min-height: 200px; background: var(--cor-fundo); 
