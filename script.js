@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
         "Mandou muito bem!", "Vitória do dia!", "Consistência é tudo.", "Excelente esforço!", "Missão cumprida!"
     ];
 
-    // Same data as before (kept concise for this snippet, assuming you have the full list from previous turn)
     const dadosTreino = [ 
         { 
             dia: "Push", nomeCompleto: "Empurrar", exercicios: [
@@ -59,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         completedSection: document.getElementById('completed-section'),
         progressBar: document.getElementById('progress-bar'),
         progressPercent: document.getElementById('progress-percent'),
-        resetBtn: document.getElementById('botao-resetar'), // Now the refresh icon
+        resetBtn: document.getElementById('botao-resetar'),
         modals: {
             info: {
                 overlay: document.getElementById('modal-info-overlay'),
@@ -112,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const porcentagem = seriesTotais === 0 ? 0 : Math.round((seriesFeitas / seriesTotais) * 100);
         
-        // Update White Card (Percentage)
         el.progressPercent.textContent = porcentagem;
         el.progressBar.style.width = `${porcentagem}%`;
 
@@ -130,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const li = document.createElement('li');
         li.className = `exercicio-item ${estaCompleto ? 'finalizado' : ''}`;
         
-        // The HTML structure is simplified for the new design
         li.innerHTML = `
             <div class="detalhes-header">
                 <div class="detalhes-exercicio">
@@ -162,8 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
         diaAtivo = index;
         const dados = dadosTreino[index];
         
-        el.dayTitle.textContent = dados.nomeCompleto; // Header H1
-        el.currentDayLabel.textContent = dados.nomeCompleto; // Blue Card Label
+        el.dayTitle.textContent = dados.nomeCompleto; 
+        el.currentDayLabel.textContent = dados.nomeCompleto; 
         
         document.querySelectorAll('.inline-day-btn').forEach((btn, idx) => {
             btn.classList.toggle('active', idx === index);
