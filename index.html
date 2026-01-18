@@ -2,8 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Go Fitness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <meta name="description" content="Aplicativo de treino simples e acessível para acompanhar sua rotina semanal.">
+  <title>Go Fitness - Seu Treino</title>
 
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/png" sizes="192x192" href="icon_192.png">
@@ -11,83 +12,91 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body data-theme="light">
 <div class="container">
-  <header>
+  <header role="banner">
     <div class="header-top-row">
         <div class="logo-container">
-            <span id="app-logo-text">TáPago!</span>
+            <span id="app-logo-text" role="heading" aria-level="1">Go Fitness</span>
         </div>
-         <button id="theme-toggle-btn" class="btn-icon theme-toggle" aria-label="Alternar tema">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 1.75V22.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+         <button id="theme-toggle-btn" class="btn-icon theme-toggle" aria-label="Alternar para modo escuro">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 1.75V22.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M12 22.25C17.799 22.25 22.25 17.799 22.25 12C22.25 6.20101 17.799 1.75 12 1.75V22.25Z" fill="currentColor"/>
             </svg>
         </button>
     </div>
-    <hr class="header-divider-subtle">
-    <h1 id="workout-day-title">Carregando...</h1>
-    <hr class="header-divider-subtle">
-    <nav id="day-selector-inline">
+    
+    <div class="day-header">
+        <h2 id="workout-day-title">Carregando...</h2>
+    </div>
+
+    <nav id="day-selector-inline" role="navigation" aria-label="Seleção do dia de treino">
       </nav>
-    <hr class="header-divider">
   </header>
 
-  <main id="workout-card">
+  <main id="workout-card" role="main">
     <div id="cabecalho-treino">
-      <div class="progress-container">
+      <div class="progress-label" aria-hidden="true">Progresso do dia:</div>
+      <div class="progress-container" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
         <div id="progress-bar" class="progress-bar"></div>
       </div>
     </div>
-    <ul id="lista-exercicios"></ul>
-    <div id="completed-section" class="hidden">
+    
+    <ul id="lista-exercicios" aria-label="Lista de exercícios a fazer"></ul>
+    
+    <section id="completed-section" class="hidden" aria-label="Exercícios concluídos">
        <h3 id="completed-title" class="category-title">Concluídos</h3>
        <ul id="completed-list"></ul>
-    </div>
+    </section>
   </main>
 
   <footer>
-    <button id="botao-resetar" class="btn-secondary">Resetar Progresso</button>
+    <button id="botao-resetar" class="btn-secondary">Reiniciar Semana</button>
+    <p class="footer-note">Toque no <strong>( i )</strong> para ver como fazer o exercício.</p>
   </footer>
 </div>
 
-<div id="modal-info-overlay" class="modal-overlay hidden">
-  <div class="modal">
-    <button id="modal-info-fechar-btn" class="btn-icon modal-close-btn">&times;</button>
-    <h2 id="modal-info-titulo"></h2>
-    <hr class="divider">
+<div id="modal-info-overlay" class="modal-overlay hidden" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-info-titulo">
+    <div class="modal-header">
+        <h2 id="modal-info-titulo"></h2>
+        <button id="modal-info-fechar-btn" class="btn-icon modal-close-btn" aria-label="Fechar instruções">&times;</button>
+    </div>
     <div class="modal-info-conteudo">
-        <img id="modal-info-gif" src="" alt="Demonstração do exercício" />
+        <div class="gif-container">
+            <div class="loading-spinner">Carregando...</div>
+            <img id="modal-info-gif" src="" alt="Animação demonstrando o exercício" />
+        </div>
         
-        <h3 class="modal-subheader">Como Fazer</h3>
-
+        <h3 class="modal-subheader">Como Fazer:</h3>
         <ol id="modal-info-instrucoes" class="instructions-list"></ol>
     </div>
   </div>
 </div>
 
-<div id="completion-overlay" class="overlay hidden">
-    <div class="completion-card">
+<div id="completion-overlay" class="overlay hidden" aria-hidden="true">
+    <div class="completion-card" role="alertdialog" aria-labelledby="completion-title">
         <h3 id="completion-title">Ótimo Trabalho!</h3>
         <p id="completion-text"></p>
-        <button id="completion-close-btn" class="btn-secondary">Continuar</button>
+        <button id="completion-close-btn" class="btn-primary-large">Continuar</button>
     </div>
 </div>
 
-<div id="reset-overlay" class="overlay hidden">
-    <div class="modal" role="dialog">
-         <button id="reset-modal-close-btn" class="btn-icon modal-close-btn">&times;</button>
-        <h2 class="modal-title">Confirmar Ação</h2>
+<div id="reset-overlay" class="overlay hidden" aria-hidden="true">
+    <div class="modal" role="alertdialog" aria-labelledby="reset-title">
+         <button id="reset-modal-close-btn" class="btn-icon modal-close-btn" aria-label="Cancelar">&times;</button>
+        <h2 id="reset-title" class="modal-title">Reiniciar Semana?</h2>
         <hr class="divider">
-        <p class="modal-text">Tem a certeza de que quer apagar todo o progresso da semana? Esta ação não pode ser desfeita.</p>
+        <p class="modal-text">Isso apagará todo o seu progresso atual. Tem certeza?</p>
         <div class="modal-buttons">
             <button id="cancel-reset-btn" class="btn-secondary">Cancelar</button>
-            <button id="confirm-reset-btn" class="btn-primary confirm-btn">Sim, apagar</button>
+            <button id="confirm-reset-btn" class="btn-primary confirm-btn">Sim, apagar tudo</button>
         </div>
     </div>
 </div>
