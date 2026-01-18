@@ -3,100 +3,108 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-  <meta name="description" content="Aplicativo de treino simples e acessível para acompanhar sua rotina semanal.">
-  <title>Go Fitness - Seu Treino</title>
+  <meta name="theme-color" content="#000000">
+  <title>TáPago 2.0</title>
 
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/png" sizes="192x192" href="icon_192.png">
-  <link rel="apple-touch-icon" href="icon_192.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body data-theme="light">
-<div class="container">
-  <header role="banner">
-    <div class="header-top-row">
-        <div class="logo-container">
-            <span id="app-logo-text" role="heading" aria-level="1">Go Fitness</span>
+<body> <div class="container">
+  
+  <header class="app-header">
+    <div class="profile-row">
+        <div class="profile-info">
+            <div class="profile-pic">
+                <span>GO</span>
+            </div>
+            <div class="profile-text">
+                <span class="greeting">Olá, Atleta</span>
+                <h1 id="workout-day-title">Carregando...</h1>
+            </div>
         </div>
-         <button id="theme-toggle-btn" class="btn-icon theme-toggle" aria-label="Alternar para modo escuro">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M12 1.75V22.25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 22.25C17.799 22.25 22.25 17.799 22.25 12C22.25 6.20101 17.799 1.75 12 1.75V22.25Z" fill="currentColor"/>
-            </svg>
+        <button id="botao-resetar" class="btn-icon-glass" aria-label="Resetar">
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 12"/></svg>
         </button>
     </div>
-    
-    <div class="day-header">
-        <h2 id="workout-day-title">Carregando...</h2>
+
+    <div class="stats-dashboard">
+        <div class="stat-card card-white">
+            <span class="stat-label">Concluído</span>
+            <div class="stat-value-row">
+                <span id="progress-percent" class="stat-number">0</span>
+                <span class="stat-unit">%</span>
+            </div>
+            <div class="mini-progress-track">
+                <div id="progress-bar" class="mini-progress-fill"></div>
+            </div>
+        </div>
+        <div class="stat-card card-blue">
+            <span class="stat-label">Dia Atual</span>
+            <div class="stat-value-row">
+                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <span id="current-day-label" class="stat-subtext">Seleção</span>
+        </div>
     </div>
 
-    <nav id="day-selector-inline" role="navigation" aria-label="Seleção do dia de treino">
-      </nav>
+    <nav id="day-selector-inline" role="navigation" aria-label="Seleção do dia"></nav>
   </header>
 
-  <main id="workout-card" role="main">
-    <div id="cabecalho-treino">
-      <div class="progress-label" aria-hidden="true">Progresso do dia:</div>
-      <div class="progress-container" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-        <div id="progress-bar" class="progress-bar"></div>
-      </div>
+  <main>
+    <div class="section-header">
+        <h2>Exercícios</h2>
+        <span class="see-all">Hoje</span>
     </div>
+
+    <ul id="lista-exercicios" aria-label="Lista de exercícios"></ul>
     
-    <ul id="lista-exercicios" aria-label="Lista de exercícios a fazer"></ul>
-    
-    <section id="completed-section" class="hidden" aria-label="Exercícios concluídos">
-       <h3 id="completed-title" class="category-title">Concluídos</h3>
+    <section id="completed-section" class="hidden">
+       <div class="section-header">
+            <h2>Finalizados</h2>
+       </div>
        <ul id="completed-list"></ul>
     </section>
   </main>
 
-  <footer>
-    <button id="botao-resetar" class="btn-secondary">Reiniciar Semana</button>
-    <p class="footer-note">Toque no <strong>( i )</strong> para ver como fazer o exercício.</p>
-  </footer>
 </div>
 
 <div id="modal-info-overlay" class="modal-overlay hidden" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-info-titulo">
+  <div class="modal glass-modal">
     <div class="modal-header">
         <h2 id="modal-info-titulo"></h2>
-        <button id="modal-info-fechar-btn" class="btn-icon modal-close-btn" aria-label="Fechar instruções">&times;</button>
+        <button id="modal-info-fechar-btn" class="btn-close-modal">&times;</button>
     </div>
-    <div class="modal-info-conteudo">
+    <div class="modal-content">
         <div class="gif-container">
-            <div class="loading-spinner">Carregando...</div>
-            <img id="modal-info-gif" src="" alt="Animação demonstrando o exercício" referrerpolicy="no-referrer" />
+            <img id="modal-info-gif" src="" alt="Demo" referrerpolicy="no-referrer" />
         </div>
-        
-        <h3 class="modal-subheader">Como Fazer:</h3>
+        <h3 class="modal-label">Instruções</h3>
         <ol id="modal-info-instrucoes" class="instructions-list"></ol>
     </div>
   </div>
 </div>
 
 <div id="completion-overlay" class="overlay hidden" aria-hidden="true">
-    <div class="completion-card" role="alertdialog" aria-labelledby="completion-title">
-        <h3 id="completion-title">Ótimo Trabalho!</h3>
+    <div class="modal glass-modal centered-text">
+        <h3 id="completion-title">Excelente!</h3>
         <p id="completion-text"></p>
-        <button id="completion-close-btn" class="btn-primary-large">Continuar</button>
+        <button id="completion-close-btn" class="btn-full-width">Continuar</button>
     </div>
 </div>
 
 <div id="reset-overlay" class="overlay hidden" aria-hidden="true">
-    <div class="modal" role="alertdialog" aria-labelledby="reset-title">
-         <button id="reset-modal-close-btn" class="btn-icon modal-close-btn" aria-label="Cancelar">&times;</button>
-        <h2 id="reset-title" class="modal-title">Reiniciar Semana?</h2>
-        <hr class="divider">
-        <p class="modal-text">Isso apagará todo o seu progresso atual. Tem certeza?</p>
+    <div class="modal glass-modal">
+        <h2 class="modal-title">Reiniciar?</h2>
+        <p class="modal-text">O progresso da semana será apagado.</p>
         <div class="modal-buttons">
-            <button id="cancel-reset-btn" class="btn-secondary">Cancelar</button>
-            <button id="confirm-reset-btn" class="btn-primary confirm-btn">Sim, apagar tudo</button>
+            <button id="cancel-reset-btn" class="btn-text">Cancelar</button>
+            <button id="confirm-reset-btn" class="btn-danger">Apagar</button>
         </div>
     </div>
 </div>
