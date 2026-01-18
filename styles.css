@@ -3,18 +3,16 @@
   --bg-app: #000000;
   --bg-card: #1C1C1E;
   
-  /* The Image Colors */
-  --accent-orange: #FF4F32; /* The bright orange/red */
-  --accent-blue: #4666FF;   /* The bright blue */
+  --accent-orange: #FF4F32; 
+  --accent-blue: #4666FF;   
   --accent-white: #FFFFFF;
   
   --text-main: #FFFFFF;
   --text-muted: #8E8E93;
   --text-dark: #000000;
   
-  --radius-lg: 32px; /* Super rounded corners like image */
+  --radius-lg: 32px; 
   --radius-md: 24px;
-  --radius-sm: 16px;
   
   --font-main: 'Inter', sans-serif;
 }
@@ -61,8 +59,9 @@ button { font-family: inherit; border: none; cursor: pointer; }
     border-radius: 50%; color: var(--text-main);
     display: flex; align-items: center; justify-content: center;
 }
+.btn-icon-glass svg { width: 20px; height: 20px; }
 
-/* --- DASHBOARD WIDGETS (Like the top of the image) --- */
+/* --- DASHBOARD WIDGETS --- */
 .stats-dashboard {
     display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
     margin-bottom: 24px;
@@ -109,12 +108,23 @@ button { font-family: inherit; border: none; cursor: pointer; }
     border-radius: 20px; padding: 10px 20px;
     font-size: 0.9rem; font-weight: 600; white-space: nowrap;
     transition: 0.3s;
+    border: 1px solid transparent;
 }
 .inline-day-btn.active {
-    background: var(--accent-white); color: var(--text-dark);
+    background: var(--accent-white) !important; color: var(--text-dark) !important;
+    border-color: var(--accent-white);
 }
+/* BOTÃO DE DIA COMPLETO (LARANJA) */
+.inline-day-btn.completed {
+    background-color: var(--accent-orange);
+    color: var(--text-main);
+}
+/* Se o dia estiver completo E ativo, mantemos o branco para indicar seleção? 
+   Ou laranja? O usuário pediu "orange so it's clear it's completed".
+   Vamos deixar Laranja se não estiver ativo. Se estiver ativo, branco. 
+   O CSS acima já faz isso porque .active vem depois e tem !important */
 
-/* --- EXERCISE CARDS (The colorful list) --- */
+/* --- EXERCISE CARDS --- */
 .section-header {
     display: flex; justify-content: space-between; align-items: flex-end;
     margin-bottom: 16px; margin-top: 10px;
@@ -136,17 +146,14 @@ button { font-family: inherit; border: none; cursor: pointer; }
 
 .exercicio-item:active { transform: scale(0.98); }
 
-/* Alternating Colors for List Items */
 #lista-exercicios .exercicio-item:nth-child(odd) {
     background-color: var(--accent-orange);
     color: white;
 }
 #lista-exercicios .exercicio-item:nth-child(even) {
-    background-color: var(--bg-card); /* Dark card */
+    background-color: var(--bg-card);
     color: white;
 }
-/* If you want Blue instead of Dark for even items, uncomment below: */
-/* #lista-exercicios .exercicio-item:nth-child(even) { background-color: var(--accent-blue); } */
 
 .detalhes-header {
     display: flex; justify-content: space-between; align-items: flex-start;
@@ -161,12 +168,11 @@ button { font-family: inherit; border: none; cursor: pointer; }
     color: inherit; font-family: serif; font-style: italic; font-weight: 700;
 }
 
-/* Controls inside the card */
 .exercicio-controls {
     display: flex; align-items: center; gap: 12px;
-    background: rgba(0,0,0,0.2); /* Subtle darkness behind controls */
+    background: rgba(0,0,0,0.2);
     padding: 8px; border-radius: 20px;
-    align-self: flex-start; /* Keeps it left aligned */
+    align-self: flex-start;
     margin-top: 15px;
     backdrop-filter: blur(10px);
 }
@@ -181,14 +187,11 @@ button { font-family: inherit; border: none; cursor: pointer; }
 
 .set-counter {
     font-size: 1.2rem; font-weight: 700; min-width: 40px; text-align: center;
-    font-family: var(--font-main); /* Match sans-serif */
 }
 
-/* Completed Items */
 #completed-list .exercicio-item {
-    background-color: #2C2C2E; /* Greyed out */
+    background-color: #2C2C2E;
     color: #8E8E93;
-    opacity: 1;
 }
 #completed-list .exercicio-controls { display: none; }
 #completed-list .exercicio-item::after {
@@ -196,45 +199,66 @@ button { font-family: inherit; border: none; cursor: pointer; }
     font-size: 2rem; color: var(--accent-orange);
 }
 
-/* --- MODALS (Glassmorphism) --- */
-.overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8); z-index: 999;
-    display: flex; align-items: center; justify-content: center;
+/* --- MODALS FIXED (WHITE & TOP) --- */
+.overlay, .modal-overlay {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background: rgba(0,0,0,0.85); 
+    z-index: 99999; /* Highest priority */
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
     backdrop-filter: blur(5px);
 }
 
-.glass-modal {
-    background: #1C1C1E; color: white;
+/* Forcing WHITE modal style explicitly */
+.white-modal {
+    background-color: #FFFFFF !important; /* Force White */
+    color: #000000 !important;      /* Force Dark Text */
     width: 90%; max-width: 400px;
     border-radius: var(--radius-lg);
     padding: 24px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    border: 1px solid #333;
+    z-index: 100000;
+    position: relative;
 }
 
 .centered-text { text-align: center; }
 
-.modal-header { display: flex; justify-content: space-between; margin-bottom: 20px; }
-.modal-header h2 { font-size: 1.5rem; }
-.btn-close-modal { font-size: 2rem; line-height: 0.5; color: #888; background: transparent; }
+.modal-header { display: flex; justify-content: space-between; margin-bottom: 20px; align-items: center; }
+.modal-header h2 { font-size: 1.4rem; font-weight: 700; color: #000; margin: 0; }
+
+.btn-close-modal { 
+    font-size: 2rem; line-height: 1; color: #000; 
+    background: #F2F2F7; width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+}
 
 .gif-container {
     border-radius: 20px; overflow: hidden; margin-bottom: 20px;
-    background: #000; min-height: 200px;
+    background: #FFFFFF; /* Matches the modal */
+    min-height: 200px;
+    border: 1px solid #eee;
 }
 .gif-container img { width: 100%; display: block; }
 
-.modal-label { color: var(--accent-orange); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 10px; }
-.instructions-list li { margin-bottom: 10px; color: #CCC; line-height: 1.5; }
+.modal-label { color: var(--accent-orange); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; }
+
+/* Text colors adjusted for white background */
+.instructions-list li { margin-bottom: 10px; color: #333; line-height: 1.5; font-weight: 500; }
+.modal-text { color: #555; margin-bottom: 20px; font-size: 1.1rem; }
+#completion-text { color: #333; font-size: 1.2rem; margin-bottom: 20px; }
 
 .btn-full-width {
     width: 100%; padding: 16px; border-radius: 20px;
     background: var(--accent-blue); color: white;
     font-weight: 700; font-size: 1.1rem; margin-top: 10px;
 }
-.btn-danger { background: var(--accent-orange); color: white; padding: 10px 20px; border-radius: 12px; font-weight: 600;}
-.btn-text { background: transparent; color: #888; padding: 10px 20px; font-weight: 600;}
+.btn-danger { background: var(--accent-orange); color: white; padding: 12px 24px; border-radius: 16px; font-weight: 600; font-size: 1rem; }
+.btn-text { background: transparent; color: #666; padding: 12px 24px; font-weight: 600; font-size: 1rem; }
 .modal-buttons { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
 
 .hidden { display: none !important; }
