@@ -1,201 +1,65 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const mensagensDeConclusao = [
-        "Mandou muito bem! Descanse e recupere.",
-        "Vitória do dia! Nos vemos no próximo treino.",
-        "Consistência é o segredo. Parabéns!",
-        "Excelente! O esforço de hoje constrói o amanhã.",
-        "Missão cumprida! Sinta orgulho de você."
+        "Mandou muito bem!", "Vitória do dia!", "Consistência é tudo.", "Excelente esforço!", "Missão cumprida!"
     ];
 
-    // --- DADOS DE TREINO (URLs Atualizadas da Lista) ---
+    // Same data as before (kept concise for this snippet, assuming you have the full list from previous turn)
     const dadosTreino = [ 
         { 
             dia: "Push", nomeCompleto: "Empurrar", exercicios: [
-                { 
-                    nome: "Supino na Máquina", 
-                    series: 3, 
-                    reps: "10-12 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Lying-Chest-Press-Machine.gif", // 
-                    instrucoes: ["Ajuste a altura do banco para alinhar os pegadores com o meio do peito.", "Empurre para frente soltando o ar.", "Volte devagar inspirando."]
-                },
-                { 
-                    nome: "Desenvolvimento na Máquina", 
-                    series: 3, 
-                    reps: "10-12 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Shoulder-Press.gif", // 
-                    instrucoes: ["Ajuste o banco. Pegadores na altura dos ombros.", "Empurre para cima sem travar os cotovelos.", "Desça controlando o peso."]
-                },
-                { 
-                    nome: "Elevação Lateral com Halteres", 
-                    series: 3, 
-                    reps: "12-15 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif", // 
-                    instrucoes: ["Tronco firme. Eleve os braços até a altura dos ombros.", "Não use impulso.", "Desça devagar."]
-                },
-                { 
-                    nome: "Tríceps na Polia (Barra)", 
-                    series: 4, 
-                    reps: "12-15 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Pushdown.gif", // 
-                    instrucoes: ["Cotovelos colados no corpo.", "Empurre a barra para baixo estendendo o braço.", "Controle a subida."]
-                }
+                { nome: "Supino na Máquina", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Lying-Chest-Press-Machine.gif", instrucoes: ["Ajuste o banco", "Empurre para frente", "Volte devagar"] },
+                { nome: "Desenvolvimento Máquina", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/04/Lever-Shoulder-Press.gif", instrucoes: ["Pegada na altura do ombro", "Empurre para cima", "Controle a descida"] },
+                { nome: "Elevação Lateral", series: 3, reps: "12-15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif", instrucoes: ["Eleve até o ombro", "Sem impulso", "Desça devagar"] },
+                { nome: "Tríceps Polia", series: 4, reps: "12-15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Pushdown.gif", instrucoes: ["Cotovelo colado", "Estenda o braço", "Controle a volta"] }
             ]
         },
         { 
             dia: "Pull", nomeCompleto: "Puxar", exercicios: [
-                { 
-                    nome: "Puxada Frontal (Pulldown)", 
-                    series: 3, 
-                    reps: "10-12 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/05/Front-Pulldown.gif", // 
-                    instrucoes: ["Incline levemente o corpo para trás.", "Puxe a barra até a altura do peito.", "Estenda os braços totalmente na volta."]
-                },
-                { 
-                    nome: "Remada na Máquina", 
-                    series: 3, 
-                    reps: "10-12 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/06/close-grip-cable-row.gif", // 
-                    instrucoes: ["Costas retas.", "Puxe em direção ao abdômen.", "Aperte as costas no final do movimento."]
-                },
-                { 
-                    nome: "Crucifixo Invertido na Máquina", 
-                    series: 3, 
-                    reps: "15 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Delt-Machine-Flys.gif", // 
-                    instrucoes: ["Braços quase esticados.", "Abra os braços para trás.", "Foco na parte de trás do ombro."]
-                },
-                { 
-                    nome: "Rosca Direta com Halteres", 
-                    series: 4, 
-                    reps: "10-12 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif", // 
-                    instrucoes: ["Cotovelos parados ao lado do corpo.", "Suba o peso contraindo o bíceps.", "Não balance o corpo."]
-                }
+                { nome: "Puxada Frontal", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/05/Front-Pulldown.gif", instrucoes: ["Puxe até o peito", "Incline levemente", "Alongue na volta"] },
+                { nome: "Remada Máquina", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/06/close-grip-cable-row.gif", instrucoes: ["Costas retas", "Puxe no abdômen", "Aperte as costas"] },
+                { nome: "Crucifixo Invertido", series: 3, reps: "15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Rear-Delt-Machine-Flys.gif", instrucoes: ["Abra os braços", "Foco no posterior", "Não balance"] },
+                { nome: "Rosca Direta", series: 4, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif", instrucoes: ["Cotovelos parados", "Suba o peso", "Controle a descida"] }
             ]
         },
         { 
             dia: "Legs", nomeCompleto: "Pernas", exercicios: [
-                { 
-                    nome: "Leg Press", 
-                    series: 3, 
-                    reps: "10-12 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Lever-Horizontal-Leg-Press.gif", // 
-                    instrucoes: ["Pés na largura dos ombros.", "Desça até 90 graus.", "Empurre com o calcanhar."]
-                },
-                { 
-                    nome: "Cadeira Extensora", 
-                    series: 3, 
-                    reps: "12-15 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif", // 
-                    instrucoes: ["Ajuste o rolo no tornozelo.", "Estenda a perna totalmente.", "Segure 1 segundo em cima."]
-                },
-                { 
-                    nome: "Cadeira Flexora", 
-                    series: 3, 
-                    reps: "12-15 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Seated-Leg-Curl.gif", // 
-                    instrucoes: ["Puxe o calcanhar em direção ao glúteo.", "Retorne devagar."]
-                },
-                { 
-                    nome: "Elevação Pélvica", 
-                    series: 3, 
-                    reps: "15 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Hip-Thrust.gif", // 
-                    instrucoes: ["Apoie as costas no banco.", "Suba o quadril contraindo o glúteo.", "Olhe para frente."]
-                },
-                { 
-                    nome: "Panturrilha em Pé", 
-                    series: 4, 
-                    reps: "15-20 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/05/Hack-Squat-Calf-Raise.gif", // 
-                    instrucoes: ["Suba o máximo possível na ponta dos pés.", "Desça alongando bem."]
-                }
+                { nome: "Leg Press", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Lever-Horizontal-Leg-Press.gif", instrucoes: ["Pés largura ombro", "Desça 90 graus", "Empurre calcanhar"] },
+                { nome: "Cadeira Extensora", series: 3, reps: "12-15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/LEG-EXTENSION.gif", instrucoes: ["Estenda tudo", "Segure 1s", "Desça devagar"] },
+                { nome: "Cadeira Flexora", series: 3, reps: "12-15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/08/Seated-Leg-Curl.gif", instrucoes: ["Puxe calcanhar", "Controle a volta", "Costas apoiadas"] },
+                { nome: "Elevação Pélvica", series: 3, reps: "15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Hip-Thrust.gif", instrucoes: ["Suba quadril", "Contraia glúteo", "Olhe pra frente"] },
+                { nome: "Panturrilha", series: 4, reps: "15-20 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/05/Hack-Squat-Calf-Raise.gif", instrucoes: ["Amplitude máxima", "Alongue bem", "Suba tudo"] }
             ]
         },
         { 
             dia: "Upper", nomeCompleto: "Superior", exercicios: [
-                { 
-                    nome: "Remada Curvada com Halteres", 
-                    series: 3, 
-                    reps: "10-12 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/10/Dumbbell-Bent-Over-Reverse-Row.gif", // 
-                    instrucoes: ["Incline o tronco mantendo a coluna reta.", "Puxe os pesos em direção ao quadril."]
-                },
-                { 
-                    nome: "Supino Inclinado com Halteres", 
-                    series: 3, 
-                    reps: "10-12 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif", // 
-                    instrucoes: ["Banco inclinado (30-45 graus).", "Empurre para cima e para o centro.", "Desça até a altura do ombro."]
-                },
-                { 
-                    nome: "Elevação Frontal com Halteres", 
-                    series: 3, 
-                    reps: "12-15 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Alternating-Dumbbell-Front-Raise.gif", // 
-                    instrucoes: ["Eleve o braço para frente até a altura do ombro.", "Mantenha o abdômen firme."]
-                },
-                { 
-                    nome: "Rosca Martelo", 
-                    series: 4, 
-                    reps: "10-12 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/04/Seated-Hammer-Curl.gif", // 
-                    instrucoes: ["Palmas das mãos viradas uma para a outra.", "Suba o peso sem girar o punho."]
-                },
-                { 
-                    nome: "Tríceps Francês com um Halter", 
-                    series: 3, 
-                    reps: "12-15 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Seated-Dumbbell-Triceps-Extension.gif", // 
-                    instrucoes: ["Segure o peso atrás da cabeça.", "Estenda os braços para cima.", "Mantenha os cotovelos fechados."]
-                }
+                { nome: "Remada Curvada", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/10/Dumbbell-Bent-Over-Reverse-Row.gif", instrucoes: ["Tronco inclinado", "Coluna reta", "Puxe no quadril"] },
+                { nome: "Supino Inclinado", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif", instrucoes: ["Banco 30 graus", "Empurre pra cima", "Desça até ombro"] },
+                { nome: "Elevação Frontal", series: 3, reps: "12-15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Alternating-Dumbbell-Front-Raise.gif", instrucoes: ["Até altura ombro", "Abdômen firme", "Sem balanço"] },
+                { nome: "Rosca Martelo", series: 4, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/04/Seated-Hammer-Curl.gif", instrucoes: ["Pegada neutra", "Sem girar punho", "Bíceps/Antebraço"] },
+                { nome: "Tríceps Francês", series: 3, reps: "12-15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Seated-Dumbbell-Triceps-Extension.gif", instrucoes: ["Peso atrás cabeça", "Cotovelos fechados", "Estenda tudo"] }
             ]
         },
         { 
             dia: "Lower", nomeCompleto: "Inferior", exercicios: [
-                { 
-                    nome: "Agachamento Goblet", 
-                    series: 3, 
-                    reps: "10-12 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2023/01/Dumbbell-Goblet-Squat.gif", // 
-                    instrucoes: ["Segure o peso no peito.", "Agache jogando o quadril para trás.", "Mantenha o peito aberto."]
-                },
-                { 
-                    nome: "Afundo (Lunge)", 
-                    series: 3, 
-                    reps: "12 reps/perna", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/05/Dumbbell-Rear-Lunge.gif", // 
-                    instrucoes: ["Dê um passo para trás.", "Desça até o joelho quase tocar o chão.", "Troque as pernas."]
-                },
-                { 
-                    nome: "Stiff com Halteres", 
-                    series: 3, 
-                    reps: "15 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Straight-Leg-Deadlift.gif", // 
-                    instrucoes: ["Pernas semi-flexionadas.", "Desça o tronco mantendo a coluna reta.", "Sinta alongar atrás da coxa."]
-                },
-                { 
-                    nome: "Panturrilha Sentado", 
-                    series: 4, 
-                    reps: "15-20 reps", 
-                    gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2022/02/Seated-Calf-Press-on-Leg-Press-Machine.gif", // 
-                    instrucoes: ["Sente-se na máquina.", "Suba e desça os calcanhares com amplitude máxima."]
-                }
+                { nome: "Agachamento Goblet", series: 3, reps: "10-12 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2023/01/Dumbbell-Goblet-Squat.gif", instrucoes: ["Peso no peito", "Agache fundo", "Peito aberto"] },
+                { nome: "Afundo (Lunge)", series: 3, reps: "12 reps/perna", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/05/Dumbbell-Rear-Lunge.gif", instrucoes: ["Passo pra trás", "Joelho chão", "Troca perna"] },
+                { nome: "Stiff", series: 3, reps: "15 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Straight-Leg-Deadlift.gif", instrucoes: ["Perna semi-reta", "Quadril pra trás", "Coluna reta"] },
+                { nome: "Panturrilha Sentado", series: 4, reps: "15-20 reps", gifUrl: "https://fitnessprogramer.com/wp-content/uploads/2022/02/Seated-Calf-Press-on-Leg-Press-Machine.gif", instrucoes: ["Sente máquina", "Amplitude total", "Controle"] }
             ] 
         }
     ];
 
-    // ELEMENTOS DOM
     const el = {
-        themeBtn: document.getElementById('theme-toggle-btn'),
         daySelector: document.getElementById('day-selector-inline'),
         dayTitle: document.getElementById('workout-day-title'),
+        currentDayLabel: document.getElementById('current-day-label'),
         list: document.getElementById('lista-exercicios'),
         completedList: document.getElementById('completed-list'),
         completedSection: document.getElementById('completed-section'),
         progressBar: document.getElementById('progress-bar'),
-        resetBtn: document.getElementById('botao-resetar'),
+        progressPercent: document.getElementById('progress-percent'),
+        resetBtn: document.getElementById('botao-resetar'), // Now the refresh icon
         modals: {
             info: {
                 overlay: document.getElementById('modal-info-overlay'),
@@ -213,24 +77,18 @@ document.addEventListener('DOMContentLoaded', () => {
             reset: {
                 overlay: document.getElementById('reset-overlay'),
                 confirm: document.getElementById('confirm-reset-btn'),
-                cancel: document.getElementById('cancel-reset-btn'),
-                close: document.getElementById('reset-modal-close-btn')
+                cancel: document.getElementById('cancel-reset-btn')
             }
         }
     };
 
-    // ESTADO
     let progresso = {};
     let diaAtivo = 0;
 
-    // --- FUNÇÕES DE ARMAZENAMENTO ---
     const carregarDados = () => {
         try {
             progresso = JSON.parse(localStorage.getItem('goFitnessProgresso')) || {};
-            const temaSalvo = localStorage.getItem('theme') || 'light';
-            document.body.dataset.theme = temaSalvo;
         } catch (e) {
-            console.error("Erro ao carregar dados", e);
             progresso = {};
         }
     };
@@ -239,9 +97,8 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('goFitnessProgresso', JSON.stringify(progresso));
     };
 
-    // --- RENDERIZAÇÃO ---
-    const atualizarBarraProgresso = () => {
-        if (!dadosTreino[diaAtivo] || !dadosTreino[diaAtivo].exercicios) return;
+    const atualizarDashboard = () => {
+        if (!dadosTreino[diaAtivo]) return;
         
         const exs = dadosTreino[diaAtivo].exercicios;
         let seriesTotais = 0;
@@ -253,13 +110,15 @@ document.addEventListener('DOMContentLoaded', () => {
             seriesFeitas += Math.min(progresso[id] || 0, ex.series);
         });
 
-        const porcentagem = seriesTotais === 0 ? 0 : (seriesFeitas / seriesTotais) * 100;
+        const porcentagem = seriesTotais === 0 ? 0 : Math.round((seriesFeitas / seriesTotais) * 100);
+        
+        // Update White Card (Percentage)
+        el.progressPercent.textContent = porcentagem;
         el.progressBar.style.width = `${porcentagem}%`;
-        el.progressBar.setAttribute('aria-valuenow', Math.round(porcentagem));
 
         if (porcentagem >= 100 && !el.modals.complete.overlay.classList.contains('shown-today')) {
             mostrarConclusao();
-            el.modals.complete.overlay.classList.add('shown-today'); 
+            el.modals.complete.overlay.classList.add('shown-today');
         }
     };
 
@@ -270,21 +129,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const li = document.createElement('li');
         li.className = `exercicio-item ${estaCompleto ? 'finalizado' : ''}`;
+        
+        // The HTML structure is simplified for the new design
         li.innerHTML = `
             <div class="detalhes-header">
                 <div class="detalhes-exercicio">
                     <h3>${ex.nome}</h3>
                     <div class="exercicio-meta">${ex.series} Séries • ${ex.reps}</div>
                 </div>
-                <button class="btn-info-inline" aria-label="Ver instruções de ${ex.nome}">i</button>
+                <button class="btn-info-inline" aria-label="Info">i</button>
             </div>
             
             <div class="exercicio-controls">
-                <button class="btn-control remove" aria-label="Diminuir séries">-</button>
-                <div class="set-counter" aria-live="polite" aria-label="${seriesFeitas} de ${ex.series} séries feitas">
-                    ${seriesFeitas}/${ex.series}
-                </div>
-                <button class="btn-control add" aria-label="Aumentar séries" ${estaCompleto ? 'disabled' : ''}>+</button>
+                <button class="btn-control remove" aria-label="Menos">-</button>
+                <div class="set-counter">${seriesFeitas}/${ex.series}</div>
+                <button class="btn-control add" aria-label="Mais" ${estaCompleto ? 'disabled' : ''}>+</button>
             </div>
         `;
 
@@ -303,12 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
         diaAtivo = index;
         const dados = dadosTreino[index];
         
-        el.dayTitle.textContent = dados.nomeCompleto;
+        el.dayTitle.textContent = dados.nomeCompleto; // Header H1
+        el.currentDayLabel.textContent = dados.nomeCompleto; // Blue Card Label
         
         document.querySelectorAll('.inline-day-btn').forEach((btn, idx) => {
-            const isActive = idx === index;
-            btn.classList.toggle('active', isActive);
-            btn.setAttribute('aria-pressed', isActive);
+            btn.classList.toggle('active', idx === index);
         });
 
         el.list.innerHTML = '';
@@ -329,12 +187,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     el.list.appendChild(card);
                 }
             });
-        } else {
-            el.list.innerHTML = '<li style="padding:20px; text-align:center; color:var(--cor-texto-secundario)">Dia de descanso! Aproveite para recuperar.</li>';
         }
 
         el.completedSection.classList.toggle('hidden', !temCompletos);
-        atualizarBarraProgresso();
+        atualizarDashboard();
     };
 
     const alterarSeries = (id, delta, max) => {
@@ -344,53 +200,39 @@ document.addEventListener('DOMContentLoaded', () => {
         if (atual !== novo) {
             progresso[id] = novo;
             salvarDados();
-            renderizarDia(diaAtivo); 
+            renderizarDia(diaAtivo);
         }
     };
 
+    // --- MODALS ---
     const abrirModalInfo = (ex) => {
         el.modals.info.title.textContent = ex.nome;
         el.modals.info.gif.src = ex.gifUrl;
-        el.modals.info.gif.alt = `Animação demonstrando ${ex.nome}`; // Acessibilidade
         el.modals.info.list.innerHTML = ex.instrucoes.map(i => `<li>${i}</li>`).join('');
-        
         el.modals.info.overlay.classList.remove('hidden');
-        el.modals.info.overlay.setAttribute('aria-hidden', 'false');
     };
 
     const mostrarConclusao = () => {
-        const msg = mensagensDeConclusao[Math.floor(Math.random() * mensagensDeConclusao.length)];
-        el.modals.complete.text.textContent = msg;
+        el.modals.complete.text.textContent = mensagensDeConclusao[Math.floor(Math.random() * mensagensDeConclusao.length)];
         el.modals.complete.overlay.classList.remove('hidden');
-        
-        if (typeof confetti === 'function') {
-            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-        }
+        if (typeof confetti === 'function') confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
     };
 
     const fecharModal = (overlay) => {
         overlay.classList.add('hidden');
-        overlay.setAttribute('aria-hidden', 'true');
     };
 
+    // Events
     el.modals.info.close.addEventListener('click', () => fecharModal(el.modals.info.overlay));
     el.modals.complete.close.addEventListener('click', () => fecharModal(el.modals.complete.overlay));
     
+    // Reset Logic
     el.resetBtn.addEventListener('click', () => el.modals.reset.overlay.classList.remove('hidden'));
-    el.modals.reset.close.addEventListener('click', () => fecharModal(el.modals.reset.overlay));
     el.modals.reset.cancel.addEventListener('click', () => fecharModal(el.modals.reset.overlay));
-    
     el.modals.reset.confirm.addEventListener('click', () => {
         progresso = {};
         salvarDados();
         location.reload();
-    });
-
-    el.themeBtn.addEventListener('click', () => {
-        const atual = document.body.dataset.theme;
-        const novo = atual === 'light' ? 'dark' : 'light';
-        document.body.dataset.theme = novo;
-        localStorage.setItem('theme', novo);
     });
 
     const init = () => {
