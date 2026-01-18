@@ -94,6 +94,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const salvarDados = () => {
         localStorage.setItem('goFitnessProgresso', JSON.stringify(progresso));
+        atualizarStatusDias(); // Atualiza a cor dos botões ao salvar
+    };
+
+    // NOVA FUNÇÃO: Verifica se todos os exercícios de um dia foram feitos
+    const atualizarStatusDias = () => {
+        const botoes = document.querySelectorAll('.inline-day-btn');
+        
+        dadosTreino.forEach((dadosDia, indexDia) => {
+            const exercicios = dadosDia.exercicios;
+            let diaCompleto = true;
+
+            for (let i = 0; i < exercicios.length; i++) {
+                const id = `d${indexDia}-e${i}`;
+                const seriesFeitas = progresso[id] || 0;
+                if (seriesFeitas < exercicios[i].series) {
+                    diaCompleto = false;
+                    break;
+                }
+            }
+
+            if (botoes[indexDia]) {
+                if (diaCompleto) {
+                    botoes[indexDia].classList.add('completed');
+                } else {
+                    botoes[indexDia].classList.remove('completed');
+                }
+            }
+        });
     };
 
     const atualizarDashboard = () => {
@@ -163,6 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.currentDayLabel.textContent = dados.nomeCompleto; 
         
         document.querySelectorAll('.inline-day-btn').forEach((btn, idx) => {
+            // Remove active de todos
             btn.classList.toggle('active', idx === index);
         });
 
@@ -188,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         el.completedSection.classList.toggle('hidden', !temCompletos);
         atualizarDashboard();
+        atualizarStatusDias(); // Garante que a cor esteja correta ao renderizar
     };
 
     const alterarSeries = (id, delta, max) => {
@@ -196,7 +226,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (atual !== novo) {
             progresso[id] = novo;
-            salvarDados();
+            salvarDados(); // Salva e atualiza cores dos botões
             renderizarDia(diaAtivo);
         }
     };
@@ -248,6 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (diaInicial < 0 || diaInicial > 4) diaInicial = 0; 
         
         renderizarDia(diaInicial);
+        atualizarStatusDias(); // Roda a verificação de cores na inicialização
     };
 
     init();
