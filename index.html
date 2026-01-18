@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
   <meta name="theme-color" content="#000000">
-  <title>TáPago 2.0</title>
+  <title>Go Fitness Pro</title>
 
   <link rel="manifest" href="manifest.json">
   <link rel="icon" type="image/png" sizes="192x192" href="icon_192.png">
@@ -15,7 +15,9 @@
   
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body> <div class="container">
+<body>
+
+<div class="container">
   
   <header class="app-header">
     <div class="profile-row">
@@ -28,8 +30,11 @@
                 <h1 id="workout-day-title">Carregando...</h1>
             </div>
         </div>
-        <button id="botao-resetar" class="btn-icon-glass" aria-label="Resetar">
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 12"/></svg>
+        <button id="botao-resetar" class="btn-icon-glass" aria-label="Resetar Semana">
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18.36 6.64a9 9 0 1 1-12.73 0"></path>
+                <line x1="12" y1="2" x2="12" y2="12"></line>
+             </svg>
         </button>
     </div>
 
@@ -47,7 +52,7 @@
         <div class="stat-card card-blue">
             <span class="stat-label">Dia Atual</span>
             <div class="stat-value-row">
-                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
             </div>
             <span id="current-day-label" class="stat-subtext">Seleção</span>
         </div>
@@ -75,7 +80,7 @@
 </div>
 
 <div id="modal-info-overlay" class="modal-overlay hidden" aria-hidden="true">
-  <div class="modal glass-modal">
+  <div class="modal white-modal">
     <div class="modal-header">
         <h2 id="modal-info-titulo"></h2>
         <button id="modal-info-fechar-btn" class="btn-close-modal">&times;</button>
@@ -91,7 +96,7 @@
 </div>
 
 <div id="completion-overlay" class="overlay hidden" aria-hidden="true">
-    <div class="modal glass-modal centered-text">
+    <div class="modal white-modal centered-text">
         <h3 id="completion-title">Excelente!</h3>
         <p id="completion-text"></p>
         <button id="completion-close-btn" class="btn-full-width">Continuar</button>
@@ -99,9 +104,9 @@
 </div>
 
 <div id="reset-overlay" class="overlay hidden" aria-hidden="true">
-    <div class="modal glass-modal">
-        <h2 class="modal-title">Reiniciar?</h2>
-        <p class="modal-text">O progresso da semana será apagado.</p>
+    <div class="modal white-modal">
+        <h2 class="modal-title">Reiniciar Semana?</h2>
+        <p class="modal-text">Todo o progresso será apagado.</p>
         <div class="modal-buttons">
             <button id="cancel-reset-btn" class="btn-text">Cancelar</button>
             <button id="confirm-reset-btn" class="btn-danger">Apagar</button>
